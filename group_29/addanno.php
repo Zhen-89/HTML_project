@@ -76,7 +76,7 @@
                         <strong id="strong_userInfo">會員</strong>
                         <ul id="userInfo">
                             <li>
-                                <a href="memberlist.html">會員總覽</a>
+                                <a href="memberlist.php">會員總覽</a>
                             </li>
 
                         </ul>
@@ -85,10 +85,10 @@
                         <strong id="strong_buy">商品</strong>
                         <ul id="buy">
                             <li>
-                                <a href="selllist.html">商品列表</a>
+                                <a href="selllist.php">商品列表</a>
                             </li>
                             <li>
-                                <a href="addsell.html">新增商品</a>
+                                <a href="addsell.php">新增商品</a>
                             </li>
                             <li>
                                 <a href=""></a>
@@ -110,10 +110,10 @@
                         <strong id="strong_anno">資訊</strong>
                         <ul id="anno">
                             <li>
-                                <a href="annolist.html">公告列表</a>
+                                <a href="annolist.php">公告列表</a>
                             </li>
                             <li class="navS">
-                                <a href="addanno.html">新增公告</a>
+                                <a href="addanno.php">新增公告</a>
                             </li>
                         </ul>
                     </li>

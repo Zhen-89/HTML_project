@@ -36,7 +36,7 @@
       <div class="basic-breadcrumb text-center">
         <h3 class="">個人資料</h3>
         <!-- <ol class="breadcrumb text-xs">
-						<li><a href="index.html">Home</a></li>
+						<li><a href="index.php">Home</a></li>
 						<li class="active">Contact</li>
 					</ol> -->
       </div>
@@ -63,10 +63,10 @@
                 <h4><i class="icon-paste-solid"></i>讓我看看你有什麼本事</h4>
                 <ul>
                   <li>
-                    <a href="personal information.html">個人資料</a>
+                    <a href="personal information.php">個人資料</a>
                   </li>
                   <li>
-                    <a href="Order_summary.html">訂單查詢</a>
+                    <a href="Order_summary.php">訂單查詢</a>
                   </li>
                 </ul>
               </li>

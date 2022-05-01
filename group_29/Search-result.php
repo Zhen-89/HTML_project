@@ -43,7 +43,7 @@
 						<div class="slider-content">
 							<h2>週日搶下殺 <br> 最高折 $500
 							</h2>
-							<a class="btn" href="Bulletin_Board.html">看特價</a>
+							<a class="btn" href="Bulletin_Board.php">看特價</a>
 						</div>
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 						<div class="slider-content">
 							<h2>新品上市 <br> 柔軟舒適
 							</h2>
-							<a class="btn" href="Bulletin_Board.html">看更多</a>
+							<a class="btn" href="Bulletin_Board.php">看更多</a>
 						</div>
 					</div>
 				</div>
@@ -73,7 +73,7 @@
 							</div>
 							<div class="portfolio-caption text-left">
 								<h4>
-									<a href="pro_cushion.html">不易變形坐墊/方形/混淺棕</a>
+									<a href="pro_cushion.php">不易變形坐墊/方形/混淺棕</a>
 								</h4>
 							</div>
 						</div>
@@ -88,7 +88,7 @@
 									<p>讚讚</p>
 								</div>
 								<h4>
-									<a href="pro_shoe_white_1.html">有機棉舒適基本便鞋</a>
+									<a href="pro_shoe_white_1.php">有機棉舒適基本便鞋</a>
 								</h4>
 							</div>
 						</div>
@@ -100,16 +100,16 @@
 							</div>
 							<div class="portfolio-caption text-left">
 								<h4>
-									<a href="pro_bag.html">棉束口袋/文字 原色NONE</a>
+									<a href="pro_bag.php">棉束口袋/文字 原色NONE</a>
 								</h4>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="view-more mt-20 text-center">
-					<a class="btn btn-large" href="Search-result.html">上一頁</a>
-					<a class="btn btn-large" href="Search-result.html">...</a>
-					<a class="btn btn-large" href="Search-result.html">下一頁</a>
+					<a class="btn btn-large" href="Search-result.php">上一頁</a>
+					<a class="btn btn-large" href="Search-result.php">...</a>
+					<a class="btn btn-large" href="Search-result.php">下一頁</a>
 				</div>
 			</div>
 		</div>
@@ -123,19 +123,19 @@
 				</div>
 				<div class="con_flex gray-bg">
                     <div class="it_flex">
-                        <a href="login.html">
+                        <a href="login.php">
                             <img src="image/icon/icon1.svg">
                             登陸/註冊
                         </a>
                     </div>
                     <div class="it_flex">
-                        <a href="Bulletin_Board.html">
+                        <a href="Bulletin_Board.php">
                             <img src="image/icon/icon2_1.svg">
                             優惠折扣
                         </a>
                     </div>
                     <div class="it_flex">
-                        <a href="personal information.html">
+                        <a href="personal information.php">
                             <img src="image/icon/icon3.svg">
                             個人資料
                         </a>
@@ -146,13 +146,13 @@
                     </div>-->
                     <div class="it_flex2">
                         <div class="it_flex3">
-                            <a href="shopping.html">
+                            <a href="shopping.php">
                                 <img src="image/icon/icon5_1.svg">
                                 購物車
                             </a>
                         </div>
                         <div class="it_flex3">
-                            <a href="question.html">
+                            <a href="question.php">
                                 <img src="image/icon/icon5_2.svg">
                             常見問題
                             </a>

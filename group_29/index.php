@@ -63,7 +63,7 @@
 						<div class="slider-content">
 							<h2>週日搶下殺 <br> 最高折 $500
 							</h2>
-							<a class="btn" href="Bulletin_Board.html">看特價</a>
+							<a class="btn" href="Bulletin_Board.php">看特價</a>
 						</div>
 					</div>
 				</div>
@@ -72,7 +72,7 @@
 						<div class="slider-content">
 							<h2>新品上市 <br> 柔軟舒適
 							</h2>
-							<a class="btn" href="Bulletin_Board.html">看更多</a>
+							<a class="btn" href="Bulletin_Board.php">看更多</a>
 						</div>
 					</div>
 				</div>
@@ -105,7 +105,7 @@
 									<p>買吧</p>
 								</div>
 								<h4>
-									<a href="pro_bowl.html">無印良品 小杯杯</a>
+									<a href="pro_bowl.php">無印良品 小杯杯</a>
 								</h4>
 							</div>
 						</div>
@@ -125,7 +125,7 @@
 									<p>讚喔</p>
 								</div>
 								<h4>
-									<a href="pro_key.html">日本原裝進口 不鏽鋼鑰匙圈</a>
+									<a href="pro_key.php">日本原裝進口 不鏽鋼鑰匙圈</a>
 								</h4>
 							</div>
 						</div>
@@ -137,7 +137,7 @@
 							</div>
 							<div class="portfolio-caption text-left">
 								<h4>
-									<a href="pro_stick.html">無印良品 小筷筷</a>
+									<a href="pro_stick.php">無印良品 小筷筷</a>
 								</h4>
 							</div>
 						</div>
@@ -154,7 +154,7 @@
 							</div>
 							<div class="portfolio-caption text-left">
 								<h4>
-									<a href="pro_sweater_white.html">【男女適用】休閒衫</a>
+									<a href="pro_sweater_white.php">【男女適用】休閒衫</a>
 								</h4>
 							</div>
 						</div>
@@ -172,7 +172,7 @@
 							<div class="portfolio-caption text-left">
 								
 								<h4>
-									<a href="pro_coat_gray.html">【男女適用】 連帽外套</a>
+									<a href="pro_coat_gray.php">【男女適用】 連帽外套</a>
 								</h4>
 							</div>
 						</div>
@@ -184,7 +184,7 @@
 							</div>
 							<div class="portfolio-caption text-left">
 								<h4>
-									<a href="pro_shoe_white.html">有機棉舒適休閒鞋柔白</a>
+									<a href="pro_shoe_white.php">有機棉舒適休閒鞋柔白</a>
 								</h4>
 							</div>
 						</div>
@@ -201,7 +201,7 @@
 							</div>
 							<div class="portfolio-caption text-left">
 								<h4>
-									<a href="pro_shoe_black.html">有機棉舒適休閒鞋</a>
+									<a href="pro_shoe_black.php">有機棉舒適休閒鞋</a>
 								</h4>
 							</div>
 						</div>
@@ -216,7 +216,7 @@
 									<p>讚讚</p>
 								</div>
 								<h4>
-									<a href="pro_shoe_white_1.html">有機棉舒適基本便鞋</a>
+									<a href="pro_shoe_white_1.php">有機棉舒適基本便鞋</a>
 								</h4>
 							</div>
 						</div>
@@ -228,7 +228,7 @@
 							</div>
 							<div class="portfolio-caption text-left">
 								<h4>
-									<a href="pro_bag.html">棉束口袋/文字 原色NONE</a>
+									<a href="pro_bag.php">棉束口袋/文字 原色NONE</a>
 								</h4>
 							</div>
 						</div>
@@ -240,7 +240,7 @@
 							</div>
 							<div class="portfolio-caption text-left">
 								<h4>
-									<a href="pro_cushion.html">不易變形坐墊/方形/混淺棕</a>
+									<a href="pro_cushion.php">不易變形坐墊/方形/混淺棕</a>
 								</h4>
 							</div>
 						</div>
@@ -267,7 +267,7 @@
 										<p>Web Design</p>
 									</div>
 									<h4>
-										<a href="portfolio-single.html">Brand Redesign Works</a>
+										<a href="portfolio-single.php">Brand Redesign Works</a>
 									</h4>
 								</div>
 							</div>
@@ -277,7 +277,7 @@
 								<div class="portfolio-thumb">
 									<img src="picture/project2.jpg" alt="">
 									<div class="view-icon">
-										<a href="portfolio-single.html">
+										<a href="portfolio-single.php">
 											<i class="ion-arrow-right-c"></i>
 										</a>
 									</div>
@@ -287,7 +287,7 @@
 										<p>Web Design</p>
 									</div>
 									<h4>
-										<a href="portfolio-single.html">Brand Redesign Works</a>
+										<a href="portfolio-single.php">Brand Redesign Works</a>
 									</h4>
 								</div>
 							</div>
@@ -307,7 +307,7 @@
 										<p>Web Design</p>
 									</div>
 									<h4>
-										<a href="portfolio-single.html">Brand Redesign Works</a>
+										<a href="portfolio-single.php">Brand Redesign Works</a>
 									</h4>
 								</div>
 							</div>
@@ -327,7 +327,7 @@
 										<p>Web Design</p>
 									</div>
 									<h4>
-										<a href="portfolio-single.html">Brand Redesign Works</a>
+										<a href="portfolio-single.php">Brand Redesign Works</a>
 									</h4>
 								</div>
 							</div>
@@ -347,7 +347,7 @@
 										<p>Web Design</p>
 									</div>
 									<h4>
-										<a href="portfolio-single.html">Brand Redesign Works</a>
+										<a href="portfolio-single.php">Brand Redesign Works</a>
 									</h4>
 								</div>
 							</div>
@@ -367,7 +367,7 @@
 										<p>Web Design</p>
 									</div>
 									<h4>
-										<a href="portfolio-single.html">Brand Redesign Works</a>
+										<a href="portfolio-single.php">Brand Redesign Works</a>
 									</h4>
 								</div>
 							</div>
@@ -377,7 +377,7 @@
 								<div class="portfolio-thumb">
 									<img src="picture/project3.jpg" alt="">
 									<div class="view-icon">
-										<a href="portfolio-single.html">
+										<a href="portfolio-single.php">
 											<i class="ion-arrow-right-c"></i>
 										</a>
 									</div>
@@ -387,7 +387,7 @@
 										<p>Web Design</p>
 									</div>
 									<h4>
-										<a href="portfolio-single.html">Brand Redesign Works</a>
+										<a href="portfolio-single.php">Brand Redesign Works</a>
 									</h4>
 								</div>
 							</div>
@@ -407,7 +407,7 @@
 										<p>Web Design</p>
 									</div>
 									<h4>
-										<a href="portfolio-single.html">Brand Redesign Works</a>
+										<a href="portfolio-single.php">Brand Redesign Works</a>
 									</h4>
 								</div>
 							</div>
@@ -443,7 +443,7 @@
 									<p>要買要快</p>
 								</div>
 								<h4>
-									<a href="pro_bowl.html">無印良品 小杯杯</a>
+									<a href="pro_bowl.php">無印良品 小杯杯</a>
 								</h4>
 							</div>
 						</div>

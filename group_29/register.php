@@ -79,7 +79,7 @@
 
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-lg btn-round btn-dark">註冊</button>
-                                <a href="login.html" class="btn btn-lg btn-round btn-dark">返回登入頁面</a>
+                                <a href="login.php" class="btn btn-lg btn-round btn-dark">返回登入頁面</a>
                             </div>
 
 

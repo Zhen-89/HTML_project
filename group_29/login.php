@@ -59,7 +59,7 @@
 
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-lg btn-round btn-dark">登入</button>                                
-                                <a href="register.html" class="btn btn-lg btn-round btn-dark">註冊</a>         
+                                <a href="register.php" class="btn btn-lg btn-round btn-dark">註冊</a>         
                                                       
                             </div>
                             <div class="col-md-12 text-center">

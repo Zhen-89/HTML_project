@@ -56,7 +56,7 @@
                         <strong id="strong_userInfo">會員</strong>
                         <ul id="userInfo" >
                             <li>
-                                <a href="memberlist.html">會員總覽</a>
+                                <a href="memberlist.php">會員總覽</a>
                             </li>
 
                         </ul>
@@ -65,10 +65,10 @@
                         <strong id="strong_buy">商品</strong>
                         <ul id="buy">
                             <li class="navS">
-                                <a href="selllist.html">商品列表</a>
+                                <a href="selllist.php">商品列表</a>
                             </li>
                             <li>
-                                <a href="addsell.html">新增商品</a>
+                                <a href="addsell.php">新增商品</a>
                             </li>
                             <li>
                                 <a href=""></a>
@@ -89,10 +89,10 @@
                         <strong id="strong_anno">資訊</strong>
                         <ul id="anno">
                             <li>
-                                <a href="annolist.html">公告列表</a>
+                                <a href="annolist.php">公告列表</a>
                             </li>
                             <li >
-                                <a href="addanno.html">新增公告</a>
+                                <a href="addanno.php">新增公告</a>
                             </li>
                         </ul>
                     </li>
@@ -114,14 +114,14 @@
                         </dd>
                         <dd class="sell2">
                             <h5 class="sell-title">
-                                <a href="pro_bowl.html">無印良品 小杯杯</a>
+                                <a href="pro_bowl.php">無印良品 小杯杯</a>
                             </h5>
                             <div class="pro_text">
                                 $ 150 NT
                             </div>
                         </dd>
                         <dd class="sell3">
-                            <a href="addsell.html">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <a href="">下架商品</a>
                         </dd>
                     </dl>
@@ -131,14 +131,14 @@
                         </dd>
                         <dd class="sell2">
                             <h5 class="sell-title">
-                                <a href="pro_key.html">日本原裝進口 不鏽鋼鑰匙圈</a>
+                                <a href="pro_key.php">日本原裝進口 不鏽鋼鑰匙圈</a>
                             </h5>
                             <div class="pro_text">
                                 $10000 NT 
                             </div>
                         </dd>
                         <dd class="sell3">
-                            <a href="addsell.html">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <a href="">下架商品</a>
                         </dd>
                     </dl>
@@ -148,14 +148,14 @@
                         </dd>
                         <dd class="sell2">
                             <h5 class="sell-title">
-                                <a href="pro_stick.html">無印良品 小筷筷</a>
+                                <a href="pro_stick.php">無印良品 小筷筷</a>
                             </h5>
                             <div class="pro_text">
                                 $ 130 NT
                             </div>
                         </dd>
                         <dd class="sell3">
-                            <a href="addsell.html">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <a href="">下架商品</a>
                         </dd>
                     </dl>
@@ -165,14 +165,14 @@
                         </dd>
                         <dd class="sell2">
                             <h5 class="sell-title">
-                                <a href="pro_sweater_white.html">【男女適用】休閒衫</a>
+                                <a href="pro_sweater_white.php">【男女適用】休閒衫</a>
                             </h5>
                             <div class="pro_text">
                                 $ 1600 NT
                             </div>
                         </dd>
                         <dd class="sell3">
-                            <a href="addsell.html">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <a href="">下架商品</a>
                         </dd>
                     </dl>
@@ -182,14 +182,14 @@
                         </dd>
                         <dd class="sell2">
                             <h5 class="sell-title">
-                                <a href="pro_coat_gray.html">【男女適用】 連帽外套</a>
+                                <a href="pro_coat_gray.php">【男女適用】 連帽外套</a>
                             </h5>
                             <div class="pro_text">
                                 $ 899 NT
                             </div>
                         </dd>
                         <dd class="sell3">
-                            <a href="addsell.html">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <a href="">下架商品</a>
                         </dd>
                     </dl>
@@ -199,14 +199,14 @@
                         </dd>
                         <dd class="sell2">
                             <h5 class="sell-title">
-                                <a href="pro_shoe_white.html">有機棉舒適休閒鞋柔白</a>
+                                <a href="pro_shoe_white.php">有機棉舒適休閒鞋柔白</a>
                             </h5>
                             <div class="pro_text">
                                 $ 899 NT
                             </div>
                         </dd>
                         <dd class="sell3">
-                            <a href="addsell.html">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <a href="">下架商品</a>
                         </dd>
                     </dl>
@@ -216,14 +216,14 @@
                         </dd>
                         <dd class="sell2">
                             <h5 class="sell-title">
-                                <a href="pro_shoe_black.html">有機棉舒適休閒鞋</a>
+                                <a href="pro_shoe_black.php">有機棉舒適休閒鞋</a>
                             </h5>
                             <div class="pro_text">
                                 $ 699 NT
                             </div>
                         </dd>
                         <dd class="sell3">
-                            <a href="addsell.html">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <a href="">下架商品</a>
                         </dd>
                     </dl>
@@ -233,14 +233,14 @@
                         </dd>
                         <dd class="sell2">
                             <h5 class="sell-title">
-                                <a href="pro_shoe_white_1.html">有機棉舒適基本便鞋</a>
+                                <a href="pro_shoe_white_1.php">有機棉舒適基本便鞋</a>
                             </h5>
                             <div class="pro_text">
                                 $ 699 NT
                             </div>
                         </dd>
                         <dd class="sell3">
-                            <a href="addsell.html">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <a href="">下架商品</a>
                         </dd>
                     </dl>
@@ -250,14 +250,14 @@
                         </dd>
                         <dd class="sell2">
                             <h5 class="sell-title">
-                                <a href="pro_bag.html">棉束口袋/文字 原色NONE</a>
+                                <a href="pro_bag.php">棉束口袋/文字 原色NONE</a>
                             </h5>
                             <div class="pro_text">
                                 $ 69 NT
                             </div>
                         </dd>
                         <dd class="sell3">
-                            <a href="addsell.html">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <a href="">下架商品</a>
                         </dd>
                     </dl>
@@ -267,14 +267,14 @@
                         </dd>
                         <dd class="sell2">
                             <h5 class="sell-title">
-                                <a href="pro_cushion.html">不易變形坐墊/方形/混淺棕</a>
+                                <a href="pro_cushion.php">不易變形坐墊/方形/混淺棕</a>
                             </h5>
                             <div class="pro_text">
                                 $ 540 NT
                             </div>
                         </dd>
                         <dd class="sell3">
-                            <a href="addsell.html">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <a href="">下架商品</a>
                         </dd>
                     </dl>

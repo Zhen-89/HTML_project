@@ -86,7 +86,7 @@
                     <h2>優惠活動</h2>
                 </div>
                 <div style="padding: 6px 0;">
-                    <a href="pro_key.html">
+                    <a href="pro_key.php">
                         <div class="banner_size1 " style="background-image: url(./picture/m-project1.jpg); " >
                             <div class="container ">
                                 <div class="banner_title">
@@ -100,7 +100,7 @@
                     </a>
                 </div>
                 <div style="padding: 6px 0;">
-                    <a href="pro_shoe_white_1.html">
+                    <a href="pro_shoe_white_1.php">
                         <div class="banner_size1 " style="background-image: url(./picture/Product/show_white_1_2.jpg);" >
                             <div class="container ">
                                 <div class="banner_title">
@@ -121,7 +121,7 @@
                     <h2>新品首發</h2>
                 </div>
                 <div style="padding: 6px 0;">
-                    <a href="pro_coat_gray.html">
+                    <a href="pro_coat_gray.php">
                         <div class="banner_size1 " style="background-image: url(./picture/Product/coat_gray.jpg); " >
                             <div class="container ">
                                 <div class="banner_title">
@@ -143,7 +143,7 @@
 			<div class="basic-footer text-center ptb-90">
 				<div class="container">
 					<div class="footer-logo mb-30">
-						<h3><a href="index.html">我都念 costco</a></h3>
+						<h3><a href="index.php">我都念 costco</a></h3>
 					</div>
 					<div class="social-icon">
 						<a href="#"><i class="ion-social-facebook"></i></a>
