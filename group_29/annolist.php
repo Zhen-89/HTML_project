@@ -109,7 +109,17 @@
                             </a>
                         </li>
                     </ul>
-                    <?php '<dl class="anno12"><dd class="anno1"><h5 class="anno-title"><a href="">這是一個測試公告</a></h5></dd><dd class="anno2"><a href="addsell.php">編輯公告&nbsp;&nbsp;&nbsp;&nbsp;</a><a href="">刪除</a></dd></dl>' ?>
+                    <?php echo '<dl class="anno12">
+                        <dd class="anno1">
+                            <h5 class="anno-title">
+                                <a href="">這是一個測試公告</a>
+                            </h5>
+                        </dd>
+                        <dd class="anno2">
+                            <a href="addsell.php">編輯公告&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="">刪除</a>
+                        </dd>
+                    </dl>'?> 
 
                 </div>
             </div>
