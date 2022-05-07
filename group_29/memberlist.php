@@ -108,6 +108,8 @@
                             </a>
                         </li>
                     </ul>
+                    <?php echo '<dl class="anno12"><dd class="anno1"><h5 class="anno-title"><a href="adminmem.php">會員帳號ID:test 姓名:石宇辰</a></h5></dd></dl>'
+                    ?>
                     <dl class="anno12">
                         <dd class="anno1">
                             <h5 class="anno-title">
