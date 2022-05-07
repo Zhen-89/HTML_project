@@ -108,7 +108,7 @@
                             </a>
                         </li>
                     </ul>
-                    <dl class="sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <?php echo '<dl class="sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <dd class="sell1">
                             <a href=""><img src="picture/project1.jpg" title="無印良品 小杯杯"></a>
                         </dd>
@@ -124,7 +124,7 @@
                             <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <a href="">下架商品</a>
                         </dd>
-                    </dl>
+                    </dl>'?>
                     <dl class="sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <dd class="sell1">
                             <a href=""><img src="picture/m-project1.jpg" title="日本原裝進口 不鏽鋼鑰匙圈"></a>
