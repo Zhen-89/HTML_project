@@ -64,20 +64,6 @@
             </div>
         </div>
     </div>-->
-    <!--<div class="basic-contact-form ptb-90" style="padding:0px;">
-        <div class="container">
-            <div id="top-menu">
-                <div id="member_center" class="clearfix">
-                    <button class="member_btn">管理中心</button>
-                </div>
-            </div>
-            <div id="top-menu-2">
-                <div id="sell-list" class="clearfix">
-
-                </div>
-            </div>
-        </div>
-    </div>-->
     <div class="basic-contact-form ptb-70" style="padding-top:0px;">
         <div class="container">
             <div id="leftMenu">
