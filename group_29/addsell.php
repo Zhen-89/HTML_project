@@ -58,7 +58,7 @@
     <div class="basic-contact-form ptb-70" style="padding-top:0px;">
         <div class="container">
              <!-- left start -->
-                <?php include("_adminleftmenu.php") ;?>
+                <?php include("_adminleftmenu.php") ?>
             <!-- left end -->
             <div class="right-Content" id="rightContent">
                 <div class="clearfix" id="Contentsell">
