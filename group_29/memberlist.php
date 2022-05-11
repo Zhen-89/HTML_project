@@ -1,3 +1,23 @@
+<?php
+
+$link = mysqli_connect("localhost", "root", "root123456", "group_member") // 建立MySQL的資料庫連結
+    or die("無法開啟MySQL資料庫連結!<br>");
+
+// 送出編碼的MySQL指令
+mysqli_query($link, 'SET CHARACTER SET utf8');
+mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+
+// // 資料庫查詢(送出查詢的SQL指令)
+if ($result = mysqli_query($link, "SELECT * FROM member")) {
+    while ($row = mysqli_fetch_row($result)) {
+        $rows .= "<h5 class='anno-title'><a href='adminmem.php'>會員帳號ID:" . $row["0"] . "&emsp;姓名:" . $row["3"] . "</a></h5>";
+    }
+    $num = mysqli_num_rows($result); //查詢結果筆數
+    mysqli_free_result($result); // 釋放佔用的記憶體
+}
+
+mysqli_close($link); // 關閉資料庫連結
+?>
 <!doctype html>
 <html lang="">
 
@@ -25,11 +45,11 @@
     <div class="page-loader">
         <div class="loader">Loading...</div>
     </div>
-    
+
     <!-- header start -->
-		<?php include("_header.php") ;?>
-	<!-- header end -->
-    
+    <?php include("_header.php"); ?>
+    <!-- header end -->
+
     <div class="basic-breadcrumb-area gray-bg ptb-70">
         <div class="container">
             <div class="basic-breadcrumb text-center">
@@ -108,7 +128,11 @@
                             </a>
                         </li>
                     </ul>
-                    <?php echo '<dl class="anno12"><dd class="anno1"><h5 class="anno-title"><a href="adminmem.php">會員帳號ID:test 姓名:石宇辰</a></h5></dd></dl>'?>
+                    <dl class='anno12'>
+                        <dd class='anno1'>
+                            <?php echo $rows; ?>
+                        </dd>
+                    </dl>
 
                 </div>
             </div>
