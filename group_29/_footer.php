@@ -27,6 +27,7 @@
                     <!--<div class="it_flex">
                         <img src="image/icon/icon4_2.svg">
                         iiiiiiiiiiiiiiiiiiiiiiiiiii
+                        test
                     </div>-->
                     <div class="it_flex2">
                         <div class="it_flex3">
