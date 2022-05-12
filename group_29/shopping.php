@@ -1,15 +1,22 @@
 <?php
-//Cookie 課堂練習--網頁個人化設定
-if (isset($_COOKIE["counter"]))
-{   
-    $cnt = $_COOKIE["counter"] + 1 ;    
-   
-}  
-else
-{
-    $cnt=1;
-    
+
+$link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
+or die("無法開啟MySQL資料庫連結!<br>");
+
+// 送出編碼的MySQL指令
+mysqli_query($link, 'SET CHARACTER SET utf8');
+mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+
+// // 資料庫查詢(送出查詢的SQL指令)
+if ($result = mysqli_query($link, "SELECT * FROM shoppingcar")) {
+    while ($row = mysqli_fetch_assoc($result)) {         
+        $rows .= "<tr><td>" . $row["goods_No"] . "</td><td>" . $row["goods_No"] . "</td><td>" .$row["amount"] . "</td><td>".$row["amount"] . "</td><td>" . $row["amount"]. "</td><td>" . $row["amount"] . "</td></tr>";
+    }
+    $num = mysqli_num_rows($result); //查詢結果筆數
+    mysqli_free_result($result); // 釋放佔用的記憶體
 }
+
+mysqli_close($link); // 關閉資料庫連結
 ?>
 
 <!doctype html>
