@@ -127,7 +127,7 @@ if ($_SESSION['level']!='2' )
                             </h5>
                         </dd>
                         <dd class="anno2">
-                            <a href="addsell.php">編輯公告&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="addanno.php">編輯公告&nbsp;&nbsp;&nbsp;&nbsp;</a>
                             <a href="">刪除</a>
                         </dd>
                     </dl>'?> 
