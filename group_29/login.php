@@ -47,12 +47,12 @@
                         <div class="row center-block" style="width:35%;  ">
                             <div class="form-group ">
                                 <label class="sr-only">First Name</label>
-                                <input type="text" class="form-control input-lg" name="name" placeholder="帳號" required>                               
+                                <input type="text" class="form-control input-lg" name="act" placeholder="帳號" required>                               
                                 <p class="help-block text-danger"></p>
                             </div>                           
                             <div class="form-group ">
                                 <label class="sr-only">First Name</label>
-                                <input type="password" class="form-control input-lg" name="name" placeholder="密碼"
+                                <input type="password" class="form-control input-lg" name="pwd" placeholder="密碼"
                                     required>
                                 <p class="help-block text-danger"></p>
                             </div>
