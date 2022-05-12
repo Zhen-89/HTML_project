@@ -1,3 +1,17 @@
+<?php
+//Cookie 課堂練習--網頁個人化設定
+if (isset($_COOKIE["counter"]))
+{   
+    $cnt = $_COOKIE["counter"] + 1 ;    
+   
+}  
+else
+{
+    $cnt=1;
+    
+}
+?>
+
 <!doctype html>
 <html class="no-js" lang="">
 
@@ -26,16 +40,16 @@
         <div class="loader">Loading...</div>
     </div>
     <!-- /PRELOADER -->
-    
+
     <!-- header start -->
-		<?php include("_header.php") ;?>
-	<!-- header end -->
+    <?php include("_header.php") ;?>
+    <!-- header end -->
 
     <!-- basic-breadcrumb start -->
     <div class="basic-breadcrumb-area gray-bg ptb-70">
         <div class="container">
             <div class="basic-breadcrumb text-center">
-                <h3 class="">購物車</h3>              
+                <h3 class="">購物車</h3>
             </div>
         </div>
     </div>
@@ -44,34 +58,38 @@
 
     <!---Pay-Page-->
     <hr>
-    <div class="container mt-5"> 
+    <div class="container mt-5">
         <div class="row justify-content-center mt-4">
-            <div class="col-md-12">                
+            <div class="col-md-12">
                 <div id="collapseOne" class="collapse show " aria-labelledby="headingOne"
                     data-parent="#accordionExample">
                     <table class="table table-sm">
                         <thead>
                             <tr>
-                                <th width="20"></th>
-                                <th width="100"></th>
-                                <th> 商品名稱</th>
+                                <th width="100"></th> <!-- 放圖片用的 -->
+                                <th>商品名稱</th>
+                                <th>單價</th>
                                 <th>數量</th>
-                                <th class="text-center" width="120">小計</th>
+                                <th>小計</th>
+                                <th width="20"></th> <!-- 放刪除的符號 -->
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="align-middle"><a href="#removeModal" class="text-dark" data-price="999"
-                                        data-title="一級偽裝帽" data-toggle="modal" data-target="#removeModal"><i
-                                            class="far fa-trash-alt mr-3"></i></a></td>                                
-                                <td class="align-middle">                                    
-                                    <div class="card p-1 card-bottom">                                        
-                                        <img src="image\123.jpg" alt="..." width="80px;">
-                                    </div>
+                            <!--  -->
+                            <tr >                               
+                                <td class="align-middle">                                   
+                                        <img src="image\123.jpg" alt="..." width="100px;">                                    
                                 </td>
-                                <td class="align-middle "> 一級偽裝帽</td>
-                                <td class="align-middle">1件</td>
-                                <td class="align-middle text-right">$999</td>
+                                <td >一級偽裝帽</td>
+                                <td class="align-items-center" >$999</td>
+                                <td >
+                                    <button type="submit" class="">-</button>
+                                    1
+                                    <button type="submit" class="">+</button>
+                                </td>
+                                <td class="align-middle">$999</td>                                
+                                <td><button type="input" class="btn btn-xs btn-round btn-dark">移除</button></td>                                 
+
                             </tr>
                             <tr class="text-right">
                                 <td colspan="4"><strong>運費</strong></td>
@@ -83,17 +101,17 @@
                             </tr>
                         </tbody>
 
-                        
+
 
                     </table>
 
 
                 </div>
-            </div>     
+            </div>
         </div>
     </div>
 
-   
+
 
     <!---Finish-Page-->
     <hr>
