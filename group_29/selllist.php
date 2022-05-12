@@ -1,3 +1,46 @@
+<?php
+session_start();
+
+if ($_SESSION['level'] != '2') {
+?>
+  <meta http-equiv="refresh" content="0;url=login.php">
+  </meta>
+<?php
+}
+$link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
+  or die("無法開啟MySQL資料庫連結!<br>");
+
+// 送出編碼的MySQL指令
+mysqli_query($link, 'SET CHARACTER SET utf8');
+mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+
+// // 資料庫查詢(送出查詢的SQL指令)
+if ($result = mysqli_query($link, "SELECT * FROM product_list ")) {
+  while ($row = mysqli_fetch_row($result)) {
+    $rows .= "<dl class='sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+    <dd class='sell1'>
+        <a href=''><img src='". $row["6"]."' title='". $row["1"]."'></a>
+    </dd>
+    <dd class='sell2'>
+        <h5 class='sell-title'>
+            <a href='pro_bowl.php'>". $row["1"]."</a>
+        </h5>
+        <div class='pro_text'>
+            $". $row["5"]."NT
+        </div>
+    </dd>
+    <dd class='sell3'>
+        <a href='addsell.php'>編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <a href=''>下架商品</a>
+    </dd>
+    </dl>";
+  }
+  $num = mysqli_num_rows($result); //查詢結果筆數
+  mysqli_free_result($result); // 釋放佔用的記憶體
+}
+
+mysqli_close($link); // 關閉資料庫連結
+?>
 <!doctype html>
 <html lang="">
 
@@ -108,176 +151,7 @@
                             </a>
                         </li>
                     </ul>
-                    <?php echo '<dl class="sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <dd class="sell1">
-                            <a href=""><img src="picture/project1.jpg" title="無印良品 小杯杯"></a>
-                        </dd>
-                        <dd class="sell2">
-                            <h5 class="sell-title">
-                                <a href="pro_bowl.php">無印良品 小杯杯</a>
-                            </h5>
-                            <div class="pro_text">
-                                $ 150 NT
-                            </div>
-                        </dd>
-                        <dd class="sell3">
-                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a href="">下架商品</a>
-                        </dd>
-                    </dl>'?>
-                    <dl class="sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <dd class="sell1">
-                            <a href=""><img src="picture/m-project1.jpg" title="日本原裝進口 不鏽鋼鑰匙圈"></a>
-                        </dd>
-                        <dd class="sell2">
-                            <h5 class="sell-title">
-                                <a href="pro_key.php">日本原裝進口 不鏽鋼鑰匙圈</a>
-                            </h5>
-                            <div class="pro_text">
-                                $10000 NT 
-                            </div>
-                        </dd>
-                        <dd class="sell3">
-                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a href="">下架商品</a>
-                        </dd>
-                    </dl>
-                    <dl class="sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <dd class="sell1">
-                            <a href=""><img src="picture/Product/stick.webp" title="無印良品 小筷筷"></a>
-                        </dd>
-                        <dd class="sell2">
-                            <h5 class="sell-title">
-                                <a href="pro_stick.php">無印良品 小筷筷</a>
-                            </h5>
-                            <div class="pro_text">
-                                $ 130 NT
-                            </div>
-                        </dd>
-                        <dd class="sell3">
-                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a href="">下架商品</a>
-                        </dd>
-                    </dl>
-                    <dl class="sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <dd class="sell1">
-                            <a href=""><img src="picture/Product/sweater_white.webp" title="【男女適用】休閒衫"></a>
-                        </dd>
-                        <dd class="sell2">
-                            <h5 class="sell-title">
-                                <a href="pro_sweater_white.php">【男女適用】休閒衫</a>
-                            </h5>
-                            <div class="pro_text">
-                                $ 1600 NT
-                            </div>
-                        </dd>
-                        <dd class="sell3">
-                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a href="">下架商品</a>
-                        </dd>
-                    </dl>
-                    <dl class="sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <dd class="sell1">
-                            <a href=""><img src="picture/Product/coat_gray.jpg" title="【男女適用】 連帽外套"></a>
-                        </dd>
-                        <dd class="sell2">
-                            <h5 class="sell-title">
-                                <a href="pro_coat_gray.php">【男女適用】 連帽外套</a>
-                            </h5>
-                            <div class="pro_text">
-                                $ 899 NT
-                            </div>
-                        </dd>
-                        <dd class="sell3">
-                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a href="">下架商品</a>
-                        </dd>
-                    </dl>
-                    <dl class="sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <dd class="sell1">
-                            <a href=""><img src="picture/Product/shoe_white.jpg" title="有機棉舒適休閒鞋柔白"></a>
-                        </dd>
-                        <dd class="sell2">
-                            <h5 class="sell-title">
-                                <a href="pro_shoe_white.php">有機棉舒適休閒鞋柔白</a>
-                            </h5>
-                            <div class="pro_text">
-                                $ 899 NT
-                            </div>
-                        </dd>
-                        <dd class="sell3">
-                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a href="">下架商品</a>
-                        </dd>
-                    </dl>
-                    <dl class="sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <dd class="sell1">
-                            <a href=""><img src="picture/Product/shoe_black.webp" title="有機棉舒適休閒鞋"></a>
-                        </dd>
-                        <dd class="sell2">
-                            <h5 class="sell-title">
-                                <a href="pro_shoe_black.php">有機棉舒適休閒鞋</a>
-                            </h5>
-                            <div class="pro_text">
-                                $ 699 NT
-                            </div>
-                        </dd>
-                        <dd class="sell3">
-                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a href="">下架商品</a>
-                        </dd>
-                    </dl>
-                    <dl class="sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <dd class="sell1">
-                            <a href=""><img src="picture/Product/show_white_1_.jpg" title="有機棉舒適基本便鞋"></a>
-                        </dd>
-                        <dd class="sell2">
-                            <h5 class="sell-title">
-                                <a href="pro_shoe_white_1.php">有機棉舒適基本便鞋</a>
-                            </h5>
-                            <div class="pro_text">
-                                $ 699 NT
-                            </div>
-                        </dd>
-                        <dd class="sell3">
-                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a href="">下架商品</a>
-                        </dd>
-                    </dl>
-                    <dl class="sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <dd class="sell1">
-                            <a href=""><img src="picture/Product/bag.webp" title="棉束口袋/文字 原色NONE"></a>
-                        </dd>
-                        <dd class="sell2">
-                            <h5 class="sell-title">
-                                <a href="pro_bag.php">棉束口袋/文字 原色NONE</a>
-                            </h5>
-                            <div class="pro_text">
-                                $ 69 NT
-                            </div>
-                        </dd>
-                        <dd class="sell3">
-                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a href="">下架商品</a>
-                        </dd>
-                    </dl>
-                    <dl class="sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <dd class="sell1">
-                            <a href=""><img src="picture/Product/cushion.webp" title="不易變形坐墊/方形/混淺棕"></a>
-                        </dd>
-                        <dd class="sell2">
-                            <h5 class="sell-title">
-                                <a href="pro_cushion.php">不易變形坐墊/方形/混淺棕</a>
-                            </h5>
-                            <div class="pro_text">
-                                $ 540 NT
-                            </div>
-                        </dd>
-                        <dd class="sell3">
-                            <a href="addsell.php">編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a href="">下架商品</a>
-                        </dd>
-                    </dl>
+                    <?php echo $rows; ?>
                 </div>
             </div>
         </div>
