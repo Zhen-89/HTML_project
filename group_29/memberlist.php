@@ -18,7 +18,7 @@ mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
 // // 資料庫查詢(送出查詢的SQL指令)
 if ($result = mysqli_query($link, "SELECT * FROM member")) {
     while ($row = mysqli_fetch_row($result)) {
-        $rows .= "<h5 class='anno-title'><a href='adminmem.php'>會員帳號ID:" . $row["0"] . "&emsp;姓名:" . $row["3"] . "</a></h5>";
+        $rows .= "<h5 class='anno-title'><a href='adminmem.php?who=". $row["9"]."' >會員帳號ID:" . $row["0"] . "&emsp;姓名:" . $row["3"] . "</a></h5>";
     }
     $num = mysqli_num_rows($result); //查詢結果筆數
     mysqli_free_result($result); // 釋放佔用的記憶體
