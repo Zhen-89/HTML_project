@@ -28,7 +28,7 @@ session_start();
 						<nav>
 							<ul class="basic-menu clearfix">
 								<?php
-								if($_SESSION['level']=='1'||$_SESSION['level']=='2'){	
+								if($_SESSION['level']=='1'){	
 								?>
 									<li> <a href="logout.php">登出</a></li>
 									<li>
@@ -37,6 +37,17 @@ session_start();
 											<!-- <li><a href="memberlist.php">管理員</a></li> -->
 											<li><a href="personal information.php">個人資料</a></li>
 											<li><a href="Order_summary.php">訂單查詢</a></li>
+										</ul>
+									</li>
+								<?php
+								}
+								else if($_SESSION['level']=='2'){	
+								?>
+									<li> <a href="logout.php">登出</a></li>
+									<li>
+										<a><?php echo $_SESSION['name']?> </a>
+										<ul>
+											<li><a href="memberlist.php">管理員</a></li>
 										</ul>
 									</li>
 								<?php
@@ -81,7 +92,7 @@ session_start();
 						<nav id="mobile-nav">
 							<ul>
 							<?php
-								if($_SESSION['level']=='1'||$_SESSION['level']=='2'){	
+								if($_SESSION['level']=='1'){	
 								?>
 									<li> <a href="logout.php">登出</a></li>
 									<li>
@@ -90,6 +101,17 @@ session_start();
 											<!-- <li><a href="memberlist.php">管理員</a></li> -->
 											<li><a href="personal information.php">個人資料</a></li>
 											<li><a href="Order_summary.php">訂單查詢</a></li>
+										</ul>
+									</li>
+								<?php
+								}
+								else if($_SESSION['level']=='2'){	
+								?>
+									<li> <a href="logout.php">登出</a></li>
+									<li>
+										<a><?php echo $_SESSION['name']?> </a>
+										<ul>
+											<li><a href="memberlist.php">管理員</a></li>
 										</ul>
 									</li>
 								<?php
