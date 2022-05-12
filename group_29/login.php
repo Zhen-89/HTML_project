@@ -1,3 +1,50 @@
+<?php
+session_start();
+$name = "";  $password = "";
+$flag = "0";
+if ( isset($_POST["act"]) )
+   $name = $_POST["act"];
+if ( isset($_POST["pwd"]) )
+   $password = $_POST["pwd"];
+?>
+<?php
+if ($name != "" && $password != "") {
+    $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
+        or die("無法開啟MySQL資料庫連結!<br>");
+
+    // 送出編碼的MySQL指令
+    mysqli_query($link, 'SET CHARACTER SET utf8');
+    mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+
+    // // 資料庫查詢(送出查詢的SQL指令)
+    if ($result = mysqli_query($link, "SELECT * FROM member WHERE account='".$name."' AND code='".$password."'")) {
+        while ($row = mysqli_fetch_row($result)) {
+            $_SESSION['level']= $row["8"];
+            $flag="1";
+        }
+        $num = mysqli_num_rows($result); //查詢結果筆數
+        mysqli_free_result($result); // 釋放佔用的記憶體
+    }
+
+    mysqli_close($link); // 關閉資料庫連結
+    
+    if($_SESSION['level']=='1'||$_SESSION['level']=='2')
+    {
+    ?>
+        <meta http-equiv="refresh" content="0;url=index.php"></meta>
+    <?php
+    }
+    if($_SESSION['level']=='0')
+        echo "<script>alert('帳號或密碼錯誤')</script>";
+
+}
+else
+{
+    $_SESSION['level']= "0";
+}
+?>
+
+
 <!doctype html>
 <html class="no-js" lang="">
 
@@ -43,7 +90,7 @@
             </div>
             <div class="row">
                 <div class="text-center">
-                    <form id="contact-form" action="mail.php" method="post">
+                    <form id="contact-form" action="login.php" method="post">
                         <div class="row center-block" style="width:35%;  ">
                             <div class="form-group ">
                                 <label class="sr-only">First Name</label>
