@@ -1,11 +1,13 @@
-<!-- <?php
-// session_start();
+<?php
+session_start();
 
-// if ($_SESSION['level']<0 )
+if ($_SESSION['level']=='0' )
+{
 ?>
-    <meta http-equiv="refresh" content="0;url=login.php"></meta> -->
+    <meta http-equiv="refresh" content="0;url=login.php"></meta>
 
 <?php
+}
 $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
     or die("無法開啟MySQL資料庫連結!<br>");
 
