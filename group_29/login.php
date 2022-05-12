@@ -1,7 +1,6 @@
 <?php
 session_start();
 $name = "";  $password = "";
-$flag = "0";
 if ( isset($_POST["act"]) )
    $name = $_POST["act"];
 if ( isset($_POST["pwd"]) )
@@ -20,7 +19,7 @@ if ($name != "" && $password != "") {
     if ($result = mysqli_query($link, "SELECT * FROM member WHERE account='".$name."' AND code='".$password."'")) {
         while ($row = mysqli_fetch_row($result)) {
             $_SESSION['level']= $row["8"];
-            $flag="1";
+            $_SESSION['name']= $row["3"];
         }
         $num = mysqli_num_rows($result); //查詢結果筆數
         mysqli_free_result($result); // 釋放佔用的記憶體

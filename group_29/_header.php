@@ -1,89 +1,134 @@
 <!-- 只用來引入 -->
+<?php
+session_start();
+	if(!isset($_SESSION['level'])) {
+		$_SESSION['level'] = '0';
+	}
+?>
 <header id="sticky-header">
-			<div class="header-area">
-				<div class="container sm-100">
-					<div class="row">
-						<div class="col-md-2 col-sm-2">
-							<div class="logo text-upper">
-								<h4><a href="index.php">costco</a></h4>
-							</div>
-						</div>
-						<div class="col-lg-5 col-md-3 col-sm-3 ">
-							<div class="search logo ">
-										<input type="text" placeholder="輸入商品名稱" name="search">
-										<a href="Search-result.php">
-											<button type="submit"><i class="fa fa-search"></i></button>
-										</a>
-										
-							</div>
-						</div>
-						<div class="col-lg-5 col-md-7 col-sm-7">
-							<div class="menu-area hidden-xs">
-								<nav>
-									<ul class="basic-menu clearfix">
-	
-										<li><a href="login.php">登入/註冊</a></li>
-	
-										<li>
-											<a>會員中心</a>
-											<ul>
-												<li><a href="memberlist.php">管理員</a></li>
-												<li><a href="personal information.php">個人資料</a></li>
-												<li><a href="Order_summary.php">訂單查詢</a></li>
-											</ul>
-										</li>
-	
-										<li>
-											<a href="question.php">常見問題</a>
-										</li>
-	
-										<li>
-											<a href="shopping.php">購物車</a>
-										</li>
-										<!-- END BLOG -->
-										<li>
-											<a>聯絡我們</a>
-											<ul>
-												<li><a href="cooperate.php">廠商合作</a></li>
-												<li><a href="report.php">問題回報</a></li>
-											</ul>
-										</li>
-									</ul>
-								</nav>
-							</div>
-							<!-- basic-mobile-menu -->
-							<div class="basic-mobile-menu visible-xs">
-								<nav id="mobile-nav">
+	<div class="header-area">
+		<div class="container sm-100">
+			<div class="row">
+				<div class="col-md-2 col-sm-2">
+					<div class="logo text-upper">
+						<h4><a href="index.php">costco</a></h4>
+					</div>
+				</div>
+				<div class="col-lg-5 col-md-3 col-sm-3 ">
+					<div class="search logo ">
+						<input type="text" placeholder="輸入商品名稱" name="search">
+						<a href="Search-result.php">
+							<button type="submit"><i class="fa fa-search"></i></button>
+						</a>
+
+					</div>
+				</div>
+				<div class="col-lg-5 col-md-7 col-sm-7">
+					<div class="menu-area hidden-xs">
+						<nav>
+							<ul class="basic-menu clearfix">
+								<?php
+								if($_SESSION['level']=='1'||$_SESSION['level']=='2'){	
+								?>
+									<li> <a href="logout.php">登出</a></li>
+									<li>
+										<a><?php echo $_SESSION['name']?> </a>
+										<ul>
+											<!-- <li><a href="memberlist.php">管理員</a></li> -->
+											<li><a href="personal information.php">個人資料</a></li>
+											<li><a href="Order_summary.php">訂單查詢</a></li>
+										</ul>
+									</li>
+								<?php
+								}
+								else
+								{
+								?>
+								<li><a href="login.php">登入/註冊</a></li>
+								<li>
+										<a>會員中心</a>
+										<ul>
+											<!-- <li><a href="memberlist.php">管理員</a></li> -->
+											<li><a href="personal information.php">個人資料</a></li>
+											<li><a href="Order_summary.php">訂單查詢</a></li>
+										</ul>
+									</li>
+								<?php
+								}
+								?>
+								
+
+								<li>
+									<a href="question.php">常見問題</a>
+								</li>
+
+								<li>
+									<a href="shopping.php">購物車</a>
+								</li>
+								<!-- END BLOG -->
+								<li>
+									<a>聯絡我們</a>
 									<ul>
-										<li><a href="login.php">登入/註冊</a></li>
-	
-										<li>
-											<a>會員中心</a>
-											<ul>
-												<li><a href="personal information.php">個人資料</a></li>
-												<li><a href="Order_summary.php">訂單查詢</a></li>
-											</ul>
-										</li>
-	
-										<li>
-											<a href="question.php">常見問題</a>
-										</li>
-	
-										<li>
-											<a href="shopping.php">購物車</a>
-										</li>
-										<!-- END BLOG -->
-										<li><a>聯絡我們</a>
-											<ul>
-												<li><a href="cooperate.php">廠商合作</a></li>
-												<li><a href="report.php">問題回報</a></li>
-											</ul>
-										</li>
+										<li><a href="cooperate.php">廠商合作</a></li>
+										<li><a href="report.php">問題回報</a></li>
 									</ul>
-								</nav>
-							</div>
-						</div>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<!-- basic-mobile-menu -->
+					<div class="basic-mobile-menu visible-xs">
+						<nav id="mobile-nav">
+							<ul>
+							<?php
+								if($_SESSION['level']=='1'||$_SESSION['level']=='2'){	
+								?>
+									<li> <a href="logout.php">登出</a></li>
+									<li>
+										<a><?php echo $_SESSION['name']?> </a>
+										<ul>
+											<!-- <li><a href="memberlist.php">管理員</a></li> -->
+											<li><a href="personal information.php">個人資料</a></li>
+											<li><a href="Order_summary.php">訂單查詢</a></li>
+										</ul>
+									</li>
+								<?php
+								}
+								else
+								{
+								?>
+								<li><a href="login.php">登入/註冊</a></li>
+								<li>
+										<a>會員中心</a>
+										<ul>
+											<!-- <li><a href="memberlist.php">管理員</a></li> -->
+											<li><a href="personal information.php">個人資料</a></li>
+											<li><a href="Order_summary.php">訂單查詢</a></li>
+										</ul>
+									</li>
+								<?php
+								}
+								?>
+
+								<li>
+									<a href="question.php">常見問題</a>
+								</li>
+
+								<li>
+									<a href="shopping.php">購物車</a>
+								</li>
+								<!-- END BLOG -->
+								<li><a>聯絡我們</a>
+									<ul>
+										<li><a href="cooperate.php">廠商合作</a></li>
+										<li><a href="report.php">問題回報</a></li>
+									</ul>
+								</li>
+							</ul>
+						</nav>
 					</div>
 				</div>
 			</div>
-		</header>
+		</div>
+	</div>
+</header>
