@@ -37,14 +37,10 @@ if ($name != "" && $password != "") {
         echo "<script>alert('帳號或密碼錯誤')</script>";
 
 }
-if(!isset($_SESSION['level']))
-{
-    $_SESSION['level']= "0";
-}
-else
+if($_SESSION['level']!='0')
 {
     ?>
-        <meta http-equiv="refresh" content="0;url=index.php"></meta>
+    <meta http-equiv="refresh" content="0;url=index.php"></meta>
     <?php
 }
 ?>
