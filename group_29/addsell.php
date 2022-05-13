@@ -122,7 +122,7 @@ if ($_SESSION['level'] != '2') {
             </div>
             <div class="right-Content" id="rightContent">
                 <div class="clearfix" id="Contentsell">
-                    <form id="contact-form" action="" method="post" onSubmit="CheckForm();">
+                    <form id="contact-form" action="addproduct.php" method="post" onSubmit="CheckForm();" enctype="multipart/form-data">
                         <table class="row" border="1">
                             <div class="col-12 col-md-12">
                                 <label for="sell-name" class="content__subtitle ">商品名稱:</label>
@@ -131,8 +131,8 @@ if ($_SESSION['level'] != '2') {
                                 <label for="sell-name" class="error"></label>
                             </div>
                             <div class="col-12 col-md-12">
-                                <label for="sell_type[]" class="content__subtitle">商品類型:</label>
-                                <select name="sell_type[]" class="form-control" required>
+                                <label for="sell_type" class="content__subtitle">商品類型:</label>
+                                <select name="sell_type" id="sell_type" class="form-control" required>
                                     <option value="">請選擇</option>
                                     <option value="1">食品</option>
                                     <option value="2">家電</option>
@@ -164,6 +164,15 @@ if ($_SESSION['level'] != '2') {
                                     <label for="sell-introduction" class="error"></label>
                                 </div>
                             </div>
+                            <div class="col-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="sell-sepcify" class="content__subtitle">特點</label>
+                                    <textarea class="form-control" id="sell-sepcify" name="sell-sepcify"
+                                        rows="5" style="height: 200px;" maxlength="4000"
+                                        placeholder="請提供詳情以利人員快速為您服務"></textarea>
+                                    <label for="sell-sepcify" class="error"></label>
+                                </div>
+                            </div>
 
                             <!--
                             <div class="col-12 col-md-12">
@@ -188,7 +197,7 @@ if ($_SESSION['level'] != '2') {
                                                 <button type="button" class="btn btn-danger btn-xs"
                                                     data-placement="right" title="移除"><i class="fa fa-times"
                                                         aria-hidden="true"></i></button>
-                                                <input type="file" name="doc_upload[]" style="display: inline-block">
+                                                <input type="file" id="div_upload" name="div_upload" style="display: inline-block">
 
                                             </div>
                                         </div>
