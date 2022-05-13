@@ -20,6 +20,7 @@ if ($name != "" && $password != "") {
         while ($row = mysqli_fetch_row($result)) {
             $_SESSION['level']= $row["8"];
             $_SESSION['name']= $row["3"];
+            $_SESSION['no']= $row["9"];
         }
         $num = mysqli_num_rows($result); //查詢結果筆數
         mysqli_free_result($result); // 釋放佔用的記憶體
