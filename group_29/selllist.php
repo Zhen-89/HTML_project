@@ -23,7 +23,7 @@ if ($result = mysqli_query($link, "SELECT * FROM product_list ")) {
     </dd>
     <dd class='sell2'>
         <h5 class='sell-title'>
-            <a href='pro_bowl.php'>". $row["1"]."</a>
+            <a href='product_intro.php?product_no=".$row["0"]."'>". $row["1"]."</a>
         </h5>
         <div class='pro_text'>
             $". $row["5"]."NT
