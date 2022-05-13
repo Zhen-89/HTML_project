@@ -155,12 +155,16 @@ echo "user = " . $_SESSION['no'] ;
                             </div>
                         </div>
                         <!-- 先暫時加一個按鈕 -->
-                        <div>
-                            <div class="pro_text">
-                                <button  class="btn" onclick="location.href='addcar.php'">加入購物車</button>                         
-                                <!-- <button class="btn" onclick="" id="pro_key" name="pro_key">加入購物車</button> -->
-                            </div>
+                        <div class="buyButton container">
+                            <button  class="btn" onclick="location.href='addcar.php'">加入購物車</button>      
+                            <button  class="btn" onclick="location.href='addcar.php'">立即購買</button>                    
+                            <!-- <button class="btn" onclick="" id="pro_key" name="pro_key">加入購物車</button>-->
+                            
                         </div>
+                        <!--<div class="buyButton container">
+								<a class="btn" href="addcar.php">加入購物車</a>
+								<a class="btn" href="addcar.php">加入購物車</a>
+						</div>-->
                     </div>
                 </div>
 

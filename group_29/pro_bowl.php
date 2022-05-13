@@ -132,8 +132,8 @@
                                 </div>
                             </div>
 							<div class="buyButton container">
-								<a class="btn" href="Bulletin_Board.php">加入購物車</a>
-								<a class="btn" href="Bulletin_Board.php">立即購買</a>
+								<a class="btn" href="addcar.php">加入購物車</a>
+								<a class="btn" href="addcar.php">立即購買</a>
 							</div>
                         </div>
 					</div>
