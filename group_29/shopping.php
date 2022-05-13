@@ -1,4 +1,23 @@
 <?php
+    if(array_key_exists($tmep, $_POST)) {
+        add();
+    }
+    function subtract()
+    {
+        echo'測試文字';           
+    }
+     function add()
+    {
+        echo'測試文字2';        
+    }
+?>
+
+<?php
+session_start();
+// echo "user = " . $_SESSION['no'] ;
+?>
+
+<?php
 
 $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
 or die("無法開啟MySQL資料庫連結!<br>");
@@ -8,9 +27,21 @@ mysqli_query($link, 'SET CHARACTER SET utf8');
 mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
 
 // // 資料庫查詢(送出查詢的SQL指令)
-if ($result = mysqli_query($link, "SELECT * FROM shoppingcar")) {
-    while ($row = mysqli_fetch_assoc($result)) {         
-        $rows .= "<tr><td>" . $row["goods_No"] . "</td><td>" . $row["goods_No"] . "</td><td>" .$row["amount"] . "</td><td>".$row["amount"] . "</td><td>" . $row["amount"]. "</td><td>" . $row["amount"] . "</td></tr>";
+$no=$_SESSION['no'];
+if ($result = mysqli_query($link, "SELECT * FROM shoppingcar s, product_list p, member m WHERE s.goods_No = p.goods_No and s.member_No = $no and s.member_No = m.no")) {
+    while ($row = mysqli_fetch_assoc($result)) {  
+        $total = (int)$row["price"]* (int)$row["amount"];
+        // $amount = (int)$row["amount"];
+        // $tmep=$row["goods_No"];
+        $rows .= "<tr>
+        <td> <img src='".$row["picture"]."' alt='...' width='100px;'> </td>
+        <td>" . $row["goods_name"] . "</td>
+        <td>$" .$row["price"] . "</td>
+        <td><button type='button' name='".$row["goods_No"] ."' value='1' onclick='subtract()' >-</button>" .' '.$row["amount"] .' '. "<button type='button'>+</button></td>
+        <td>$" . $total. "</td>
+        <td><button type='input' class='btn'>移除</button></td>
+    </tr>";
+        // $rows .= "<tr><td>" . $row["goods_No"] .  "</td><td>" . $row["amount"] . "</td></tr>";
     }
     $num = mysqli_num_rows($result); //查詢結果筆數
     mysqli_free_result($result); // 釋放佔用的記憶體
@@ -40,9 +71,16 @@ mysqli_close($link); // 關閉資料庫連結
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+   
 </head>
 
 <body>
+     <!--購物車+-數量 -->
+  
+     
+       
+
+  
     <div class="page-loader">
         <div class="loader">Loading...</div>
     </div>
@@ -82,22 +120,23 @@ mysqli_close($link); // 關閉資料庫連結
                             </tr>
                         </thead>
                         <tbody>
-                            <!--  -->
+                            <!-- 商品資訊 -->
                             <tr >                               
                                 <td class="align-middle">                                   
-                                        <img src="image\123.jpg" alt="..." width="100px;">                                    
+                                        <img src="image\123.jpg" alt="..." width=100px height="100px;">                                    
                                 </td>
                                 <td >一級偽裝帽</td>
                                 <td class="align-items-center" >$999</td>
-                                <td >
-                                    <button type="submit" class="">-</button>
+                                <td >                                                                    
+                                    <button  onclick="subtract()">-</button>
                                     1
-                                    <button type="submit" class="">+</button>
+                                    <button type="button" onclick="add()" name="temp">+</button>                                    
                                 </td>
                                 <td class="align-middle">$999</td>                                
                                 <td><button type="input" class="btn btn-xs btn-round btn-dark">移除</button></td>                                 
 
                             </tr>
+                            <?php echo $rows; ?>
                             <tr class="text-right">
                                 <td colspan="4"><strong>運費</strong></td>
                                 <td><strong>$ 60</strong></td>
@@ -106,6 +145,8 @@ mysqli_close($link); // 關閉資料庫連結
                                 <td colspan="4"><strong>合計</strong></td>
                                 <td><strong>$ 1059</strong></td>
                             </tr>
+
+                            
                         </tbody>
 
 
