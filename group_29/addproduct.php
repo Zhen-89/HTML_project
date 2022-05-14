@@ -40,7 +40,7 @@ if ($result = mysqli_query($link, "SELECT * FROM product_list  ORDER BY goods_No
 
 //資料庫新增存檔
 if (isset($_POST['sell-name'])) {
-    $sql = "INSERT INTO product_list VALUES ('0" . $rows+1 . "','" . $_POST['sell-name'] . "','" . $_POST['sell_type'] . "','" . $_POST['sell-introduction'] . "','" . $_POST['sell-sepcify'] . "','$" . $_POST['sell-price'] . "NT','picture/Product/" . $imgname . "')";
+    $sql = "INSERT INTO product_list VALUES ('0" . $rows+1 . "','" . $_POST['sell-name'] . "','" . $_POST['sell_type'] . "','" . $_POST['sell-introduction'] . "','" . $_POST['sell-sepcify'] . "','" . $_POST['sell-price'] . "','picture/Product/" . $imgname . "')";
 
     if ($result = mysqli_query($link, $sql)) // 送出查詢的SQL指令
     {
