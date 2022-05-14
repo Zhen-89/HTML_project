@@ -122,7 +122,7 @@ if ($_SESSION['level'] != '2') {
             </div>
             <div class="right-Content" id="rightContent">
                 <div class="clearfix" id="Contentsell">
-                    <form id="contact-form" action="" method="post" onSubmit=" CheckForm();">
+                    <form id="contact-form" action="addannolist.php" method="post" onSubmit="CheckForm();" enctype="multipart/form-data">
                         <table class="row" border="1">
                             <div class="col-12 col-md-6">
                                 <label for="sell-name" class="content__subtitle ">公告:</label>
@@ -135,7 +135,7 @@ if ($_SESSION['level'] != '2') {
                                 <div class="form-group">
                                     <p>
                                     <div id="current_date"></div>
-                                    </p>
+                                    </p>1
                                     <script>
                                         date = new Date();
                                         year = date.getFullYear();
@@ -164,7 +164,7 @@ if ($_SESSION['level'] != '2') {
                                 <div class="form-group">
                                     <label for="sell-introduction" class="content__subtitle">公告內容</label>
                                     <textarea class="form-control" id="sell-introduction" name="sell-introduction"
-                                        rows="5" style="height: 200px;" maxlength="4000" placeholder=""></textarea>
+                                        rows="5" style="height: 200px;" maxlength="4000" placeholder="" required></textarea>
                                     <label for="sell-introduction" class="error"></label>
                                 </div>
                             </div>
@@ -176,10 +176,10 @@ if ($_SESSION['level'] != '2') {
                                     <div class="col-md-12">
                                         <div class="form-group" id="div_upload">
                                             <div>
-                                                <button type="button" class="btn btn-danger btn-xs"
+                                                <!-- <button type="button" class="btn btn-danger btn-xs"
                                                     data-placement="right" title="移除"><i class="fa fa-times"
-                                                        aria-hidden="true"></i></button>
-                                                <input type="file" name="doc_upload[]" style="display: inline-block">
+                                                        aria-hidden="true"></i></button> -->
+                                                <input type="file" name="div_upload" style="display: inline-block" accept=".pdf,.jpg,.jpeg,.png,.webp" required>
 
                                             </div>
                                         </div>
@@ -196,9 +196,9 @@ if ($_SESSION['level'] != '2') {
                             </div>
                             <div class="col-12 col-lg-6 ">
                                 <div class="row justify-content-md-center">
-                                    <button type="button" class="btn btn-success" name="btn_append" id="btn_append"><i
+                                    <!-- <button type="button" class="btn btn-success" name="btn_append" id="btn_append"><i
                                             class="fa fa-plus"></i> 新增附檔
-                                    </button>
+                                    </button> -->
                                     <div class="col-3 col-lg-3"><button class="btn form__btn--reset"
                                             type="reset">重填</button>
                                     </div>
