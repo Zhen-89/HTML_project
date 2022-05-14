@@ -1,14 +1,42 @@
 <?php
 session_start();
 
-if ($_SESSION['level']!='2' )
-{
+if ($_SESSION['level'] != '2') {
 ?>
-    <meta http-equiv="refresh" content="0;url=login.php"></meta>
-
+  <meta http-equiv="refresh" content="0;url=login.php">
+  </meta>
 <?php
 }
-?> 
+$link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
+  or die("無法開啟MySQL資料庫連結!<br>");
+
+// 送出編碼的MySQL指令
+mysqli_query($link, 'SET CHARACTER SET utf8');
+mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+
+// // 資料庫查詢(送出查詢的SQL指令)
+if ($result = mysqli_query($link, "SELECT * FROM bulletin ")) {
+  while ($row = mysqli_fetch_row($result)) {
+    $rows .= "<dl class='anno12'>
+    <dd class='anno1'>
+        <h5 class='anno-title'>
+            <a href='bulletin_intro.php?bul_no=".$row["0"]."'>".$row["1"]."</a>
+        </h5>
+    </dd>
+    <dd class='anno2'>
+        <a href='addanno.php?bul_no=".$row["0"]."'>編輯公告&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <a href='deleteanno.php?bul_no=".$row["0"]."'>刪除</a>
+    </dd>
+</dl>";
+  }
+  $num = mysqli_num_rows($result); //查詢結果筆數
+  mysqli_free_result($result); // 釋放佔用的記憶體
+}
+
+mysqli_close($link); // 關閉資料庫連結
+?>
+
+
 <!doctype html>
 <html lang="">
 
@@ -120,17 +148,7 @@ if ($_SESSION['level']!='2' )
                             </a>
                         </li>
                     </ul>
-                    <?php echo '<dl class="anno12">
-                        <dd class="anno1">
-                            <h5 class="anno-title">
-                                <a href="">這是一個測試公告</a>
-                            </h5>
-                        </dd>
-                        <dd class="anno2">
-                            <a href="addanno.php">編輯公告&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                            <a href="">刪除</a>
-                        </dd>
-                    </dl>'?> 
+                    <?php echo $rows; ?> 
 
                 </div>
             </div>

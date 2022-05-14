@@ -1,3 +1,23 @@
+<?php
+
+	$link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
+	or die("無法開啟MySQL資料庫連結!<br>");
+
+	// 送出編碼的MySQL指令
+	mysqli_query($link, 'SET CHARACTER SET utf8');
+	mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+
+	// // 資料庫查詢(送出查詢的SQL指令)
+	if ($result = mysqli_query($link, "SELECT * FROM product_list")) {
+		while ($row = mysqli_fetch_assoc($result)) {
+			$rows .= "<div class='portfolio-item branding video'><div class='portfolio-wrapper'><div class='portfolio-thumb'><img src='" . $row["picture"] . "' alt=''></div><div class='portfolio-caption text-left'><div class='work-tag'><p>買吧</p></div><h4><a href='product_intro.php'>" . $row["name"] . "</a></h4></div></div></div>" ;
+		}
+		$num = mysqli_num_rows($result); //查詢結果筆數
+		mysqli_free_result($result); // 釋放佔用的記憶體
+	}
+
+	mysqli_close($link); // 關閉資料庫連結
+?>
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -94,331 +114,11 @@
 				</div>
 				<div id="portfolio-grid" class="row-portfolio portfolio-style-2">
 					<div id="first-page"><!--first page-->
-					<div class="portfolio-item branding video">
-						<div class="portfolio-wrapper">
-							<div class="portfolio-thumb">
-								<img src="picture/project1.jpg" alt="">
-								
-							</div>
-							<div class="portfolio-caption text-left">
-								<div class="work-tag">
-									<p>買吧</p>
-								</div>
-								<h4>
-									<a href="pro_bowl.php">無印良品 小杯杯</a>
-								</h4>
-							</div>
-						</div>
+
+                    <?php echo $rows; ?>
+
 					</div>
-					<div class="portfolio-item graphic">
-						<div class="portfolio-wrapper">
-							<div class="portfolio-thumb">
-								<img src="picture/m-project1.jpg" alt="">
-								<div class="view-icon">
-									<a class="popup-video" href="https://youtu.be/dQw4w9WgXcQ">
-										<i class="ion-ios-play"></i>
-									</a>
-								</div>
-							</div>
-							<div class="portfolio-caption text-left">
-								<div class="work-tag">
-									<p>讚喔</p>
-								</div>
-								<h4>
-									<a href="pro_key.php">日本原裝進口 不鏽鋼鑰匙圈</a>
-								</h4>
-							</div>
-						</div>
-					</div>
-					<div class="portfolio-item video">
-						<div class="portfolio-wrapper">
-							<div class="portfolio-thumb">
-								<img src="picture/Product/stick.webp" alt="">
-							</div>
-							<div class="portfolio-caption text-left">
-								<h4>
-									<a href="pro_stick.php">無印良品 小筷筷</a>
-								</h4>
-							</div>
-						</div>
-					</div>
-					<div class="portfolio-item graphic">
-						<div class="portfolio-wrapper">
-							<div class="portfolio-thumb">
-								<img src="picture/Product/sweater_white.webp" alt="">
-								<div class="view-icon">
-									<a class="popup-link" href="picture/Product/sweater_white2.webp">
-										<i class="ion-android-search"></i>
-									</a>
-								</div>
-							</div>
-							<div class="portfolio-caption text-left">
-								<h4>
-									<a href="pro_sweater_white.php">【男女適用】休閒衫</a>
-								</h4>
-							</div>
-						</div>
-					</div>
-					<div class="portfolio-item branding design">
-						<div class="portfolio-wrapper">
-							<div class="portfolio-thumb">
-								<img src="picture/Product/coat_gray.jpg" alt="">
-								<div class="view-icon">
-									<a class="popup-video" href="javascript:;">
-										<i class="ion-ios-play"></i>
-									</a>
-								</div>
-							</div>
-							<div class="portfolio-caption text-left">
-								
-								<h4>
-									<a href="pro_coat_gray.php">【男女適用】 連帽外套</a>
-								</h4>
-							</div>
-						</div>
-					</div>
-					<div class="portfolio-item graphic video">
-						<div class="portfolio-wrapper">
-							<div class="portfolio-thumb">
-								<img src="picture/Product/shoe_white.jpg" alt="">
-							</div>
-							<div class="portfolio-caption text-left">
-								<h4>
-									<a href="pro_shoe_white.php">有機棉舒適休閒鞋柔白</a>
-								</h4>
-							</div>
-						</div>
-					</div>
-					<div class="portfolio-item">
-						<div class="portfolio-wrapper">
-							<div class="portfolio-thumb">
-								<img src="picture/project4.jpg" alt="">
-								<div class="view-icon">
-									<a class="popup-link" href="picture/Product/shoe_black.webp">
-										<i class="ion-android-search"></i>
-									</a>
-								</div>
-							</div>
-							<div class="portfolio-caption text-left">
-								<h4>
-									<a href="pro_shoe_black.php">有機棉舒適休閒鞋</a>
-								</h4>
-							</div>
-						</div>
-					</div>
-					<div class="portfolio-item branding design">
-						<div class="portfolio-wrapper">
-							<div class="portfolio-thumb">
-								<img src="picture/Product/show_white_1_.jpg" alt="">
-							</div>
-							<div class="portfolio-caption text-left">
-								<div class="work-tag">
-									<p>讚讚</p>
-								</div>
-								<h4>
-									<a href="pro_shoe_white_1.php">有機棉舒適基本便鞋</a>
-								</h4>
-							</div>
-						</div>
-					</div>
-					<div class="portfolio-item design">
-						<div class="portfolio-wrapper">
-							<div class="portfolio-thumb">
-								<img src="picture/Product/bag.webp" alt="">
-							</div>
-							<div class="portfolio-caption text-left">
-								<h4>
-									<a href="pro_bag.php">棉束口袋/文字 原色NONE</a>
-								</h4>
-							</div>
-						</div>
-					</div>
-					<div class="portfolio-item branding video">
-						<div class="portfolio-wrapper">
-							<div class="portfolio-thumb">
-								<img src="picture/Product/cushion.webp" alt="">
-							</div>
-							<div class="portfolio-caption text-left">
-								<h4>
-									<a href="pro_cushion.php">不易變形坐墊/方形/混淺棕</a>
-								</h4>
-							</div>
-						</div>
-					</div>
-					
-					
-					</div>
-					<!-- second page expand but due to some bug it will show directly... -->
-					<!---->
-					<!-- <div id="block_hidden" style="display: none">
-						
-						<div class="portfolio-item graphic">
-							<div class="portfolio-wrapper">
-								<div class="portfolio-thumb">
-									<img src="picture/m-project1.jpg" alt="">
-									<div class="view-icon">
-										<a class="popup-video" href="javascript:;">
-											<i class="ion-ios-play"></i>
-										</a>
-									</div>
-								</div>
-								<div class="portfolio-caption text-left">
-									<div class="work-tag">
-										<p>Web Design</p>
-									</div>
-									<h4>
-										<a href="portfolio-single.php">Brand Redesign Works</a>
-									</h4>
-								</div>
-							</div>
-						</div>
-						<div class="portfolio-item video">
-							<div class="portfolio-wrapper">
-								<div class="portfolio-thumb">
-									<img src="picture/project2.jpg" alt="">
-									<div class="view-icon">
-										<a href="portfolio-single.php">
-											<i class="ion-arrow-right-c"></i>
-										</a>
-									</div>
-								</div>
-								<div class="portfolio-caption text-left">
-									<div class="work-tag">
-										<p>Web Design</p>
-									</div>
-									<h4>
-										<a href="portfolio-single.php">Brand Redesign Works</a>
-									</h4>
-								</div>
-							</div>
-						</div>
-						<div class="portfolio-item graphic">
-							<div class="portfolio-wrapper">
-								<div class="portfolio-thumb">
-									<img src="picture/m-project2.jpg" alt="">
-									<div class="view-icon">
-										<a class="popup-link" href="picture/m-project2.jpg">
-											<i class="ion-android-search"></i>
-										</a>
-									</div>
-								</div>
-								<div class="portfolio-caption text-left">
-									<div class="work-tag">
-										<p>Web Design</p>
-									</div>
-									<h4>
-										<a href="portfolio-single.php">Brand Redesign Works</a>
-									</h4>
-								</div>
-							</div>
-						</div>
-						<div class="portfolio-item branding design">
-							<div class="portfolio-wrapper">
-								<div class="portfolio-thumb">
-									<img src="picture/m-project3.jpg" alt="">
-									<div class="view-icon">
-										<a class="popup-video" href="javascript:;">
-											<i class="ion-ios-play"></i>
-										</a>
-									</div>
-								</div>
-								<div class="portfolio-caption text-left">
-									<div class="work-tag">
-										<p>Web Design</p>
-									</div>
-									<h4>
-										<a href="portfolio-single.php">Brand Redesign Works</a>
-									</h4>
-								</div>
-							</div>
-						</div>
-						<div class="portfolio-item graphic video">
-							<div class="portfolio-wrapper">
-								<div class="portfolio-thumb">
-									<img src="picture/project2.jpg" alt="">
-									<div class="view-icon">
-										<a class="popup-link" href="picture/project2.jpg">
-											<i class="ion-android-search"></i>
-										</a>
-									</div>
-								</div>
-								<div class="portfolio-caption text-left">
-									<div class="work-tag">
-										<p>Web Design</p>
-									</div>
-									<h4>
-										<a href="portfolio-single.php">Brand Redesign Works</a>
-									</h4>
-								</div>
-							</div>
-						</div>
-						<div class="portfolio-item">
-							<div class="portfolio-wrapper">
-								<div class="portfolio-thumb">
-									<img src="picture/project4.jpg" alt="">
-									<div class="view-icon">
-										<a class="popup-link" href="picture/project4.jpg">
-											<i class="ion-android-search"></i>
-										</a>
-									</div>
-								</div>
-								<div class="portfolio-caption text-left">
-									<div class="work-tag">
-										<p>Web Design</p>
-									</div>
-									<h4>
-										<a href="portfolio-single.php">Brand Redesign Works</a>
-									</h4>
-								</div>
-							</div>
-						</div>
-						<div class="portfolio-item branding design">
-							<div class="portfolio-wrapper">
-								<div class="portfolio-thumb">
-									<img src="picture/project3.jpg" alt="">
-									<div class="view-icon">
-										<a href="portfolio-single.php">
-											<i class="ion-arrow-right-c"></i>
-										</a>
-									</div>
-								</div>
-								<div class="portfolio-caption text-left">
-									<div class="work-tag">
-										<p>Web Design</p>
-									</div>
-									<h4>
-										<a href="portfolio-single.php">Brand Redesign Works</a>
-									</h4>
-								</div>
-							</div>
-						</div>
-						<div class="portfolio-item design">
-							<div class="portfolio-wrapper">
-								<div class="portfolio-thumb">
-									<img src="picture/project5.jpg" alt="">
-									<div class="view-icon">
-										<a class="popup-link" href="picture/project5.jpg">
-											<i class="ion-android-search"></i>
-										</a>
-									</div>
-								</div>
-								<div class="portfolio-caption text-left">
-									<div class="work-tag">
-										<p>Web Design</p>
-									</div>
-									<h4>
-										<a href="portfolio-single.php">Brand Redesign Works</a>
-									</h4>
-								</div>
-							</div>
-						</div>
-					</div>										second page end -->
 				</div>
-				<!-- <div class="view-more mt-20 text-center">
-					<button type="button" id="btn_show" name="btn_show" class="btn btn-large">View More</button>
-					<button type="button" id="btn_hide" name="btn_hide" class="btn btn-large" style="display:none">View Less</button>
-						
-				</div> -->
 				
 			</div>
 		</div>
@@ -431,23 +131,19 @@
 					<h2>限時特價</h2>
 				</div><!--portfolio-grid 要改掉-->
 				<div id="portfolio-grid" class="row-portfolio portfolio-style-2">
-					
-					<div class="portfolio-item branding video">
-						<div class="portfolio-wrapper">
-							<div class="portfolio-thumb">
-								<img src="picture/project1.jpg" alt="">
-								
-							</div>
-							<div class="portfolio-caption text-left">
-								<div class="work-tag">
-									<p>要買要快</p>
+					<form name="form0" action="product_intro.php" method="GET">
+						<div class="portfolio-item branding video">
+							<div class="portfolio-wrapper">
+								<div class="portfolio-thumb">
+									<img src="picture/project1.jpg" alt="">
+									
 								</div>
-								<h4>
-									<a href="pro_bowl.php">無印良品 小杯杯</a>
-								</h4>
+								<div class="portfolio-caption text-left">
+									<input type="submit" class="pro_btn" name="product_name" value="product name" onclick=check()>
+								</div>
 							</div>
 						</div>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>
