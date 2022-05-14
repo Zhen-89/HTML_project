@@ -1,21 +1,14 @@
 <?php
-    if(array_key_exists($tmep, $_POST)) {
-        add();
-    }
-    function subtract()
-    {
-        echo'測試文字';           
-    }
-     function add()
-    {
-        echo'測試文字2';        
-    }
+session_start();
+
+if ($_SESSION['level'] != '1' && $_SESSION['level'] != '2') {
+?>
+  <meta http-equiv="refresh" content="0;url=login.php">
+  </meta>
+<?php
+}
 ?>
 
-<?php
-session_start();
-// echo "user = " . $_SESSION['no'] ;
-?>
 
 <?php
 

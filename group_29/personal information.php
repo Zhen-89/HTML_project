@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if ($_SESSION['level'] != '1') {
+?>
+  <meta http-equiv="refresh" content="0;url=login.php">
+  </meta>
+<?php
+}
+?>
 <!doctype html>
 <html class="no-js" lang="">
 
