@@ -1,3 +1,68 @@
+<?php
+$link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
+  or die("無法開啟MySQL資料庫連結!<br>");
+
+// 送出編碼的MySQL指令
+mysqli_query($link, 'SET CHARACTER SET utf8');
+mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+
+// // 資料庫查詢(送出查詢的SQL指令)
+if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE name = '" . $_GET['product_name'] . "' ")) {
+  while ($row = mysqli_fetch_row($result)) {
+    $rows .= 	"<div class='area-title text-center'>
+					<h2>" . $row["1"] . "</h2>
+				</div>
+				<div  class='product'>
+					<div class='portfolio-item graphic'>
+						<div class='portfolio-wrapper'>
+							<div class='portfolio-thumb'>
+								<img src='" . $row["6"] . "' alt=''>
+							</div>
+							
+							<div class='portfolio-caption text-left'>
+								<h4>
+									<a href='addcar.php?product_no=".$row["0"] . "'>" . "立即加入購物車</a>
+								</h4>
+							</div>
+						</div>
+						
+					</div>
+					<div class='portfolio-item graphic'>
+						
+						<div class='area-title text-center pro_intro' style='text-align:left'>
+							<div>
+								● 商品簡介
+								<div class='pro_text'>
+									" . $row["3"] . "
+								</div><!---->
+							</div>
+							<div>
+								● 商品規格
+								<div class='pro_text'>
+									" . $row["4"] . "
+								</div>
+							</div>
+							<div>
+								● 售價
+								<div class='pro_text'>
+									$" . $row["5"] . "NT
+								</div>
+							</div>
+							<div class='buyButton container'>
+								<a class='btn' href='addcar.php'>加入購物車</a>
+								<a class='btn' href='addcar.php'>立即購買</a>
+							</div>
+						</div>
+					</div>
+					
+				</div>";
+  }
+  $num = mysqli_num_rows($result); //查詢結果筆數
+  mysqli_free_result($result); // 釋放佔用的記憶體
+}
+
+mysqli_close($link); // 關閉資料庫連結
+?>
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -19,16 +84,6 @@
         <link rel="stylesheet" href="./css/responsive.css">
         <script src="./js/modernizr-2.8.3.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script>
-			$(function (){
-				$("#btn_show").on("click", function(){
-					//console.log("click") ;
-					$("#block_hidden").show() ;
-					$("#btn_show").hide() ;
-					//$("#btn_hide").show() ;
-				})/**/
-			});
-		</script>
         <style>
             .product{
                 display: flex;
@@ -79,70 +134,7 @@
 		<!-- basic-portfolio-area start -->
 		<div class="basic-portfolio-area ptb-90">
 			<div class="container">
-				<div class="area-title text-center">
-					<h2>商品名稱</h2>
-				</div>
-				<div  class="product">
-					<!--id="portfolio-grid" class="row-portfolio portfolio-style-2"-->
-					<!--<div id="first-page">first page-->
-					<div class="portfolio-item graphic">
-						<div class="portfolio-wrapper">
-							<div class="portfolio-thumb">
-								<img src="picture/m-project1.jpg" alt="">
-								<!--
-                                    <div class="view-icon">
-                                        <a class="popup-video" href="javascript:;">
-                                            <i class="ion-ios-play"></i>
-                                        </a>
-                                    </div>
-                                -->
-							</div>
-							
-                            <div class="portfolio-caption text-left">
-                                <h4>
-                                    <a href="https://youtu.be/dQw4w9WgXcQ">立即加入購物車</a>
-                                </h4>
-                            </div>
-						</div>
-                        
-					</div>
-					<div class="portfolio-item graphic">
-						
-                        <div class="area-title text-center pro_intro" style="text-align:left">
-                            <div>
-                                 ● 商品簡介
-                                <div class="pro_text">
-                                    In this place,<br>
-                                    we will show the instruction of the product
-                                </div><!---->
-                            </div>
-                            <div>
-                                ● 商品規格
-                                <div class="pro_text">
-                                    I don't know what to say<br>
-                                    but i preserve this area<br>
-                                    to avoid some ??
-                                </div>
-                            </div>
-                            <div>
-                                ● 售價
-								<div class="pro_text">
-                                    $  NT
-                                </div>
-                            </div>
-							<div class="buyButton container">
-								<a class="btn" href="addcar.php">加入購物車</a>
-								<a class="btn" href="addcar.php">立即購買</a>
-							</div>
-                        </div>
-					</div>
-					
-				</div>
-				<!--<div class="view-more mt-20 text-center">
-					<button type="button" id="btn_show" name="btn_show" class="btn btn-large">View More</button>
-					<button type="button" id="btn_hide" name="btn_hide" class="btn btn-large" style="display:none">View Less</button>
-						
-				</div>-->
+				<?php echo $rows; ?>
 			</div>
 		</div>
 		<!-- basic-portfolio-area end -->
