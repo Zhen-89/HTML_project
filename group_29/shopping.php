@@ -28,18 +28,26 @@ mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
 
 // // 資料庫查詢(送出查詢的SQL指令)
 $no=$_SESSION['no'];
+$url="removecar.php";
+
+$sum=60;
+
 if ($result = mysqli_query($link, "SELECT * FROM shoppingcar s, product_list p, member m WHERE s.goods_No = p.goods_No and s.member_No = $no and s.member_No = m.no")) {
     while ($row = mysqli_fetch_assoc($result)) {  
-        $total = (int)$row["price"]* (int)$row["amount"];
+        $total = (int)$row["price"]* (int)$row["amount"];        
+        $sum = $sum+$total;
         // $amount = (int)$row["amount"];
         // $tmep=$row["goods_No"];
         $rows .= "<tr>
         <td> <img src='".$row["picture"]."' alt='...' width='100px;'> </td>
         <td>" . $row["goods_name"] . "</td>
         <td>$" .$row["price"] . "</td>
-        <td><button type='button' name='".$row["goods_No"] ."' value='1' onclick='subtract()' >-</button>" .' '.$row["amount"] .' '. "<button type='button'>+</button></td>
+        <td><button type='button' name='".$row["goods_No"] ."' value='1'  onclick='location.href=\"subamount.php?product_no=" . $row["goods_No"] . " & amount= ". $row["amount"] ."\"' >-</button>"
+        .' '.$row["amount"] .' '. 
+        "<button type='button'  onclick='location.href=\"addamount.php?product_no=" . $row["goods_No"]." & amount= ". $row["amount"] ." \"'>+</button></td>
+
         <td>$" . $total. "</td>
-        <td><button type='input' class='btn'>移除</button></td>
+        <td><button type='input' name='".$row["goods_No"] ."' class='btn' onclick='location.href=\"removecar.php?product_no=" . $row["goods_No"]. "\"'>移除</button></td>
     </tr>";
         // $rows .= "<tr><td>" . $row["goods_No"] .  "</td><td>" . $row["amount"] . "</td></tr>";
     }
@@ -122,7 +130,7 @@ mysqli_close($link); // 關閉資料庫連結
                         <tbody>
                             <!-- 商品資訊 -->
                             <tr >                               
-                                <td class="align-middle">                                   
+                                <!-- <td class="align-middle">                                   
                                         <img src="image\123.jpg" alt="..." width=100px height="100px;">                                    
                                 </td>
                                 <td >一級偽裝帽</td>
@@ -133,17 +141,18 @@ mysqli_close($link); // 關閉資料庫連結
                                     <button type="button" onclick="add()" name="temp">+</button>                                    
                                 </td>
                                 <td class="align-middle">$999</td>                                
-                                <td><button type="input" class="btn btn-xs btn-round btn-dark">移除</button></td>                                 
+                                <td><button type="input" class="btn btn-xs btn-round btn-dark" onclick='location.href="removecar.php"'>移除</button></td>                                  -->
 
                             </tr>
                             <?php echo $rows; ?>
                             <tr class="text-right">
                                 <td colspan="4"><strong>運費</strong></td>
-                                <td><strong>$ 60</strong></td>
+                                <td><strong>60</strong></td>
                             </tr>
+
                             <tr class="text-right">
                                 <td colspan="4"><strong>合計</strong></td>
-                                <td><strong>$ 1059</strong></td>
+                                <td><strong><?php echo $sum ?></strong></td>
                             </tr>
 
                             
