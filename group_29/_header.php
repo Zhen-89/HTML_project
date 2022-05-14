@@ -4,6 +4,17 @@ session_start();
 	if(!isset($_SESSION['level'])) {
 		$_SESSION['level'] = '0';
 	}
+
+// 搜尋關鍵字
+	if(isset($_POST["search"])){
+		setcookie("search", $_POST["search"] , time()+10);
+		$rsh = $_POST["search"] ;
+	}
+	else if(isset($_COOKIE["search"])){
+		$rsh = $_COOKIE["search"] ;
+	}
+	else	
+		$rsh = "" ;
 ?>
 <header id="sticky-header">
 	<div class="header-area">
@@ -15,13 +26,12 @@ session_start();
 					</div>
 				</div>
 				<div class="col-lg-5 col-md-3 col-sm-3 ">
-					<div class="search logo ">
-						<input type="text" placeholder="輸入商品名稱" name="search">
-						<a href="Search-result.php">
+					<form name="form1" action="Search-result.php" method="POST">
+						<div class="search logo ">
+							<input type="text" placeholder="輸入商品名稱" name="search" value="<?=$rsh?>">
 							<button type="submit"><i class="fa fa-search"></i></button>
-						</a>
-
-					</div>
+						</div>
+					</form>
 				</div>
 				<div class="col-lg-5 col-md-7 col-sm-7">
 					<div class="menu-area hidden-xs">

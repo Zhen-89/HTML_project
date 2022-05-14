@@ -4202,3 +4202,10 @@ box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
   height: 50%;
 box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
 }
+.buyButton{
+  display: flex;
+  justify-content: space-between;
+  margin-top:30px ;
+  width: 130%;
+  padding:10px ;
+}

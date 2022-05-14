@@ -56,6 +56,7 @@
 
                 line-height:1.6;
             }
+			
         </style>
     </head>
     <body>
@@ -130,6 +131,10 @@
                                     $ 150 NT
                                 </div>
                             </div>
+							<div class="buyButton container">
+								<a class="btn" href="addcar.php">加入購物車</a>
+								<a class="btn" href="addcar.php">立即購買</a>
+							</div>
                         </div>
 					</div>
 					
