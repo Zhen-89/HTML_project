@@ -135,7 +135,7 @@ if ($_SESSION['level'] != '2') {
                                 <div class="form-group">
                                     <p>
                                     <div id="current_date"></div>
-                                    </p>1
+                                    </p>
                                     <script>
                                         date = new Date();
                                         year = date.getFullYear();
