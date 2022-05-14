@@ -11,7 +11,7 @@
 	if ($result = mysqli_query($link, "SELECT * FROM product_list")) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$rows .= "<form name='form0' action='product-detail.php' method='GET'>
-			<div class='portfolio-item branding video'>
+			<div class='portfolio-item branding " . $row["type"] . "'>
 			<div class='portfolio-wrapper'>
 			<div class='portfolio-thumb'>
 			<img src='" . $row["picture"] . "' alt=''></div>
@@ -113,10 +113,10 @@
 				</div>
 				<div class="filter-menu text-center mb-40">
 					<button class="active" data-filter="*">ALL</button>
-					<button data-filter=".branding">家電 </button>
-					<button data-filter=".graphic">衣飾</button>
-					<button data-filter=".design">遊戲 </button>
-					<button data-filter=".video">其他</button>
+					<button data-filter=".appliance">家電 </button>
+					<button data-filter=".cloth">衣飾</button>
+					<button data-filter=".game">遊戲 </button>
+					<button data-filter=".other">其他</button>
 				</div>
 				<div id="portfolio-grid" class="row-portfolio portfolio-style-2">
 					<div id="first-page"><!--first page-->
