@@ -22,7 +22,9 @@
 	}
 	else
 	{
-		echo "<script> {window.alert('加入成功');location.href='pro_key.php'} </script>";
+		// echo "<script> {window.alert('加入成功');location.href='pro_key.php'} </script>";
+		echo "<script> {window.alert('加入成功');history.go(-1)} </script>";//返回上頁
+
 		$result = mysqli_query($link, $sql)	;
 	}
 
