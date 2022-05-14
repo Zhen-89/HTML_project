@@ -131,23 +131,19 @@
 					<h2>限時特價</h2>
 				</div><!--portfolio-grid 要改掉-->
 				<div id="portfolio-grid" class="row-portfolio portfolio-style-2">
-					
-					<div class="portfolio-item branding video">
-						<div class="portfolio-wrapper">
-							<div class="portfolio-thumb">
-								<img src="picture/project1.jpg" alt="">
-								
-							</div>
-							<div class="portfolio-caption text-left">
-								<div class="work-tag">
-									<p>要買要快</p>
+					<form name="form0" action="product_intro.php" method="GET">
+						<div class="portfolio-item branding video">
+							<div class="portfolio-wrapper">
+								<div class="portfolio-thumb">
+									<img src="picture/project1.jpg" alt="">
+									
 								</div>
-								<h4>
-									<a href="pro_bowl.php">無印良品 小杯杯</a>
-								</h4>
+								<div class="portfolio-caption text-left">
+									<input type="submit" class="pro_btn" name="product_name" value="product name" onclick=check()>
+								</div>
 							</div>
 						</div>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>
