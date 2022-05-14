@@ -45,7 +45,7 @@ if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE goods_No = '
             <div>
                 ● 售價
                 <div class='pro_text'>
-                    ".$row["5"]."
+                    $".$row["5"]."NT
                 </div>
             </div>
         </div>
