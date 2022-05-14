@@ -49,8 +49,8 @@ if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE name = '" . 
 								</div>
 							</div>
 							<div class='buyButton container'>
-								<a class='btn' href='addcar.php'>加入購物車</a>
-								<a class='btn' href='addcar.php'>立即購買</a>
+								<a class='btn' href='addcar.php?product_no=".$row["0"] . "'>加入購物車</a>
+								<a class='btn' href='addcar.php?product_no=".$row["0"] . "'>立即購買</a>
 							</div>
 						</div>
 					</div>
