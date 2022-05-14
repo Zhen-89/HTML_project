@@ -21,7 +21,7 @@ if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE goods_No = '
             
             <div class='portfolio-caption text-left'>
                 <h4>
-                    <a href='https://youtu.be/dQw4w9WgXcQ'>立即加入購物車</a>
+					<a href='addcar.php?product_no=".$row["0"]."'>". $row["1"]."立即加入購物車</a>
                 </h4>
             </div>
         </div>
@@ -45,7 +45,7 @@ if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE goods_No = '
             <div>
                 ● 售價
                 <div class='pro_text'>
-                    ".$row["5"]."
+                    $".$row["5"]."NT
                 </div>
             </div>
         </div>

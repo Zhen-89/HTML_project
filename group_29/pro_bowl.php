@@ -1,4 +1,6 @@
 <?php
+
+
 session_start();
 // echo "user = " . $_SESSION['goods_No'] ;
 
