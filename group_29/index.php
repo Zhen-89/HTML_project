@@ -10,7 +10,7 @@
 	// // 資料庫查詢(送出查詢的SQL指令)
 	if ($result = mysqli_query($link, "SELECT * FROM product_list")) {
 		while ($row = mysqli_fetch_assoc($result)) {
-			$rows .= "<div class='portfolio-item branding video'><div class='portfolio-wrapper'><div class='portfolio-thumb'><img src='" . $row["picture"] . "' alt=''></div><div class='portfolio-caption text-left'><div class='work-tag'><p>買吧</p></div><h4><a href='product_intro.php'>" . $row["name"] . "</a></h4></div></div></div>" ;
+			$rows .= "<form name='form0' action='product_intro.php' method='GET'><div class='portfolio-item branding video'><div class='portfolio-wrapper'><div class='portfolio-thumb'><img src='" . $row["picture"] . "' alt=''></div><div class='portfolio-caption text-left'><input type='submit' class='pro_btn' name='product_name' value='" . $row["name"] . "' onclick=check()></div></div></div></form>" ;
 		}
 		$num = mysqli_num_rows($result); //查詢結果筆數
 		mysqli_free_result($result); // 釋放佔用的記憶體

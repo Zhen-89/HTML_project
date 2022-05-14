@@ -7,16 +7,16 @@ mysqli_query($link, 'SET CHARACTER SET utf8');
 mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
 
 // // 資料庫查詢(送出查詢的SQL指令)
-if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE goods_No = '".$_GET["product_no"]."' ")) {
+if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE name = '" . $_GET['product_name'] . "' ")) {
   while ($row = mysqli_fetch_row($result)) {
     $rows .= "<div class='area-title text-center'>
-    <h2>".$row["1"]."</h2>
+    <h2>" . $row["1"] . "</h2>
 </div>
 <div  class='product'>
     <div class='portfolio-item graphic'>
         <div class='portfolio-wrapper'>
             <div class='portfolio-thumb'>
-                <img src='".$row["6"]."' alt=''>
+                <img src='" . $row["6"] . "' alt=''>
             </div>
             
             <div class='portfolio-caption text-left'>
@@ -33,19 +33,19 @@ if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE goods_No = '
             <div>
                  ● 商品簡介
                 <div class='pro_text'>
-                    ".$row["3"]."
+                    " . $row["3"] . "
                 </div><!---->
             </div>
             <div>
                 ● 商品規格
                 <div class='pro_text'>
-                    ".$row["4"]."
+                    " . $row["4"] . "
                 </div>
             </div>
             <div>
                 ● 售價
                 <div class='pro_text'>
-                    $".$row["5"]."NT
+                    $" . $row["5"] . "NT
                 </div>
             </div>
         </div>
@@ -81,16 +81,6 @@ mysqli_close($link); // 關閉資料庫連結
         <link rel="stylesheet" href="css/responsive.css">
         <script src="js/modernizr-2.8.3.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script>
-			$(function (){
-				$("#btn_show").on("click", function(){
-					//console.log("click") ;
-					$("#block_hidden").show() ;
-					$("#btn_show").hide() ;
-					//$("#btn_hide").show() ;
-				})/**/
-			});
-		</script>
         <style>
             .product{
                 display: flex;

@@ -4214,6 +4214,8 @@ box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
 }
 /************ index product submit button **************/
 input.pro_btn{
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
   background:transparent ;
   color:white ;
   font-size:  22px;
