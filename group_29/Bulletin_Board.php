@@ -1,3 +1,56 @@
+<?php
+
+	$link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
+	or die("無法開啟MySQL資料庫連結!<br>");
+
+	// 送出編碼的MySQL指令
+	mysqli_query($link, 'SET CHARACTER SET utf8');
+	mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+
+	// // 資料庫查詢(送出查詢的SQL指令)
+	if ($result = mysqli_query($link, "SELECT * FROM bulletin b, product_list p WHERE b.goods_No=p.goods_No and b.type = 'discount'")) {
+		while ($row = mysqli_fetch_assoc($result)) {
+			$rows .= "<div style='padding: 6px 0;'>
+            <a href='product-detail.php?product_name=" . $row["name"] . "'>
+                <div class='banner_size1 ' style='background-image: url(" . $row["intro_picture"] . ");' >
+                    <div class='container '>
+                        <div class='banner_title'>
+                            " . $row["intro_title"] . "
+                        </div>
+                        <div class='banner_text'>
+                            " . $row["intro_content"] . "
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>" ;
+		}
+		$num = mysqli_num_rows($result); //查詢結果筆數
+		mysqli_free_result($result); // 釋放佔用的記憶體
+	}
+
+    if ($result = mysqli_query($link, "SELECT * FROM bulletin b, product_list p WHERE b.goods_No=p.goods_No and b.type = 'new'")) {
+		while ($row = mysqli_fetch_assoc($result)) {
+			$rows1 .= "<div style='padding: 6px 0;'>
+            <a href='product-detail.php?product_name=" . $row["name"] . "'>
+                <div class='banner_size1 ' style='background-image: url(" . $row["intro_picture"] . ");' >
+                    <div class='container '>
+                        <div class='banner_title'>
+                            " . $row["intro_title"] . "
+                        </div>
+                        <div class='banner_text'>
+                            " . $row["intro_content"] . "
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>" ;
+		}
+		$num = mysqli_num_rows($result); //查詢結果筆數
+		mysqli_free_result($result); // 釋放佔用的記憶體
+	}
+	mysqli_close($link); // 關閉資料庫連結
+?>
 <!doctype html>
 <html class="no-js" lang="">
     <head>
@@ -65,34 +118,7 @@
                 <div class="area-title text-center">
                     <h2>優惠活動</h2>
                 </div>
-                <div style="padding: 6px 0;">
-                    <a href="pro_key.php">
-                        <div class="banner_size1 " style="background-image: url(./picture/m-project1.jpg); " >
-                            <div class="container ">
-                                <div class="banner_title">
-                                    週日搶下殺 $200
-                                </div>
-                                <div class="banner_text">
-                                    日本原裝進口 不鏽鋼鑰匙圈 <br> 立即 GO GO !!
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div style="padding: 6px 0;">
-                    <a href="pro_shoe_white_1.php">
-                        <div class="banner_size1 " style="background-image: url(./picture/Product/show_white_1_2.jpg);" >
-                            <div class="container ">
-                                <div class="banner_title">
-                                    瑞克特殺折 $500
-                                </div>
-                                <div class="banner_text">
-                                    百搭小白鞋 <br> 立即 GO GO !!
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <?php echo $rows; ?>
 			</div>
         </div>
         <div class=" ptb-90">
@@ -100,20 +126,7 @@
                 <div class="area-title text-center">
                     <h2>新品首發</h2>
                 </div>
-                <div style="padding: 6px 0;">
-                    <a href="pro_coat_gray.php">
-                        <div class="banner_size1 " style="background-image: url(./picture/Product/coat_gray.jpg); " >
-                            <div class="container ">
-                                <div class="banner_title">
-                                    全新上市
-                                </div>
-                                <div class="banner_text">
-                                    柔軟質感 <br> 男女適用
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <?php echo $rows1 ; ?>
 			</div>
 		</div>
 		<!-- basic-portfolio-area end -->
