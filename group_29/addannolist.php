@@ -9,16 +9,24 @@ if ($_SESSION['level'] != '2') {
 }
 ?>
 <?php
- $imgname = $_FILES['div_upload']['name'];
- $tmp = $_FILES['div_upload']['tmp_name'];
- $filepath = 'picture/';
- if(move_uploaded_file($tmp,$filepath.$imgname)){
+ $imgname1 = $_FILES['div_upload1']['name'];
+ $tmp1 = $_FILES['div_upload1']['tmp_name'];
+ $filepath1 = 'picture/';
+ if(move_uploaded_file($tmp1,$filepath1.$imgname1)){
    echo "接收成功";
  }else
    {
      echo "接收失敗";
    }
-
+   $imgname2 = $_FILES['div_upload2']['name'];
+   $tmp2 = $_FILES['div_upload2']['tmp_name'];
+   $filepath2 = 'picture/';
+   if(move_uploaded_file($tmp2,$filepath2.$imgname2)){
+     echo "接收成功";
+   }else
+     {
+       echo "接收失敗";
+     }
 
 $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
   or die("無法開啟MySQL資料庫連結!<br>");
@@ -40,7 +48,7 @@ if ($result = mysqli_query($link, "SELECT * FROM bulletin  ORDER BY bul_No DESC 
 
 //資料庫新增存檔
 if (isset($_POST['sell-name'])) {
-    $sql = "INSERT INTO bulletin VALUES ('" . $rows+1 ."','" . $_POST['sell-name'] . "','" . $_POST['sell-introduction'] . "','picture/" . $imgname . "')";
+    $sql = "INSERT INTO bulletin VALUES ('" . $rows+1 ."','" . $_POST['sell-name'] . "','" . $_POST['sell-introduction'] . "','picture/" . $imgname1 . "','" . $_POST['sell_type'] . "','" .  $_POST['sell-topname'] . "','picture/" . $imgname2 . "','" .  $_POST['sell_pro'] . "')";
 
     if ($result = mysqli_query($link, $sql)) // 送出查詢的SQL指令
     {

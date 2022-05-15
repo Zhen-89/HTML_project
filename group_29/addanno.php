@@ -5,8 +5,25 @@ if ($_SESSION['level'] != '2') {
 ?>
   <meta http-equiv="refresh" content="0;url=login.php">
   </meta>
-<?php
+  <?php
 }
+$link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
+  or die("無法開啟MySQL資料庫連結!<br>");
+
+// 送出編碼的MySQL指令
+mysqli_query($link, 'SET CHARACTER SET utf8');
+mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+
+// // 資料庫查詢(送出查詢的SQL指令)
+if ($result = mysqli_query($link, "SELECT * FROM product_list ")) {
+  while ($row = mysqli_fetch_row($result)) {
+    $rows .= "<option value='".$row["0"]."'>".$row["1"]."</option>";
+  }
+  $num = mysqli_num_rows($result); //查詢結果筆數
+  mysqli_free_result($result); // 釋放佔用的記憶體
+}
+
+mysqli_close($link); // 關閉資料庫連結
 ?>
 <!doctype html>
 <html lang="">
@@ -125,7 +142,7 @@ if ($_SESSION['level'] != '2') {
                     <form id="contact-form" action="addannolist.php" method="post" onSubmit="CheckForm();" enctype="multipart/form-data">
                         <table class="row" border="1">
                             <div class="col-12 col-md-6">
-                                <label for="sell-name" class="content__subtitle ">公告:</label>
+                                <label for="sell-name" class="content__subtitle ">公告名稱:</label>
                                 <input id="sell-name" name="sell-name" type="sell-name" class="form-control"
                                     maxlength="10" value="" required="">
                                 <label for="sell-name" class="error"></label>
@@ -159,7 +176,29 @@ if ($_SESSION['level'] != '2') {
 
                                 <label for="sell_type[]" class="error"></label>
                             </div>
-
+                            <div class="col-12 col-md-6">
+                                <label for="sell-topname" class="content__subtitle ">頂端公告:</label>
+                                <input id="sell-topname" name="sell-topname" type="sell-topname" class="form-control"
+                                    maxlength="10" value="" required="">
+                                <label for="sell-topname" class="error"></label>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="sell_type" class="content__subtitle">商品類型:</label>
+                                <select name="sell_type" id="sell_type" class="form-control" required>
+                                    <option value="">請選擇</option>
+                                    <option value="discount">折扣</option>
+                                    <option value="new">新品</option>
+                                </select>
+                                <label for="sell_type[]" class="error"></label>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="sell_pro" class="content__subtitle">商品:</label>
+                                <select name="sell_pro" id="sell_pro" class="form-control" required>
+                                    <option value="">請選擇</option>
+                                    <?php echo $rows; ?>
+                                </select>
+                                <label for="sell_type[]" class="error"></label>
+                            </div>
                             <div class="col-12 col-md-12">
                                 <div class="form-group">
                                     <label for="sell-introduction" class="content__subtitle">公告內容</label>
@@ -172,14 +211,30 @@ if ($_SESSION['level'] != '2') {
                             
                             <div class="col-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="div_upload" class="content__subtitle">附檔：</label>
+                                    <label for="div_upload1" class="content__subtitle">附檔：</label>
                                     <div class="col-md-12">
-                                        <div class="form-group" id="div_upload">
+                                        <div class="form-group" id="div_upload1">
                                             <div>
                                                 <!-- <button type="button" class="btn btn-danger btn-xs"
                                                     data-placement="right" title="移除"><i class="fa fa-times"
                                                         aria-hidden="true"></i></button> -->
-                                                <input type="file" name="div_upload" style="display: inline-block" accept=".pdf,.jpg,.jpeg,.png,.webp" required>
+                                                <input type="file" name="div_upload1" style="display: inline-block" accept=".pdf,.jpg,.jpeg,.png,.webp" required>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="div_upload2" class="content__subtitle">附檔：</label>
+                                    <div class="col-md-12">
+                                        <div class="form-group" id="div_upload2">
+                                            <div>
+                                                <!-- <button type="button" class="btn btn-danger btn-xs"
+                                                    data-placement="right" title="移除"><i class="fa fa-times"
+                                                        aria-hidden="true"></i></button> -->
+                                                <input type="file" name="div_upload2" style="display: inline-block" accept=".pdf,.jpg,.jpeg,.png,.webp" required>
 
                                             </div>
                                         </div>
