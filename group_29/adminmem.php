@@ -15,7 +15,7 @@ mysqli_query($link, 'SET CHARACTER SET utf8');
 mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
 
 // // 資料庫查詢(送出查詢的SQL指令)
-if ($result = mysqli_query($link, "SELECT * FROM member WHERE no = '".$_GET["who"]."'")) {
+if ($result = mysqli_query($link, "SELECT * FROM member WHERE mem_no = '".$_GET["who"]."'")) {
   while ($row = mysqli_fetch_row($result)) {
     $rows .= "<tr>
     <th>會員帳號<br />ID</th>
