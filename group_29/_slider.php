@@ -1,3 +1,4 @@
+<!-- 只用來引入 -->
 <?php
 	$link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
 	or die("無法開啟MySQL資料庫連結!<br>");
@@ -24,7 +25,6 @@
 	}
 	mysqli_close($link); // 關閉資料庫連結
 ?>
-<!-- 只用來引入 -->
 <div class="slider-section">
 	<div class="slider-active owl-carousel ">
 		<?php echo $rows0; ?>
