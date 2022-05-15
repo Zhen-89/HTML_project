@@ -134,12 +134,10 @@ if ($_SESSION['level'] != '2') {
                                 <label for="sell_type" class="content__subtitle">商品類型:</label>
                                 <select name="sell_type" id="sell_type" class="form-control" required>
                                     <option value="">請選擇</option>
-                                    <option value="1">食品</option>
-                                    <option value="2">家電</option>
-                                    <option value="3">3C</option>
-                                    <option value="4">美妝</option>
-                                    <option value="5">生活</option>
-                                    <option value="6">書店</option>
+                                    <option value="cloth">服飾</option>
+                                    <option value="appliance">家電</option>
+                                    <option value="game">遊戲</option>
+                                    <option value="other">其他</option>
                                 </select>
                                 <label for="sell_type[]" class="error"></label>
                             </div>

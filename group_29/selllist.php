@@ -19,7 +19,7 @@ if ($result = mysqli_query($link, "SELECT * FROM product_list ")) {
   while ($row = mysqli_fetch_row($result)) {
     $rows .= "<dl class='sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12'>
     <dd class='sell1'>
-        <a href=''><img src='". $row["6"]."' title='". $row["1"]."'></a>
+        <a href='product_intro.php?product_no=".$row["0"]."'><img src='". $row["6"]."' title='". $row["1"]."'></a>
     </dd>
     <dd class='sell2'>
         <h5 class='sell-title'>
