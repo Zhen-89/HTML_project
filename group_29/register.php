@@ -1,3 +1,18 @@
+<?php
+session_start();
+$name = "";  $password = "";
+if ( isset($_POST["account"]) )
+   $name = $_POST["account"];
+if ( isset($_POST["email"]) )
+   $email = $_POST["email"];
+if ( isset($_POST["pwd"]) )
+   $pwd = $_POST["pwd"];
+if ( isset($_POST["pwd2"]) )
+   $pwd2 = $_POST["pwd2"];
+?>
+<!-- 紀錄輸入的資料 -->
+
+
 <!doctype html>
 <html class="no-js" lang="">
 
@@ -17,6 +32,52 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/meanmenu.css">
     <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <!-- 表單驗證 -->
+    <script>
+$(document).ready(function($) {
+    //for select
+    $.validator.addMethod("notEqualsto", function(value, element, arg) {
+        return arg != value;
+    }, "您尚未選擇!");
+
+$("#contact-form").validate({
+    submitHandler: function(form) {
+        alert("success!");
+        form.submit();
+    },
+    rules: {
+        account: {
+            required: true,            
+            maxlength: 10
+        },
+        pwd: {
+            required: true,
+            minlength: 6,
+            maxlength: 12
+        },
+        pwd2: {
+            required: true,
+            equalTo: "#pwd"
+        },
+        email: {
+            required: true,
+            email: true
+        }      
+        
+    },
+    messages: {
+        account: {
+            required: "帳號為必填欄位",            
+            maxlength: "帳號最長10個字"
+        },
+        pwd2: {
+            equalTo: "兩次密碼不相符"
+        }       
+    }
+});
+});
+</script>
 
 
 </head>
@@ -47,12 +108,12 @@
             </div>
             <div class="row">
                 <div class="text-center">
-                    <form id="contact-form" action="mail.php" method="post">
+                    <form id="contact-form" action="" method="POST">
                         <div class="row center-block" style="width:35%;  ">
                             <div class="form-group ">
                                 <label class="sr-only">First Name</label>
-                                <input type="text" class="form-control input-lg" name="account" placeholder="帳號"
-                                    required>
+                                <input type="text" class="form-control input-lg" name="account" id="account" placeholder="帳號"
+                                    >
                                 <p class="help-block text-danger"></p>
                             </div>
 
@@ -105,6 +166,10 @@
     <script src="js/mail.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script> 
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 </body>
 
 </html>
