@@ -25,7 +25,7 @@ $url="removecar.php";
 
 $sum=60;
 
-if ($result = mysqli_query($link, "SELECT * FROM shoppingcar s, product_list p, member m WHERE s.goods_No = p.goods_No and s.member_No = $no and s.member_No = m.no")) {
+if ($result = mysqli_query($link, "SELECT * FROM shoppingcar s, product_list p, member m WHERE s.goods_No = p.goods_No and s.member_No = $no and s.member_No = m.mem_no")) {
     while ($row = mysqli_fetch_assoc($result)) {  
         $total = (int)$row["price"]* (int)$row["amount"];        
         $sum = $sum+$total;        

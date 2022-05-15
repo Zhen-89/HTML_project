@@ -16,7 +16,7 @@ if ($name != "" && $password != "") {
     mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
 
     // // 資料庫查詢(送出查詢的SQL指令)
-    if ($result = mysqli_query($link, "SELECT * FROM member WHERE account='".$name."' AND code='".$password."'")) {
+    if ($result = mysqli_query($link, "SELECT * FROM member WHERE mem_account='".$name."' AND mem_code='".$password."'")) {
         while ($row = mysqli_fetch_row($result)) {
             $_SESSION['level']= $row["8"];
             $_SESSION['name']= $row["3"];
