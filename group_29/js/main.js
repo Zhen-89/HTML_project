@@ -528,4 +528,57 @@
 
 
 
+
 })(jQuery);
+
+// scroll to specific position  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// *****************************************************************************
+var mybutton0 = document.getElementById("scrollHotsell");
+var mybutton1 = document.getElementById("scrollDiscount");
+// When the user scrolls down 0px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop >= 0 || document.documentElement.scrollTop >= 0) {
+    mybutton0.style.display = "block";
+	mybutton1.style.display = "block";
+  } else {
+    mybutton0.style.display = "none";
+	mybutton1.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction0() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 580;
+}
+function topFunction1() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 1000;
+}
+
+$(document).ready(function(){
+	// Add smooth scrolling to all links
+	$("input").on('click', function(event) {
+  
+	  // Make sure this.hash has a value before overriding default behavior
+	  if (this.hash !== "") {
+		// Prevent default anchor click behavior
+		event.preventDefault();
+  
+		// Store hash
+		var hash = this.hash;
+  
+		// Using jQuery's animate() method to add smooth page scroll
+		// The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+		$('html, body').animate({
+		  scrollTop: $(hash).offset().top
+		}, 500, function(){
+	 
+		  // Add hash (#) to URL when done scrolling (default click behavior)
+		  window.location.hash = hash;
+		});
+	  } // End if
+	});
+  });

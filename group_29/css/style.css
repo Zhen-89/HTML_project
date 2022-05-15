@@ -4222,3 +4222,45 @@ input.pro_btn{
   border-width:0px ;
   outline:none;
 }
+/************ scroll button 1***************************/
+#scrollHotsell {
+  display: none;
+  position: fixed;
+  bottom: 150px;
+  right: 50px;/*   <----    */
+  z-index: 99;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  background-color: #444;/**/
+  color: white;
+  cursor: pointer;
+  padding: 11px;/*   <----    */
+  border-radius: 4px;
+  line-height: 1;
+}
+#scrollHotsell:hover {
+  background-color: #777;
+}
+/************ scroll button 2***************************/
+#scrollDiscount {
+  display: none;
+  position: fixed;
+  bottom: 100px;
+  right: 50px;/*   <----    */
+  z-index: 99;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  background-color: #444;/**/
+  color: white;
+  cursor: pointer;
+  padding: 11px;/*   <----    */
+  border-radius: 4px;
+  line-height: 1;
+}
+#scrollDiscount:hover {
+  background-color: #777;
+}/**/
