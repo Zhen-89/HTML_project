@@ -28,9 +28,9 @@ $sum=60;
 if ($result = mysqli_query($link, "SELECT * FROM shoppingcar s, product_list p, member m WHERE s.goods_No = p.goods_No and s.member_No = $no and s.member_No = m.no")) {
     while ($row = mysqli_fetch_assoc($result)) {  
         $total = (int)$row["price"]* (int)$row["amount"];        
-        $sum = $sum+$total;
+        $sum = $sum+$total;        
         // $amount = (int)$row["amount"];
-        // $tmep=$row["goods_No"];
+        // $tmep=$row["goods_No"]; 
         $rows .= "<tr>
         <td> <img src='".$row["picture"]."' alt='...' width='100px;'> </td>
         <td>" . $row["goods_name"] . "</td>
