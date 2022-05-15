@@ -11,7 +11,7 @@
 	if ($result = mysqli_query($link, "SELECT * FROM bulletin b, product_list p WHERE b.goods_No=p.goods_No and b.type = 'discount'")) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$rows .= "<div style='padding: 6px 0;'>
-            <a href='product-detail.php?product_name=" . $row["name"] . "'>
+            <a href='product-detail.php?product_name=" . $row["goods_name"] . "'>
                 <div class='banner_size1 ' style='background-image: url(" . $row["intro_picture"] . ");' >
                     <div class='container '>
                         <div class='banner_title'>
