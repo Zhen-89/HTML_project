@@ -133,7 +133,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- basic-??????-area end -->
+		<!-- basic-??????-area end/ -->
 		<!-- footer start -->
 		<?php include("_footer.php"); ?>
 		<!-- footer end -->
