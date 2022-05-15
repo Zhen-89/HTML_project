@@ -80,7 +80,7 @@
 					<button data-filter=".other">其他</button>
 				</div>
 				<div id="portfolio-grid" class="row-portfolio portfolio-style-2">
-					<div ><!--first page-->
+					<div><!--first page-->
 
                     <?php echo $rows; ?>
 
@@ -98,25 +98,25 @@
 					<h2>限時特價</h2>
 				</div><!--portfolio-grid 要改掉-->
 				<div id="portfolio-grid" class="row-portfolio portfolio-style-2">
-					<div >
-						<form name="form0" action="product_intro.php" method="GET">
-							<div class="portfolio-item branding video">
-								<div class="portfolio-wrapper">
-									<div class="portfolio-thumb">
-										<img src="picture/project1.jpg" alt="">
-										
-									</div>
-									<div class="portfolio-caption text-left">
-										<input type="submit" class="pro_btn" name="product_name" value="product name" onclick=check()>
-									</div>
+					<form name="form0" action="product_intro.php" method="GET">
+						<div class="portfolio-item branding video">
+							<div class="portfolio-wrapper">
+								<div class="portfolio-thumb">
+									<img src="picture/project1.jpg" alt="">
+									
+								</div>
+								<div class="portfolio-caption text-left">
+									<input type="submit" class="pro_btn" name="product_name" value="product name" onclick=check()>
 								</div>
 							</div>
-						</form>
-					</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
-		<!-- basic-??????-area end/ -->
+		<input type="button" value="熱" id="scrollHotsell"  onclick="location.href='#first-page'" title="看看熱賣商品吧">
+		<input type="button" value="特" id="scrollDiscount" onclick="location.href='#second-page'" title="只有現在有特價喔">
+		<!-- basic-??????-area end -->
 		<!-- footer start -->
 		<?php include("_footer.php"); ?>
 		<!-- footer end -->
