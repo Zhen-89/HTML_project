@@ -45,25 +45,6 @@
         <link rel="stylesheet" href="css/responsive.css">
         <script src="./js/modernizr-2.8.3.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script>
-			$(function (){
-				$("#btn_show").on("click", function(){
-					//console.log("click") ;
-					$("#btn_show").hide() ;
-					// $("#block_hidden").show() ;
-					if("#block_hidden".style.display == "none")
-					{
-						document.getElementById("block_hidden").style.display = "block"
-					}
-					else
-					{
-						document.getElementById("block_hidden").style.display = "none"
-					}
-
-					//$("#btn_hide").show() ;
-				})/**/
-			});
-		</script>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -86,7 +67,7 @@
 		<!-- basic-slider end   -->
         
 		<!-- basic-portfolio-area start -->
-		<div class="basic-portfolio-area ptb-90">
+		<div class="basic-portfolio-area ptb-90" id="first-page">
 			<div class="container">
 				<div class="area-title text-center">
 					<h2>熱賣商品</h2>
@@ -99,7 +80,7 @@
 					<button data-filter=".other">其他</button>
 				</div>
 				<div id="portfolio-grid" class="row-portfolio portfolio-style-2">
-					<div id="first-page"><!--first page-->
+					<div ><!--first page-->
 
                     <?php echo $rows; ?>
 
@@ -111,28 +92,32 @@
 		
 		<!-- basic-portfolio-area end -->
 		<!-- basic-??????-area -->
-		<div class="basic-blo-area  pt-90 pb-50">
+		<div class="basic-blo-area  pt-90 pb-50" id="second-page">
 			<div class="container">
 				<div class="area-title text-center">
 					<h2>限時特價</h2>
 				</div><!--portfolio-grid 要改掉-->
 				<div id="portfolio-grid" class="row-portfolio portfolio-style-2">
-					<form name="form0" action="product_intro.php" method="GET">
-						<div class="portfolio-item branding video">
-							<div class="portfolio-wrapper">
-								<div class="portfolio-thumb">
-									<img src="picture/project1.jpg" alt="">
-									
-								</div>
-								<div class="portfolio-caption text-left">
-									<input type="submit" class="pro_btn" name="product_name" value="product name" onclick=check()>
+					<div >
+						<form name="form0" action="product_intro.php" method="GET">
+							<div class="portfolio-item branding video">
+								<div class="portfolio-wrapper">
+									<div class="portfolio-thumb">
+										<img src="picture/project1.jpg" alt="">
+										
+									</div>
+									<div class="portfolio-caption text-left">
+										<input type="submit" class="pro_btn" name="product_name" value="product name" onclick=check()>
+									</div>
 								</div>
 							</div>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
+		<input type="button" value="熱" id="scrollHotsell"  onclick="location.href='#first-page'" title="看看熱賣商品吧">
+		<input type="button" value="特" id="scrollDiscount" onclick="location.href='#second-page'" title="只有現在有特價喔">
 		<!-- basic-??????-area end -->
 		<!-- footer start -->
 		<?php include("_footer.php"); ?>
