@@ -218,7 +218,7 @@ mysqli_close($link); // 關閉資料庫連結
                                                 <!-- <button type="button" class="btn btn-danger btn-xs"
                                                     data-placement="right" title="移除"><i class="fa fa-times"
                                                         aria-hidden="true"></i></button> -->
-                                                <input type="file" name="div_upload1" style="display: inline-block" accept=".pdf,.jpg,.jpeg,.png,.webp" required>
+                                                <input type="file" name="div_upload1" style="display: inline-block" accept=".pdf,.jpg,.jpeg,.png,.webp.jfif" required>
 
                                             </div>
                                         </div>
@@ -234,7 +234,7 @@ mysqli_close($link); // 關閉資料庫連結
                                                 <!-- <button type="button" class="btn btn-danger btn-xs"
                                                     data-placement="right" title="移除"><i class="fa fa-times"
                                                         aria-hidden="true"></i></button> -->
-                                                <input type="file" name="div_upload2" style="display: inline-block" accept=".pdf,.jpg,.jpeg,.png,.webp" required>
+                                                <input type="file" name="div_upload2" style="display: inline-block" accept=".pdf,.jpg,.jpeg,.png,.webp.jfif" required>
 
                                             </div>
                                         </div>

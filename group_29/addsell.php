@@ -189,7 +189,7 @@ if ($_SESSION['level'] != '2') {
                                                 <!-- <button type="button" class="btn btn-danger btn-xs"
                                                     data-placement="right" title="移除"><i class="fa fa-times"
                                                         aria-hidden="true"></i></button> -->
-                                                <input type="file" id="div_upload" name="div_upload" style="display: inline-block" accept=".pdf,.jpg,.jpeg,.png,.webp" required>
+                                                <input type="file" id="div_upload" name="div_upload" style="display: inline-block" accept=".pdf,.jpg,.jpeg,.png,.webp.jfif" required>
 
                                             </div>
                                         </div>
