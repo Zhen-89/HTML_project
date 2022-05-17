@@ -7,7 +7,7 @@ mysqli_query($link, 'SET CHARACTER SET utf8');
 mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
 
 // // 資料庫查詢(送出查詢的SQL指令)
-if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE goods_name = '" . $_GET['product_name'] . "' ")) {
+if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE goods_No = '" . $_GET['product_no'] . "' ")) {
   while ($row = mysqli_fetch_row($result)) {
     $rows .= 	"<div class='area-title text-center'>
 					<h2>" . $row["1"] . "</h2>
