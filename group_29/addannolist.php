@@ -48,7 +48,7 @@ if ($result = mysqli_query($link, "SELECT * FROM bulletin  ORDER BY bul_No DESC 
 
 //資料庫新增存檔
 if (isset($_POST['sell-name'])) {
-    $sql = "INSERT INTO bulletin VALUES ('" . $rows+1 ."','" . $_POST['sell-name'] . "','" . $_POST['sell-introduction'] . "','picture/" . $imgname1 . "','" . $_POST['sell_type'] . "','" .  $_POST['sell-topname'] . "','picture/" . $imgname2 . "','" .  $_POST['sell_pro'] . "')";
+    $sql = "INSERT INTO bulletin VALUES ('" . ($rows+1) ."','" . $_POST['sell-name'] . "','" . $_POST['sell-introduction'] . "','picture/" . $imgname1 . "','" . $_POST['sell_type'] . "','" .  $_POST['sell-topname'] . "','picture/" . $imgname2 . "','" .  $_POST['sell_pro'] . "')";
 
     if ($result = mysqli_query($link, $sql)) // 送出查詢的SQL指令
     {
