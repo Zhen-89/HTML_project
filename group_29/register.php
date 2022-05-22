@@ -1,18 +1,3 @@
-<?php
-session_start();
-$name = "";  $password = "";
-if ( isset($_POST["account"]) )
-   $name = $_POST["account"];
-if ( isset($_POST["email"]) )
-   $email = $_POST["email"];
-if ( isset($_POST["pwd"]) )
-   $pwd = $_POST["pwd"];
-if ( isset($_POST["pwd2"]) )
-   $pwd2 = $_POST["pwd2"];
-?>
-<!-- 紀錄輸入的資料 -->
-
-
 <!doctype html>
 <html class="no-js" lang="">
 
@@ -34,51 +19,98 @@ if ( isset($_POST["pwd2"]) )
     <link rel="stylesheet" href="css/ionicons.min.css">
 
     <!-- 表單驗證 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-latest.min.js"></script> -->
+
+    <!-- 表單驗正 -->
     <script>
-$(document).ready(function($) {
-    //for select
-    $.validator.addMethod("notEqualsto", function(value, element, arg) {
-        return arg != value;
-    }, "您尚未選擇!");
+    // $duplicate=0;
+    $(document).ready(function($) {
+        //for select
+        $.validator.addMethod("notEqualsto", function(value, element, arg) {
+            return arg != value;
+        }, "您尚未選擇!");
 
-$("#contact-form").validate({
-    submitHandler: function(form) {
-        alert("success!");
-        form.submit();
-    },
-    rules: {
-        account: {
-            required: true,            
-            maxlength: 10
-        },
-        pwd: {
-            required: true,
-            minlength: 6,
-            maxlength: 12
-        },
-        pwd2: {
-            required: true,
-            equalTo: "#pwd"
-        },
-        email: {
-            required: true,
-            email: true
-        }      
-        
-    },
-    messages: {
-        account: {
-            required: "帳號為必填欄位",            
-            maxlength: "帳號最長10個字"
-        },
-        pwd2: {
-            equalTo: "兩次密碼不相符"
-        }       
+        $("#form1").validate({
+            submitHandler: function(form) {
+                $.ajax({
+                    async: false,
+                    url: "ajx_check_account_jquery.php",
+                    data: $('#form1').serialize(),
+                    type: "POST",
+                    dataType: 'text',
+                    success: function(msg) {
+                        $("#show_msg").html(msg); //顯示訊息 
+                        if(msg!="此帳號已存在!")      
+                        {
+                           // alert("註冊成功!"); 
+                            form.submit();
+                        }  
+                       
+                        //document.getElementById('show_msg').innerHTML= msg ;
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status);
+                        alert(thrownError);
+                    }
+                });                
+               
+              
+            },
+            rules: {
+                account: {
+                    required: true,
+                    maxlength: 10
+                },
+                pwd: {
+                    required: true,
+                    minlength: 6,
+                    maxlength: 12
+                },
+                pwd2: {
+                    required: true,
+                    equalTo: "#pwd",
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+
+            },
+            messages: {
+                account: {
+                    required: "填一下拉",
+                    maxlength: "帳號最長10個字"
+                },
+                email: {
+                    required: "填一下拉",
+                    email: "格式不對喔"
+                },
+                pwd: {
+                    required: "必填",
+                    minlength: "好像u點短喔，再來一點",
+                },
+                pwd2: {
+                    required: "必填",
+                    equalTo: "兩次密碼不相符"
+                },
+            },
+        });
+    });
+    </script>
+    
+
+    <style type="text/css">
+    .error {
+        color: #d82424;
+        font-weight: normal;
+        font-family: "微軟正黑體";
+        display: inline;
+        padding: 1px;
     }
-});
-});
-</script>
-
+    </style>
 
 </head>
 
@@ -87,9 +119,9 @@ $("#contact-form").validate({
         <div class="loader">Loading...</div>
     </div>
     <!-- /PRELOADER -->
-    
+
     <!-- header start -->
-		<?php include("_header.php") ;?>
+    <?php include("_header.php") ;?>
     <!-- header end -->
 
     <!-- basic-breadcrumb start -->
@@ -108,37 +140,40 @@ $("#contact-form").validate({
             </div>
             <div class="row">
                 <div class="text-center">
-                    <form id="contact-form" action="" method="POST">
+                    <form id="form1" name="form1" action="addmember.php" method="post">
                         <div class="row center-block" style="width:35%;  ">
                             <div class="form-group ">
-                                <label class="sr-only">First Name</label>
-                                <input type="text" class="form-control input-lg" name="account" id="account" placeholder="帳號"
-                                    >
-                                <p class="help-block text-danger"></p>
+                                <!-- <label class="sr-only">First Name</label> -->
+                                <label for="account"></label>
+                                <input type="text" class="form-control input-lg" name="account" id="account"
+                                    placeholder="帳號">
+                                <span id="show_msg" style="color:red"></span></td>
+                                <!-- <p class="help-block text-danger"></p> -->
                             </div>
 
                             <div class="form-group ">
-                                <label class="sr-only">First Name</label>
-                                <input type="email" class="form-control input-lg" name="email" placeholder="請輸入電子信箱"
-                                    required>
-                                <p class="help-block text-danger"></p>
+
+                                <input type="email" class="form-control input-lg" name="email" id="email"
+                                    placeholder="請輸入電子信箱">
+                                <!-- <p class="help-block text-danger"></p> -->
                             </div>
 
                             <div class="form-group ">
-                                <label class="sr-only">First Name</label>
-                                <input type="password" class="form-control input-lg" name="pwd" placeholder="密碼"
-                                    required>
-                                <p class="help-block text-danger"></p>
+
+                                <input type="password" class="form-control input-lg" name="pwd" id="pwd" placeholder="密碼">
+                                <!-- <p class="help-block text-danger"></p> -->
                             </div>
 
                             <div class="form-group ">
-                                <label class="sr-only">First Name</label>
-                                <input type="password" class="form-control input-lg" name="pwd2" placeholder="密碼確認"
-                                    required>
-                                <p class="help-block text-danger"></p>
+
+                                <input type="password" class="form-control input-lg" name="pwd2" id="pwd2"
+                                    placeholder="密碼確認">
+                                
+                                <!-- <p class="help-block text-danger"></p> -->
                             </div>
 
                             <div class="col-md-12 text-center">
+                                <!-- <input type="submit" class="btn btn-lg btn-round btn-dark"  value="送出"></input> -->
                                 <button type="submit" class="btn btn-lg btn-round btn-dark">註冊</button>
                                 <a href="login.php" class="btn btn-lg btn-round btn-dark">返回登入頁面</a>
                             </div>
@@ -167,9 +202,7 @@ $("#contact-form").validate({
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script> 
-    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+
 </body>
 
 </html>
