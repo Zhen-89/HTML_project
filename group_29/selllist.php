@@ -30,7 +30,7 @@ if ($result = mysqli_query($link, "SELECT * FROM product_list ")) {
         </div>
     </dd>
     <dd class='sell3'>
-        <a href='addsell.php?product_no=".$row["0"]."'>編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <a href='changesell.php?product_no=".$row["0"]."'>編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
         <a href='deleteproduct.php?product_no=".$row["0"]."'>下架商品</a>
     </dd>
     </dl>";
