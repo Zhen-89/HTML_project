@@ -70,8 +70,8 @@ mysqli_close($link); // 關閉資料庫連結
             <div id="top-menu">
                 <div id="member_center" class="clearfix">
                     <button class="member_btn">管理中心</button>
-                    <input type="text" placeholder="輸入會員名稱" name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button>
+                    <!-- <input type="text" placeholder="輸入會員名稱" name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button> -->
                 </div>
             </div>
         </div>
