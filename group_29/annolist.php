@@ -24,7 +24,7 @@ if ($result = mysqli_query($link, "SELECT * FROM bulletin ")) {
         </h5>
     </dd>
     <dd class='anno2'>
-        <a href='addanno.php?bul_no=".$row["0"]."'>編輯公告&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        <a href='change_anno.php?bul_no=".$row["0"]."'>編輯公告&nbsp;&nbsp;&nbsp;&nbsp;</a>
         <a href='deleteanno.php?bul_no=".$row["0"]."'>刪除</a>
     </dd>
 </dl>";

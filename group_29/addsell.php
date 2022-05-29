@@ -127,7 +127,7 @@ if ($_SESSION['level'] != '2') {
                             <div class="col-12 col-md-12">
                                 <label for="sell-name" class="content__subtitle ">商品名稱:</label>
                                 <input id="sell-name" name="sell-name" type="sell-name" class="form-control"
-                                    maxlength="10" value="" required="">
+                                    maxlength="100" value="" required="">
                                 <label for="sell-name" class="error"></label>
                             </div>
                             <div class="col-12 col-md-12">

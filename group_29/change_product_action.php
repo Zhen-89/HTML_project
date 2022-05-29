@@ -37,6 +37,9 @@ if ($_SESSION['level'] != '2') {
         // echo $sql ;
     // echo $amount ;
     $result = mysqli_query($link, $sql)	;
+
+    
+    mysqli_close($link); // 關閉資料庫連結
      header('Location: selllist.php');
 	
 ?>

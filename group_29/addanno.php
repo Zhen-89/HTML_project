@@ -144,7 +144,7 @@ mysqli_close($link); // 關閉資料庫連結
                             <div class="col-12 col-md-6">
                                 <label for="sell-name" class="content__subtitle ">公告名稱:</label>
                                 <input id="sell-name" name="sell-name" type="sell-name" class="form-control"
-                                    maxlength="10" value="" required="">
+                                    maxlength="100" value="" required="">
                                 <label for="sell-name" class="error"></label>
                             </div>
                             <div class="col-12 col-md-6 ">
@@ -179,7 +179,7 @@ mysqli_close($link); // 關閉資料庫連結
                             <div class="col-12 col-md-6">
                                 <label for="sell-topname" class="content__subtitle ">頂端公告:</label>
                                 <input id="sell-topname" name="sell-topname" type="sell-topname" class="form-control"
-                                    maxlength="10" value="" required="">
+                                    maxlength="100" value="" required="">
                                 <label for="sell-topname" class="error"></label>
                             </div>
                             <div class="col-12 col-md-6">

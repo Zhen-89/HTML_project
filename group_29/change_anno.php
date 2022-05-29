@@ -5,87 +5,132 @@ if ($_SESSION['level'] != '2') {
 ?>
   <meta http-equiv="refresh" content="0;url=login.php">
   </meta>
+  
+
 <?php
 }
 $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
   or die("無法開啟MySQL資料庫連結!<br>");
+
+  mysqli_query($link, 'SET CHARACTER SET utf8');
+  mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+  
+  if ($result = mysqli_query($link, "SELECT * FROM bulletin WHere bul_No='".$_GET["bul_no"]."' ")) {
+    while ($row = mysqli_fetch_row($result)) {
+        $d=$row["7"];
+    }
+    $num = mysqli_num_rows($result); //查詢結果筆數
+    mysqli_free_result($result); // 釋放佔用的記憶體
+  }
+
+  // // 資料庫查詢(送出查詢的SQL指令)
+  if ($result = mysqli_query($link, "SELECT * FROM product_list ")) {
+    while ($row = mysqli_fetch_row($result)) {
+      if($d == $row["0"])
+        $tmp .= "<option value='".$row["0"]."' selected>".$row["1"]."</option>";
+      else
+        $tmp .= "<option value='".$row["0"]."'>".$row["1"]."</option>";
+    }
+    $num = mysqli_num_rows($result); //查詢結果筆數
+    mysqli_free_result($result); // 釋放佔用的記憶體
+  }
+
+
+  
 $a = "";
 $b = "";
-$c = "";
-$d = "";
-// 送出編碼的MySQL指令
-mysqli_query($link, 'SET CHARACTER SET utf8');
-mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+$c = $tmp;
+
 
 // // 資料庫查詢(送出查詢的SQL指令)
-if ($result = mysqli_query($link, "SELECT * FROM product_list WHere goods_No='".$_GET["product_no"]."' ")) {
+if ($result = mysqli_query($link, "SELECT * FROM bulletin WHere bul_No='".$_GET["bul_no"]."' ")) {
   while ($row = mysqli_fetch_row($result)) {
-        if($row["2"]=="cloth")
-            $a="<option value='cloth' selected>服飾</option>";
+        if($row["4"]=="discount")
+            $a="<option value='discount' selected>折扣</option>";
         else
-            $a="<option value='cloth'>服飾</option>";
-        if($row["2"]=="appliance")
-            $b="<option value='appliance' selected>家電</option>";
+            $a="<option value='discount'>折扣</option>";
+        if($row["4"]=="new")
+            $b="<option value='new' selected>新品</option>";
         else
-            $b="<option value='appliance'>家電</option>";
-        if($row["2"]=="game")
-            $c="<option value='game' selected>遊戲</option>";
-        else
-            $c=" <option value='game'>遊戲</option>";
-        if($row["2"]=="other")
-            $d="<option value='other' selected>其他</option>";
-        else
-            $d="<option value='other'>其他</option>";
-    $rows .= "<form id='contact-form' action='change_product_action.php?product_no=".$row["0"]."' method='post' onSubmit='CheckForm();' enctype='multipart/form-data'>
+            $b="<option value='new'>新品</option>";
+    $rows .= "<form id='contact-form' action='change_anno_action.php?bul_no=".$row["0"]."' method='post' onSubmit='CheckForm();' enctype='multipart/form-data'>
     <table class='row' border='1'>
-        <div class='col-12 col-md-12'>
-            <label for='sell-name' class='content__subtitle '>商品名稱:</label>
+        <div class='col-12 col-md-6'>
+            <label for='sell-name' class='content__subtitle '>公告名稱:</label>
             <input id='sell-name' name='sell-name' type='sell-name' class='form-control'
                 maxlength='100' value='".$row["1"]."' required=''>
             <label for='sell-name' class='error'></label>
         </div>
-        <div class='col-12 col-md-12'>
+        <div class='col-12 col-md-6 '>
+            <label for='sell_type[]' class='content__subtitle '>公告日期:</label>
+            <div class='form-group'>
+                <p>
+                <div id='current_date'></div>
+                </p>
+                <script>
+                    date = new Date();
+                    year = date.getFullYear();
+                    month = date.getMonth() + 1;
+                    day = date.getDate();
+                    document.getElementById('current_date').innerHTML = year + '/' + month + '/' + day;
+                </script>
+            </div>
+
+            <label for='sell_type[]' class='error'></label>
+        </div>
+        <div class='col-12 col-md-6'>
+            <label for='sell-topname' class='content__subtitle '>頂端公告:</label>
+            <input id='sell-topname' name='sell-topname' type='sell-topname' class='form-control'
+                maxlength='100' value='".$row["5"]."' required=''>
+            <label for='sell-topname' class='error'></label>
+        </div>
+        <div class='col-12 col-md-6'>
             <label for='sell_type' class='content__subtitle'>商品類型:</label>
             <select name='sell_type' id='sell_type' class='form-control' required>
                 <option value=''>請選擇</option>
                 ".$a."
                 ".$b."
+            </select>
+            <label for='sell_type[]' class='error'></label>
+        </div>
+        <div class='col-12 col-md-6'>
+            <label for='sell_pro' class='content__subtitle'>商品:</label>
+            <select name='sell_pro' id='sell_pro' class='form-control' required>
+                <option value=''>請選擇</option>
                 ".$c."
-                ".$d."
             </select>
             <label for='sell_type[]' class='error'></label>
         </div>
         <div class='col-12 col-md-12'>
-            <label for='sell-price' class='content__subtitle'>售價:</label>
-            <input id='sell-price' name='sell-price' type='sell-price' class='form-control '
-                value='".$row["5"]."' required=''>
-            <label for='sell-price' class='error'></label>
-        </div>
-        <div class='col-12 col-md-12'>
             <div class='form-group'>
-                <label for='sell-introduction' class='content__subtitle'>介紹</label>
+                <label for='sell-introduction' class='content__subtitle'>公告內容</label>
                 <textarea class='form-control' id='sell-introduction' name='sell-introduction'
-                    rows='5' style='height: 200px;' maxlength='4000'
-                    placeholder='' required>".$row["3"]."</textarea>
+                    rows='5' style='height: 200px;' maxlength='4000' placeholder='' required>".$row["2"]."</textarea>
                 <label for='sell-introduction' class='error'></label>
             </div>
         </div>
+
+        
         <div class='col-12 col-md-12'>
             <div class='form-group'>
-                <label for='sell-sepcify' class='content__subtitle'>特點</label>
-                <textarea class='form-control' id='sell-sepcify' name='sell-sepcify'
-                    rows='5' style='height: 200px;' maxlength='4000'
-                    placeholder='' required>".$row["4"]."</textarea>
-                <label for='sell-sepcify' class='error'></label>
+                <label for='div_upload1' class='content__subtitle'>附檔：</label>
+                <div class='col-md-12'>
+                    <div class='form-group' id='div_upload1'>
+                        <div>
+                            <input type='file' name='div_upload1' style='display: inline-block' accept='.pdf,.jpg,.jpeg,.png,.webp.jfif'>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class='col-12 col-md-12'>
             <div class='form-group'>
-                <label for='div_upload' class='content__subtitle'>附檔：</label>
+                <label for='div_upload2' class='content__subtitle'>附檔：</label>
                 <div class='col-md-12'>
-                    <div class='form-group' id='div_upload'>
+                    <div class='form-group' id='div_upload2'>
                         <div>
-                            <input type='file' id='div_upload' name='div_upload' style='display: inline-block' accept='.pdf,.jpg,.jpeg,.png,.webp.jfif'>
+                            <input type='file' name='div_upload2' style='display: inline-block' accept='.pdf,.jpg,.jpeg,.png,.webp.jfif'>
 
                         </div>
                     </div>
@@ -95,13 +140,15 @@ if ($result = mysqli_query($link, "SELECT * FROM product_list WHere goods_No='".
         <div class='col-12 col-lg-12'>
             <hr />
         </div>
-        <!--BTns-->
         <div class='col-12 col-lg-6'>
             <div class='row'>
             </div>
         </div>
         <div class='col-12 col-lg-6 '>
             <div class='row justify-content-md-center'>
+                <div class='col-3 col-lg-3'><button class='btn form__btn--reset'
+                        type='reset'>重填</button>
+                </div>
                 <div class='col-3 col-lg-3'><button class='btn form__btn--submit' type='submit'
                         id='submitBtn'>送出</button>
                 </div>
@@ -118,6 +165,11 @@ mysqli_close($link); // 關閉資料庫連結
 
 
 ?>
+
+
+
+
+
 <!doctype html>
 <html lang="">
 
@@ -198,7 +250,7 @@ mysqli_close($link); // 關閉資料庫連結
                             <li>
                                 <a href="selllist.php">商品列表</a>
                             </li>
-                            <li class="navS">
+                            <li >
                                 <a href="addsell.php">新增商品</a>
                             </li>
                             <li>
@@ -223,7 +275,7 @@ mysqli_close($link); // 關閉資料庫連結
                             <li>
                                 <a href="annolist.php">公告列表</a>
                             </li>
-                            <li>
+                            <li class="navS">
                                 <a href="addanno.php">新增公告</a>
                             </li>
                         </ul>
