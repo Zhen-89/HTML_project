@@ -4263,4 +4263,37 @@ input.pro_btn{
 }
 #scrollDiscount:hover {
   background-color: #777;
-}/**/
+}
+/************ comment area******************************/
+.com_css{
+  display:flex ;
+  justify-content:flex-end;/**/
+  padding:10px ;
+}
+/************ product **********************************/
+.product{
+  display: flex;
+  justify-content:space-evenly;
+}
+.pro_intro{
+  font-size: 25px;
+
+  color: #252525;
+
+  font-weight: 700;
+
+  line-height: 3.4;
+}
+.pro_text{
+  display: block;
+
+  font-weight: 500;
+
+  margin-bottom: 10px;
+
+  font-size: 18px;
+
+  color: #333;
+
+  line-height:1.6;
+}
