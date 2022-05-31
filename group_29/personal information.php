@@ -102,27 +102,7 @@ mysqli_close($link); // 關閉資料庫連結
     <link rel="stylesheet" href="css/admin.css">
 
     <script src="//code.jquery.com/jquery-latest.min.js"></script>
-    <script>
-        $(function() { //網頁完成後才會載入
-        $('#modify').click(function() {
-            $.ajax({
-                url: "modify_information.php",
-                data: $('#form').serialize(),
-                type: "POST",
-                dataType: 'text',
-                success: function(msg) {
-                    $("#show_msg").html(msg);//顯示訊息
-                    alert msg;
-                    //document.getElementById('show_msg').innerHTML= msg ;
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status);
-                    alert(thrownError);
-                }
-            });
-        });
-    });
-    </script>
+  
 </head>
 
 <body>
