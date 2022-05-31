@@ -20,6 +20,18 @@
 		$num = mysqli_num_rows($result); //查詢結果筆數
 		mysqli_free_result($result); // 釋放佔用的記憶體
 	}
+	if ($result = mysqli_query($link, "SELECT * FROM product_list inner join bulletin on product_list.goods_No = bulletin.goods_No AND bulletin.type = 'discount'")) {
+		while ($row = mysqli_fetch_assoc($result)) {
+			$row_dis .= "<div class='portfolio-item branding " . $row["type"] . "'>
+			<div class='portfolio-wrapper'>
+			<div class='portfolio-thumb'>
+			<img src='" . $row["picture"] . "' alt=''></div>
+			<div class='portfolio-caption text-left'>
+			<h4><a href='Product-detail.php?product_no=".$row["goods_No"] . "'>" . $row["goods_name"] . "</a></h4></div></div></div>" ;
+		}
+		$num = mysqli_num_rows($result); //查詢結果筆數
+		mysqli_free_result($result); // 釋放佔用的記憶體
+	}
 
 	mysqli_close($link); // 關閉資料庫連結
 ?>
@@ -97,19 +109,10 @@
 					<h2>限時特價</h2>
 				</div><!--portfolio-grid 要改掉-->
 				<div id="portfolio-grid" class="row-portfolio portfolio-style-2">
-					<form name="form0" action="product_intro.php" method="GET">
-						<div class="portfolio-item branding video">
-							<div class="portfolio-wrapper">
-								<div class="portfolio-thumb">
-									<img src="picture/project1.jpg" alt="">
-									
-								</div>
-								<div class="portfolio-caption text-left">
-									<input type="submit" class="pro_btn" name="product_name" value="product name" onclick=check()>
-								</div>
-							</div>
-						</div>
-					</form>
+					<!-- second page -->
+
+					<?php echo $row_dis; ?>
+
 				</div>
 			</div>
 		</div>
