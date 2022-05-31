@@ -100,7 +100,27 @@
         });
     });
     </script>
-    
+
+    <script>
+        $(function() { //網頁完成後才會載入
+        $('#account').keyup(function() {
+            $.ajax({
+                url: "account_check.php",
+                data: $('#form1').serialize(),
+                type: "POST",
+                dataType: 'text',
+                success: function(msg) {
+                    $("#show_msg").html(msg);//顯示訊息
+                    //document.getElementById('show_msg').innerHTML= msg ;
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+        });
+    });
+    </script>
 
     <style type="text/css">
     .error {

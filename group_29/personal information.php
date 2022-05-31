@@ -195,14 +195,20 @@ mysqli_close($link); // 關閉資料庫連結
                                         </colgroup>
                                         <tbody>
                                             <?php echo $rows; ?>
-                                           <button type='submit' id='modify'class='btn btn-lg btn-round btn-dark'>修改</button>
+                                          
                                         </tbody>
+                                        
                                     </table>
+                                    <div class="text-center mt-4">
+                                        <button type='submit' id='modify'class='btn btn-lg btn-round btn-dark'>修改</button>
+                                    </div>
                                 </div>
                             </div>
                             <!-- table-04 end -->
                         </div>
+                         
                         <!--mod end-->
+                    <form>
                 </div>
             </div>
         </div>
