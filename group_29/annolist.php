@@ -13,25 +13,48 @@ $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立M
 // 送出編碼的MySQL指令
 mysqli_query($link, 'SET CHARACTER SET utf8');
 mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
-
-// // 資料庫查詢(送出查詢的SQL指令)
-if ($result = mysqli_query($link, "SELECT * FROM bulletin ")) {
-  while ($row = mysqli_fetch_row($result)) {
-    $rows .= "<dl class='anno12'>
-    <dd class='anno1'>
-        <h5 class='anno-title'>
-            <a href='bulletin_intro.php?bul_no=".$row["0"]."'>".$row["1"]."</a>
-        </h5>
-    </dd>
-    <dd class='anno2'>
-        <a href='change_anno.php?bul_no=".$row["0"]."'>編輯公告&nbsp;&nbsp;&nbsp;&nbsp;</a>
-        <a href='deleteanno.php?bul_no=".$row["0"]."'>刪除</a>
-    </dd>
-</dl>";
-  }
-  $num = mysqli_num_rows($result); //查詢結果筆數
-  mysqli_free_result($result); // 釋放佔用的記憶體
+if(isset($_GET["who"]))
+{
+    if ($result = mysqli_query($link, "SELECT * FROM bulletin where intro_title like '%".$_GET["who"]."%' ")) {
+        while ($row = mysqli_fetch_row($result)) {
+          $rows .= "<dl class='anno12'>
+          <dd class='anno1'>
+              <h5 class='anno-title'>
+                  <a href='bulletin_intro.php?bul_no=".$row["0"]."'>".$row["1"]."</a>
+              </h5>
+          </dd>
+          <dd class='anno2'>
+              <a href='change_anno.php?bul_no=".$row["0"]."'>編輯公告&nbsp;&nbsp;&nbsp;&nbsp;</a>
+              <a href='deleteanno.php?bul_no=".$row["0"]."'>刪除</a>
+          </dd>
+      </dl>";
+        }
+        $num = mysqli_num_rows($result); //查詢結果筆數
+        mysqli_free_result($result); // 釋放佔用的記憶體
+      }
 }
+else
+{
+    if ($result = mysqli_query($link, "SELECT * FROM bulletin ")) {
+        while ($row = mysqli_fetch_row($result)) {
+          $rows .= "<dl class='anno12'>
+          <dd class='anno1'>
+              <h5 class='anno-title'>
+                  <a href='bulletin_intro.php?bul_no=".$row["0"]."'>".$row["1"]."</a>
+              </h5>
+          </dd>
+          <dd class='anno2'>
+              <a href='change_anno.php?bul_no=".$row["0"]."'>編輯公告&nbsp;&nbsp;&nbsp;&nbsp;</a>
+              <a href='deleteanno.php?bul_no=".$row["0"]."'>刪除</a>
+          </dd>
+      </dl>";
+        }
+        $num = mysqli_num_rows($result); //查詢結果筆數
+        mysqli_free_result($result); // 釋放佔用的記憶體
+      }
+}
+// // 資料庫查詢(送出查詢的SQL指令)
+
 
 mysqli_close($link); // 關閉資料庫連結
 ?>
@@ -80,8 +103,11 @@ mysqli_close($link); // 關閉資料庫連結
         <div class="container">
             <div id="top-menu">
                 <div id="member_center" class="clearfix">
+                <form name="form1" action="annolist.php" method="GET">
                     <button class="member_btn">管理中心</button>
-                    
+                    <input type="text" placeholder="輸入公告名稱" name="who">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
                 </div>
             </div>
         </div>

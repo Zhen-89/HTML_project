@@ -15,28 +15,57 @@ mysqli_query($link, 'SET CHARACTER SET utf8');
 mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
 
 // // 資料庫查詢(送出查詢的SQL指令)
-if ($result = mysqli_query($link, "SELECT * FROM product_list ")) {
-  while ($row = mysqli_fetch_row($result)) {
-    $rows .= "<dl class='sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12'>
-    <dd class='sell1'>
-        <a href='product_intro.php?product_no=".$row["0"]."'><img src='". $row["6"]."' title='". $row["1"]."'></a>
-    </dd>
-    <dd class='sell2'>
-        <h5 class='sell-title'>
-            <a href='product_intro.php?product_no=".$row["0"]."'>". $row["1"]."</a>
-        </h5>
-        <div class='pro_text'>
-            $". $row["5"]."NT
-        </div>
-    </dd>
-    <dd class='sell3'>
-        <a href='changesell.php?product_no=".$row["0"]."'>編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-        <a href='deleteproduct.php?product_no=".$row["0"]."'>下架商品</a>
-    </dd>
-    </dl>";
-  }
-  $num = mysqli_num_rows($result); //查詢結果筆數
-  mysqli_free_result($result); // 釋放佔用的記憶體
+if(isset($_GET["who"]))
+{
+    if ($result = mysqli_query($link, "SELECT * FROM product_list where goods_name like '%".$_GET["who"]."%' ")) {
+        while ($row = mysqli_fetch_row($result)) {
+          $rows .= "<dl class='sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+          <dd class='sell1'>
+              <a href='product_intro.php?product_no=".$row["0"]."'><img src='". $row["6"]."' title='". $row["1"]."'></a>
+          </dd>
+          <dd class='sell2'>
+              <h5 class='sell-title'>
+                  <a href='product_intro.php?product_no=".$row["0"]."'>". $row["1"]."</a>
+              </h5>
+              <div class='pro_text'>
+                  $". $row["5"]."NT
+              </div>
+          </dd>
+          <dd class='sell3'>
+              <a href='changesell.php?product_no=".$row["0"]."'>編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+              <a href='deleteproduct.php?product_no=".$row["0"]."'>下架商品</a>
+          </dd>
+          </dl>";
+        }
+        $num = mysqli_num_rows($result); //查詢結果筆數
+        mysqli_free_result($result); // 釋放佔用的記憶體
+      }
+}
+else
+{
+    if ($result = mysqli_query($link, "SELECT * FROM product_list ")) {
+        while ($row = mysqli_fetch_row($result)) {
+          $rows .= "<dl class='sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12'>
+          <dd class='sell1'>
+              <a href='product_intro.php?product_no=".$row["0"]."'><img src='". $row["6"]."' title='". $row["1"]."'></a>
+          </dd>
+          <dd class='sell2'>
+              <h5 class='sell-title'>
+                  <a href='product_intro.php?product_no=".$row["0"]."'>". $row["1"]."</a>
+              </h5>
+              <div class='pro_text'>
+                  $". $row["5"]."NT
+              </div>
+          </dd>
+          <dd class='sell3'>
+              <a href='changesell.php?product_no=".$row["0"]."'>編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
+              <a href='deleteproduct.php?product_no=".$row["0"]."'>下架商品</a>
+          </dd>
+          </dl>";
+        }
+        $num = mysqli_num_rows($result); //查詢結果筆數
+        mysqli_free_result($result); // 釋放佔用的記憶體
+      }
 }
 
 mysqli_close($link); // 關閉資料庫連結
@@ -84,9 +113,11 @@ mysqli_close($link); // 關閉資料庫連結
         <div class="container">
             <div id="top-menu">
                 <div id="member_center" class="clearfix">
+                <form name="form1" action="selllist.php" method="GET">
                     <button class="member_btn">管理中心</button>
-                    <!-- <input type="text" placeholder="輸入商品名稱" name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button> -->
+                    <input type="text" placeholder="輸入商品名稱" name="who">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
                 </div>
             </div>
         </div>

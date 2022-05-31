@@ -1,6 +1,13 @@
 <?php
     session_start();
-    $no=$_SESSION["no"];	
+    if(isset($_SESSION["no"]))
+    {
+        $no=$_SESSION["no"];	
+    }
+    else
+    {
+        $no = $_GET["no"];
+    }
 
     //$account = trim($_POST['account']) ;
     $birth = trim($_POST['birth']) ; 

@@ -14,16 +14,47 @@ $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立M
 // 送出編碼的MySQL指令
 mysqli_query($link, 'SET CHARACTER SET utf8');
 mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
-
 // // 資料庫查詢(送出查詢的SQL指令)
-if ($result = mysqli_query($link, "SELECT * FROM member")) {
-    while ($row = mysqli_fetch_row($result)) {
-        $rows .= "<h5 class='anno-title'><a href='adminmem.php?who=". $row["9"]."' >會員帳號ID:" . $row["0"] . "&emsp;姓名:" . $row["3"] . "</a></h5>";
+if(isset($_GET["who"]))
+{
+    if ($result = mysqli_query($link, "SELECT * FROM member where mem_name like '%".$_GET["who"]."%' ")) {
+        while ($row = mysqli_fetch_row($result)) {
+            $rows .= "<h5 class='anno-title'>
+            <dd class='sell2'>
+            <a href='adminmem.php?who=". $row["9"]."' >會員帳號ID:" . $row["0"] . "&emsp;姓名:" . $row["3"] . "</a>
+            </dd>
+            <dd class=''>
+            </dd>
+            <dd class=''>
+            <a href='deletemember.php?mem_no=".$row["9"]."'>刪除會員</a>
+            </dd>
+            </h5>";
+        }
+        $num = mysqli_num_rows($result); //查詢結果筆數
+        mysqli_free_result($result); // 釋放佔用的記憶體
     }
-    $num = mysqli_num_rows($result); //查詢結果筆數
-    mysqli_free_result($result); // 釋放佔用的記憶體
+    if($rows == "")
+        $rows = "查無此資料";
 }
-
+else
+{
+    if ($result = mysqli_query($link, "SELECT * FROM member")) {
+        while ($row = mysqli_fetch_row($result)) {
+            $rows .= "<h5 class='anno-title'>
+            <dd class='sell2'>
+            <a href='adminmem.php?who=". $row["9"]."' >會員帳號ID:" . $row["0"] . "&emsp;姓名:" . $row["3"] . "</a>
+            </dd>
+            <dd class=''>
+            </dd>
+            <dd class=''>
+            <a href='deletemember.php?mem_no=".$row["9"]."'>刪除會員</a>
+            </dd>
+            </h5>";
+        }
+        $num = mysqli_num_rows($result); //查詢結果筆數
+        mysqli_free_result($result); // 釋放佔用的記憶體
+    }
+}
 mysqli_close($link); // 關閉資料庫連結
 ?>
 <!doctype html>
@@ -69,9 +100,11 @@ mysqli_close($link); // 關閉資料庫連結
         <div class="container">
             <div id="top-menu">
                 <div id="member_center" class="clearfix">
-                    <button class="member_btn">管理中心</button>
-                    <!-- <input type="text" placeholder="輸入會員名稱" name="search">
-                    <button type="submit"><i class="fa fa-search"></i></button> -->
+                    <form name="form1" action="memberlist.php" method="GET">
+                        <button class="member_btn">管理中心</button>
+                        <input type="text" placeholder="輸入會員名稱" name="who">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
                 </div>
             </div>
         </div>

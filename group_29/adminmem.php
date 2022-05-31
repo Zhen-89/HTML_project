@@ -15,25 +15,42 @@ mysqli_query($link, 'SET CHARACTER SET utf8');
 mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
 
 // // 資料庫查詢(送出查詢的SQL指令)
-if ($result = mysqli_query($link, "SELECT * FROM member WHERE mem_no = '".$_GET["who"]."'")) {
+if ($result = mysqli_query($link, "SELECT * FROM member WHERE mem_no = '" . $_GET["who"] . "'")) {
   while ($row = mysqli_fetch_row($result)) {
-    $rows .= "<tr>
+  $rows .= "
+<form name='form' action='modify_information.php?no=". $row["9"]."' method='POST' id='form'>
+<div class='mb-2 clearfix'>
+<h3 class='panel-title clearfix'>
+<!-- <span><b>會員資料</b></span> -->
+</h3>
+<!-- table-04 -->
+<div class='mod modify-data clearfix'>
+<div class='box-line'>
+<table border='1' class='table-04'>
+    <colgroup>
+        <col width='19%' />
+        <col width='31%' />
+        <col width='19%' />
+        <col width='31%' />
+    </colgroup>
+    <tbody>
+    <tr>
     <th>會員帳號<br />ID</th>
-    <td>".$row["0"]."</td>
-    <th>生日<br />Birth</th>
-    <td>".$row["2"]."</td>
+    <td>" . $row["0"] . "</td>
+    <th>生日<br />Birth</th>    
+    <td><input type='text' id='birth' name='birth' class='input' maxlength='' value='" . $row["2"] . "' style='width: 100px' onchange='changeValue(this.id)' /></td>
   </tr>
   <tr>
     <th>
       姓名&nbsp;/&nbsp;性別<br />Name&nbsp;/&nbsp;Gender
     </th>
     <td colspan='3'>
-      <input type='text' id='name' name='name' class='input' maxlength='' value='".$row["3"]."' style='width: 275px' onchange='changeValue(this.id)' readonly='readonly'/>
+      <input type='text' id='name' name='name' class='input' maxlength='' value='" . $row["3"] . "' style='width: 275px' onchange='changeValue(this.id)' />
   </tr>
   <tr>
     <th>電子郵件<br />E-Mail</th>
     <td colspan='3'>
-      <input type='email' id='email' name='email' class='input' maxlength='' value='".$row["4"]."' style='width: 275px' onchange='changeValue(this.id)' readonly='readonly' />
+      <input type='email' id='email' name='email' class='input' maxlength='' value='" . $row["4"] . "' style='width: 275px' onchange='changeValue(this.id)'  />
       <input type='hidden' name='is_email_edit' id='is_email_edit' value='N' />
       <input type='hidden' name='org_email' value='test@gmail.com' />
       <p class='err' id='email_notice'></p>
@@ -42,14 +59,14 @@ if ($result = mysqli_query($link, "SELECT * FROM member WHERE mem_no = '".$_GET[
   <tr>
     <th>行動電話<br />Mobile</th>
     <td colspan='3'>
-      <input type='mobile' name='mobile' id='mobile' class='input' maxlength='' value='".$row["5"] ."' style='width: 275px' onchange='changeValue(this.id)' readonly='readonly' />
+      <input type='mobile' name='mobile' id='mobile' class='input' maxlength='' value='" . $row["5"] . "' style='width: 275px' onchange='changeValue(this.id)'  />
       <p class='err' id='mobile_notice'></p>
     </td>
   </tr>
   <tr>
     <th>室內電話<br />Tel</th>
     <td colspan='3'>
-      <input type='tel' id='tel' name='tel' class='input' maxlength='' value='".$row["6"] ." 'style='width: 275px' onchange='changeValue(this.id)' readonly='readonly' />
+      <input type='tel' id='tel' name='tel' class='input' maxlength='' value='" . $row["6"] . " 'style='width: 275px' onchange='changeValue(this.id)'  />
       <input type='hidden' name='is_tel_edit' id='is_tel_edit' value='N' />
       <p class='err' id='tel_notice'></p>
     </td>
@@ -61,12 +78,34 @@ if ($result = mysqli_query($link, "SELECT * FROM member WHERE mem_no = '".$_GET[
       <p class='mod clearfix'>
       <div class='form-group'>
         <label class='sr-only'>First Name</label>
-        <input type='text' class='form-control input-lg' value='".$row["7"] ."' name='Location' placeholder='地址' readonly='readonly'>
-<p class='help-block text-danger'></p></div></td></tr>";
+        <input type='text' class='form-control input-lg' id='Location' value='" . $row["7"] . "' name='Location' placeholder='地址' >
+      <p class='help-block text-danger'></p>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+                                        
+  </table>
+  <div class='text-center mt-4'>
+      <button type='submit' id='modify'class='btn btn-lg btn-round btn-dark'>修改</button>
+  </div>
+</div>
+</div>
+<!-- table-04 end -->
+</div>
+
+<!--mod end-->
+<form>
+  
+  ";
   }
   $num = mysqli_num_rows($result); //查詢結果筆數
   mysqli_free_result($result); // 釋放佔用的記憶體
 }
+
+
+
+
 
 mysqli_close($link); // 關閉資料庫連結
 ?>
@@ -178,30 +217,10 @@ mysqli_close($link); // 關閉資料庫連結
           <!--page-title-->
           <!--panel-title end-->
           <!--mod-->
-          <form name="form" method="POST" id="form">
-            <div class="mb-2 clearfix">
-              <h3 class="panel-title clearfix">
-                <!-- <span><b>會員資料</b></span> -->
-              </h3>
-              <!-- table-04 -->
-              <div class="mod modify-data clearfix">
-                <div class="box-line">
-                  <table border="1" class="table-04">
-                    <colgroup>
-                      <col width="19%" />
-                      <col width="31%" />
-                      <col width="19%" />
-                      <col width="31%" />
-                    </colgroup>
-                    <tbody>
-                    <?php echo $rows; ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <!-- table-04 end -->
-            </div>
-            <!--mod end-->
+
+          <?php echo $rows ?>
+
+
         </div>
       </div>
     </div>
