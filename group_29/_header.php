@@ -4,7 +4,7 @@ session_start();
 	if(!isset($_SESSION['level'])) {
 		$_SESSION['level'] = '0';
 	}
-
+	$no=$_SESSION["no"];	
 // 搜尋關鍵字
 	if(isset($_POST["search"])){
 		setcookie("search", $_POST["search"] , time()+10);
@@ -43,10 +43,13 @@ session_start();
 									<li> <a href="logout.php">登出</a></li>
 									<li>
 										<a><?php echo $_SESSION['name']?> </a>
-										<ul>
-											<!-- <li><a href="memberlist.php">管理員</a></li> -->
-											<li><a href="personal information.php">個人資料</a></li>
+										<ul>										
+											<!-- <li><a href="memberlist.php"><?php echo $no ?></a></li> -->
+											<!-- <li><a href="personal information.php">個人資料</a></li> -->
+											<!-- $rows .= "<h5 class='anno-title'><a href='adminmem.php?who=".$_SESSION["no"]."' >會員帳號ID:" . $row["0"] . "&emsp;姓名:" . $row["3"] . "</a></h5>"; -->
+											<li><a href='personal information.php?who=<?php echo $_SESSION["no"]?>' >個人資料</a></li>
 											<li><a href="Order_summary.php">訂單查詢</a></li>
+
 										</ul>
 									</li>
 								<?php
