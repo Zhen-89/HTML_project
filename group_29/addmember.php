@@ -18,18 +18,9 @@
 
 	$sql = "insert into member (`mem_account`, `mem_code`, `mem_name`, `mem_email`,`mem_level`, `mem_no`) 
                         values ('" . $account . "','" . $pwd . "','" . $account . "','" .$email. "','" . 1 . "','" . $temp+1 . "')";
-    //echo "<script> {window.alert('註冊成功');history.go(-1)} </script>";//返回上頁
+    
     echo "<script> {window.alert('註冊成功');location.href='login.php'} </script>";//返回上頁
 	$result = mysqli_query($link, $sql)	;
-	// if ($num = mysqli_num_rows($result))	
-	// {		
-	// 	echo "<script> {window.alert('已經在購物車了');history.go(-1)} </script>";//返回上頁		
-	// }
-	// else
-	// {		
-	// 	echo "<script> {window.alert('加入成功');history.go(-1)} </script>";//返回上頁
-	 	
-	// }
-				
-		mysqli_close($link); // 關閉資料庫連結
+
+	mysqli_close($link); // 關閉資料庫連結
 ?>
