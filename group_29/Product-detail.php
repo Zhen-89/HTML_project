@@ -84,34 +84,6 @@ mysqli_close($link); // 關閉資料庫連結
         <link rel="stylesheet" href="./css/responsive.css">
         <script src="./js/modernizr-2.8.3.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <style>
-            .product{
-                display: flex;
-                justify-content:space-evenly;
-            }
-            .pro_intro{
-                font-size: 25px;
-
-                color: #252525;
-
-                font-weight: 700;
-
-                line-height: 3.4;
-            }
-            .pro_text{
-                display: block;
-
-                font-weight: 500;
-
-                margin-bottom: 10px;
-
-                font-size: 18px;
-
-                color: #333;
-
-                line-height:1.6;
-            }
-        </style>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -141,9 +113,12 @@ mysqli_close($link); // 關閉資料庫連結
         <!-- similar product recommand -->
         <div class="basic-blo-area gray-bg pt-90 pb-50">
 			<div class="container">
+				
+			</div>
+			<div class="container">
 				<div class="area-title text-center">
-					<h2>其他人也看了</h2>
-					<p>Watch other similar product !!</p>
+					<h2>看看其他人的留言</h2>
+					<p>In this place, we collect the response from all of our customer.</p>
 				</div>
 				<div class="row">
 					<div class="col-md-4 blog-item mb-40">
@@ -233,8 +208,8 @@ mysqli_close($link); // 關閉資料庫連結
 		<div class="basic-blo-area  pt-90 pb-50">
 			<div class="container">
 				<div class="area-title text-center">
-					<h2>看看其他人的留言</h2>
-					<p>In this place, we collect the response from all of our customer.</p>
+					<h2>其他人也看了</h2>
+					<p>Watch other similar product !!</p>
 				</div>
 				<div class="row">
 					<div class="col-md-4 blog-item mb-40">
