@@ -40,7 +40,7 @@
             </div>
             <div class="row report">
                 <div class="col-md-12 col-sm-8">
-                    <form id="contact-form" action="mail.php" method="post" onSubmit="CheckForm();">
+                    <form id="contact-form" action="sendmail.php" method="post" onSubmit="CheckForm();">
                         <table class="row" border="1">
                             <div class="col-12 col-md-12">
                                     <label for="tel" class="content__subtitle ">您的姓名:</label>
