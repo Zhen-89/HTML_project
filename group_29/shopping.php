@@ -60,7 +60,7 @@ mysqli_close($link); // 關閉資料庫連結
     <title>我們都念costco</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- All CSS Files Here -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -121,22 +121,7 @@ mysqli_close($link); // 關閉資料庫連結
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- 商品資訊 -->
-                            <tr >                               
-                                <!-- <td class="align-middle">                                   
-                                        <img src="image\123.jpg" alt="..." width=100px height="100px;">                                    
-                                </td>
-                                <td >一級偽裝帽</td>
-                                <td class="align-items-center" >$999</td>
-                                <td >                                                                    
-                                    <button  onclick="subtract()">-</button>
-                                    1
-                                    <button type="button" onclick="add()" name="temp">+</button>                                    
-                                </td>
-                                <td class="align-middle">$999</td>                                
-                                <td><button type="input" class="btn btn-xs btn-round btn-dark" onclick='location.href="removecar.php"'>移除</button></td>                                  -->
-
-                            </tr>
+                            <!-- 商品資訊 -->                           
                             <?php echo $rows; ?>
                             <tr class="text-right">
                                 <td colspan="4"><strong>運費</strong></td>
@@ -167,7 +152,7 @@ mysqli_close($link); // 關閉資料庫連結
     <hr>
     <div class="container mt-5">
         <div class="text-center mt-4">
-            <a href="#" class="btn btn-primary px-5">結帳</a>
+            <a href="checkout.php" class="btn btn-primary px-5">結帳</a>
         </div>
     </div>
 
