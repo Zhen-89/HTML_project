@@ -56,11 +56,26 @@ if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE goods_No = '
 					</div>
 					
 				</div>";
+	$pro_type = $row["2"] ;
   }
   $num = mysqli_num_rows($result); //查詢結果筆數
   mysqli_free_result($result); // 釋放佔用的記憶體
 }
-
+if ($result = mysqli_query($link, "SELECT * FROM product_list where product_list.type='".$pro_type."'")) {
+	while ($row = mysqli_fetch_assoc($result)) {
+		$recom .= "<div class='portfolio-item branding " . $row["type"] . "'>
+		<div class='portfolio-wrapper'>
+		<div class='portfolio-thumb'>
+		<img src='" . $row["picture"] . "' alt=''></div>
+		<div class='portfolio-caption text-left'>
+		<h4><a href='Product-detail.php?product_no=".$row["goods_No"] . "'>" . $row["goods_name"] . "</a></h4></div></div></div>" ;
+		$count ++ ;
+		if($count >2)
+			break ;//--------------> still working
+	}
+	$num = mysqli_num_rows($result); //查詢結果筆數
+	mysqli_free_result($result); // 釋放佔用的記憶體
+}
 mysqli_close($link); // 關閉資料庫連結
 ?>
 <!doctype html>
@@ -113,92 +128,64 @@ mysqli_close($link); // 關閉資料庫連結
         <!-- similar product recommand -->
         <div class="basic-blo-area gray-bg pt-90 pb-50">
 			<div class="container">
-				
-			</div>
-			<div class="container">
 				<div class="area-title text-center">
-					<h2>看看其他人的留言</h2>
+					<h2>商品評價</h2>
 					<p>In this place, we collect the response from all of our customer.</p>
+					<p>Or share your commend, let everybody know your idea</p>
 				</div>
 				<div class="row">
-					<div class="col-md-4 blog-item mb-40">
-						<div class="blog-wrapper blog-column">
-							<div class="blog-thumb">
-								<a href="blog-details.html">
-									<img src="picture/1.jpg" alt="">
-								</a>
+					<div id="post-comment-wrapper" class="comment-component">
+						<form>
+							<textarea rows="1" name="content" placeholder="Write something..." required="required" class="form-control"></textarea> <br> 
+							<div style="" class="container com_css">
+								<button type="submit" style="margin-right: 10px;" class="btn btn-outline-primary com_box">Submit</button>
+								<button type="" class="btn com_box">Cancel</button>
 							</div>
-							<div class="blog-desc">
-								<div class="meta-info">
-									<ul>
-										<li class="posts-time">January 28, 2020</li>
-									</ul>
-								</div>
-								<div class="blog-content">
-									<h2 class="blog-title">
-										<a href="blog-details.html">Tips for Delivering a Great Perfor mance in Your Next</a>
-									</h2>
-									<p>At tincidunt vulputate dis natoque parturient proine mperdiet. Quisque lig pede males us. Semper orc gue
-										lorem
-										ipsum.</p>
-								</div>
-								<div class="link-box">
-									<a href="blog-details.html">Read More</a>
-								</div>
-							</div>
-						</div>
+						</form> 
 					</div>
-					<div class="col-md-4 blog-item mb-40">
-						<div class="blog-wrapper blog-column">
-							<div class="blog-thumb">
-								<a href="blog-details.html">
-									<img src="picture/4.jpg" alt="">
-								</a>
-							</div>
-							<div class="blog-desc">
-								<div class="meta-info">
-									<ul>
-										<li class="posts-time">January 28, 2020</li>
-									</ul>
-								</div>
-								<div class="blog-content">
-									<h2 class="blog-title">
-										<a href="blog-details.html">How To Be The Highest Marketer On Your Team And Skills</a>
-									</h2>
-									<p>At tincidunt vulputate dis natoque parturient proine mperdiet. Quisque lig pede males us. Semper orc gue
-										lorem ipsum.</p>
-								</div>
-								<div class="link-box">
-									<a href="blog-details.html">Read More</a>
-								</div>
-							</div>
+				</div>
+				<hr><div class="container basic-blo-area  big-board">
+					<img  class="board-head" src="image/icon/icon1.svg">
+					<div class="lit-board">
+						<div class="shopee-product-rating__author-name">w*****1</div>
+						<div class="board_star">
+								<svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
+									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+								</svg>
+								<svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
+									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+								</svg><svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
+									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+								</svg><svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
+									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+								</svg><svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
+									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+								</svg>
 						</div>
+						<div class="board-time">2022-06-05 </div>
+						<div class="pro_text board-text">鞋子很漂亮 也很便宜 謝謝<br>想讓人一買再買，超讚!!!!</div>
 					</div>
-					<div class="col-md-4 blog-item mb-40">
-						<div class="blog-wrapper blog-column">
-							<div class="blog-thumb">
-								<a href="blog-details.html">
-									<img src="picture/3.jpg" alt="">
-								</a>
-							</div>
-							<div class="blog-desc">
-								<div class="meta-info">
-									<ul>
-										<li class="posts-time">January 28, 2020</li>
-									</ul>
-								</div>
-								<div class="blog-content">
-									<h2 class="blog-title">
-										<a href="blog-details.html">4 Myths Rand Fishkin Wants You to Question Launching </a>
-									</h2>
-									<p>At tincidunt vulputate dis natoque parturient proine mperdiet. Quisque lig pede males us. Semper orc gue
-										lorem ipsum.</p>
-								</div>
-								<div class="link-box">
-									<a href="blog-details.html">Read More</a>
-								</div>
-							</div>
+				</div>
+				<hr><div class="container basic-blo-area  big-board">
+					<img  class="board-head" src="image/icon/icon1.svg">
+					<div class="lit-board">
+						<div class="shopee-product-rating__author-name">w*****1</div>
+						<div class="board_star">
+								<svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
+									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+								</svg>
+								<svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
+									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+								</svg><svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
+									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+								</svg><svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
+									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+								</svg><svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
+									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
+								</svg>
 						</div>
+						<div class="board-time">2022-06-05 </div>
+						<div class="pro_text board-text">鞋子很漂亮 也很便宜 謝謝<br>想讓人一買再買，超讚!!!!</div>
 					</div>
 				</div>
 			</div>
@@ -211,86 +198,8 @@ mysqli_close($link); // 關閉資料庫連結
 					<h2>其他人也看了</h2>
 					<p>Watch other similar product !!</p>
 				</div>
-				<div class="row">
-					<div class="col-md-4 blog-item mb-40">
-						<div class="blog-wrapper blog-column">
-							<div class="blog-thumb">
-								<a href="blog-details.html">
-									<img src="picture/1.jpg" alt="">
-								</a>
-							</div>
-							<div class="blog-desc">
-								<div class="meta-info">
-									<ul>
-										<li class="posts-time">January 28, 2020</li>
-									</ul>
-								</div>
-								<div class="blog-content">
-									<h2 class="blog-title">
-										<a href="blog-details.html">Tips for Delivering a Great Perfor mance in Your Next</a>
-									</h2>
-									<p>At tincidunt vulputate dis natoque parturient proine mperdiet. Quisque lig pede males us. Semper orc gue
-										lorem
-										ipsum.</p>
-								</div>
-								<div class="link-box">
-									<a href="blog-details.html">Read More</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 blog-item mb-40">
-						<div class="blog-wrapper blog-column">
-							<div class="blog-thumb">
-								<a href="blog-details.html">
-									<img src="picture/4.jpg" alt="">
-								</a>
-							</div>
-							<div class="blog-desc">
-								<div class="meta-info">
-									<ul>
-										<li class="posts-time">January 28, 2020</li>
-									</ul>
-								</div>
-								<div class="blog-content">
-									<h2 class="blog-title">
-										<a href="blog-details.html">How To Be The Highest Marketer On Your Team And Skills</a>
-									</h2>
-									<p>At tincidunt vulputate dis natoque parturient proine mperdiet. Quisque lig pede males us. Semper orc gue
-										lorem ipsum.</p>
-								</div>
-								<div class="link-box">
-									<a href="blog-details.html">Read More</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 blog-item mb-40">
-						<div class="blog-wrapper blog-column">
-							<div class="blog-thumb">
-								<a href="blog-details.html">
-									<img src="picture/3.jpg" alt="">
-								</a>
-							</div>
-							<div class="blog-desc">
-								<div class="meta-info">
-									<ul>
-										<li class="posts-time">January 28, 2020</li>
-									</ul>
-								</div>
-								<div class="blog-content">
-									<h2 class="blog-title">
-										<a href="blog-details.html">4 Myths Rand Fishkin Wants You to Question Launching </a>
-									</h2>
-									<p>At tincidunt vulputate dis natoque parturient proine mperdiet. Quisque lig pede males us. Semper orc gue
-										lorem ipsum.</p>
-								</div>
-								<div class="link-box">
-									<a href="blog-details.html">Read More</a>
-								</div>
-							</div>
-						</div>
-					</div>
+				<div id="portfolio-grid" class="row-portfolio portfolio-style-2">
+					<?php echo $recom ;?>
 				</div>
 			</div>
 		</div>
