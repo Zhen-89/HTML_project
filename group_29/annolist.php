@@ -31,6 +31,9 @@ if(isset($_GET["who"]))
         }
         $num = mysqli_num_rows($result); //查詢結果筆數
         mysqli_free_result($result); // 釋放佔用的記憶體
+        if($num==0){
+            $rows="<div class='area-title text-center' ><h2 >查無結果</h2></div>";	
+        }
       }
 }
 else
@@ -51,6 +54,9 @@ else
         }
         $num = mysqli_num_rows($result); //查詢結果筆數
         mysqli_free_result($result); // 釋放佔用的記憶體
+        if($num==0){
+            $rows="<div class='area-title text-center' ><h2 >查無結果</h2></div>";	
+        }
       }
 }
 // // 資料庫查詢(送出查詢的SQL指令)

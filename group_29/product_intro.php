@@ -14,8 +14,89 @@ $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立M
 // 送出編碼的MySQL指令
 mysqli_query($link, 'SET CHARACTER SET utf8');
 mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+$a="";
+$b="";
+	if(isset($_GET['change_comment']))
+	{
+		if ($result = mysqli_query($link, "SELECT * FROM comment WHERE com_No = '".$_GET["change_comment"]."' and goods_No =  '".$_GET["product_no"]."' ")) {
+			while ($row = mysqli_fetch_row($result)) {
+				$a="";
+				for($i=0;$i<$row["3"];$i++){
+					$a=$a."<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
+					<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
+					</svg>";
+				}
+
+				$tmp .="<hr><div class='container basic-blo-area  '>
+				<img  class='board-head' src='image/icon/icon1.svg'>
+				<div class='lit-board'>
+					<div class='shopee-product-rating__author-name'>".$row["2"]."</div>
+					<div class='board_star'>
+							".$a."
+					</div>
+					<div class=''>".$row["5"]." </div>
+					<form id='contact-form' action='changecomment.php?product_no=".$_GET["product_no"]."&change_comment=".$row["0"]."' method='post'  enctype='multipart/form-data'>
+							<div class='form-group'>
+								<textarea class='form-control' id='sell-introduction' name='sell-introduction'
+									rows='5' style='height: 200px;' maxlength='4000'
+									placeholder='請提供詳情以利人員快速為您服務' required>".$row["4"]."</textarea>
+								<label for='sell-introduction' class='error'></label>
+							</div>
+							<div class='col-3 col-lg-3'><button class='btn form__btn--submit' type='submit'
+                                            id='submitBtn'>送出</button>
+                                    </div>
+					</form>
+				</div>
+			</div>";
+			}
+			$num = mysqli_num_rows($result); //查詢結果筆數
+			mysqli_free_result($result); // 釋放佔用的記憶體
+			if($num==0)
+			{
+				$tmp="<div class='area-title text-center' ><h2 >尚無留言</h2></div>";				
+			}
+		}
+	}
+	else
+	{
+		if ($result = mysqli_query($link, "SELECT * FROM comment where goods_No =  '".$_GET["product_no"]."' ")) {
+			while ($row = mysqli_fetch_row($result)) {
+				$b="";
+				for($i=0;$i<$row["3"];$i++){
+					$b=$b."<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
+					<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
+					</svg>";
+				}
+				$tmp .="<hr><div class='container basic-blo-area  big-board'>
+				<img  class='board-head' src='image/icon/icon1.svg'>
+				<div class='lit-board'>
+					<div class='shopee-product-rating__author-name'>".$row["2"]."</div>
+					<div class='board_star'>
+						".$b."
+					</div>
+					<div class='board-time'>".$row["5"]."  </div>
+					<div class='pro_text board-text'>".$row["4"]."</div>
+					<dd class='sell3'>
+						<a href='product_intro.php?product_no=".$_GET["product_no"]."&change_comment=".$row["0"]."'>編輯留言&nbsp;&nbsp;&nbsp;&nbsp;</a>
+						<a href='deletecomment.php?product_no=".$_GET["product_no"]."&change_comment=".$row["0"]."'>刪除留言</a>
+					</dd>
+				</div>
+			</div>";
+			}
+			$num = mysqli_num_rows($result); //查詢結果筆數
+			mysqli_free_result($result); // 釋放佔用的記憶體
+			if($num==0)
+			{
+				
+				$tmp="<div class='area-title text-center' ><h2 >尚無留言</h2></div>";			
+			}
+		}
+	}
+
+
 
 // // 資料庫查詢(送出查詢的SQL指令)
+
 if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE goods_No = '".$_GET["product_no"]."' ")) {
   while ($row = mysqli_fetch_row($result)) {
     $rows .= "<div class='area-title text-center'>
@@ -155,98 +236,20 @@ mysqli_close($link); // 關閉資料庫連結
 		</div>
 		<!-- basic-portfolio-area end -->
 		<!-- basic-blog-area -->
-		<div class="basic-blo-area  pt-90 pb-50">
+		<div class="basic-blo-area gray-bg pt-90 pb-50">
 			<div class="container">
 				<div class="area-title text-center">
-					<h2>看看其他人的留言</h2>
+					<h2>商品評價</h2>
 					<p>In this place, we collect the response from all of our customer.</p>
+					<p>Or share your commend, let everybody know your idea</p>
 				</div>
-				<div class="row">
-					<div class="col-md-4 blog-item mb-40">
-						<div class="blog-wrapper blog-column">
-							<div class="blog-thumb">
-								<a href="blog-details.html">
-									<img src="picture/1.jpg" alt="">
-								</a>
-							</div>
-							<div class="blog-desc">
-								<div class="meta-info">
-									<ul>
-										<li class="posts-time">January 28, 2020</li>
-									</ul>
-								</div>
-								<div class="blog-content">
-									<h2 class="blog-title">
-										<a href="blog-details.html">Tips for Delivering a Great Perfor mance in Your Next</a>
-									</h2>
-									<p>At tincidunt vulputate dis natoque parturient proine mperdiet. Quisque lig pede males us. Semper orc gue
-										lorem
-										ipsum.</p>
-								</div>
-								<div class="link-box">
-									<a href="blog-details.html">Read More</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 blog-item mb-40">
-						<div class="blog-wrapper blog-column">
-							<div class="blog-thumb">
-								<a href="blog-details.html">
-									<img src="picture/4.jpg" alt="">
-								</a>
-							</div>
-							<div class="blog-desc">
-								<div class="meta-info">
-									<ul>
-										<li class="posts-time">January 28, 2020</li>
-									</ul>
-								</div>
-								<div class="blog-content">
-									<h2 class="blog-title">
-										<a href="blog-details.html">How To Be The Highest Marketer On Your Team And Skills</a>
-									</h2>
-									<p>At tincidunt vulputate dis natoque parturient proine mperdiet. Quisque lig pede males us. Semper orc gue
-										lorem ipsum.</p>
-								</div>
-								<div class="link-box">
-									<a href="blog-details.html">Read More</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 blog-item mb-40">
-						<div class="blog-wrapper blog-column">
-							<div class="blog-thumb">
-								<a href="blog-details.html">
-									<img src="picture/3.jpg" alt="">
-								</a>
-							</div>
-							<div class="blog-desc">
-								<div class="meta-info">
-									<ul>
-										<li class="posts-time">January 28, 2020</li>
-									</ul>
-								</div>
-								<div class="blog-content">
-									<h2 class="blog-title">
-										<a href="blog-details.html">4 Myths Rand Fishkin Wants You to Question Launching </a>
-									</h2>
-									<p>At tincidunt vulputate dis natoque parturient proine mperdiet. Quisque lig pede males us. Semper orc gue
-										lorem ipsum.</p>
-								</div>
-								<div class="link-box">
-									<a href="blog-details.html">Read More</a>
-								</div>
-							</div>
-						</div>
-					</div>
+					<?php echo $tmp; ?>
 				</div>
 			</div>
 		</div>
 		<!-- basic-blog-area end -->
 
-
+		
 
 		<!-- All js plugins here -->
         <script src="./js/jquery-1.12.0.min.js"></script>
