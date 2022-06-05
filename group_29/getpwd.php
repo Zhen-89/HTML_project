@@ -1,29 +1,26 @@
 <?php
 session_start();
-$name = "";  $password = "";
-if ( isset($_POST["act"]) )
-   $name = $_POST["act"];
-if ( isset($_POST["pwd"]) )
-   $password = $_POST["pwd"];
-?>
-<?php
-if ($name != "" && $password != "") {
     $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
         or die("無法開啟MySQL資料庫連結!<br>");
 
     // 送出編碼的MySQL指令
     mysqli_query($link, 'SET CHARACTER SET utf8');
     mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
-
+    $a="";
     // // 資料庫查詢(送出查詢的SQL指令)
-    if ($result = mysqli_query($link, "SELECT * FROM member WHERE mem_account='".$name."' AND mem_code='".$password."'")) {
+    if ($result = mysqli_query($link, "SELECT * FROM member WHERE mem_account='".$_POST["act"]."' AND mem_email='".$_POST["e-mail"]."'")) {
         while ($row = mysqli_fetch_row($result)) {
-            $_SESSION['level']= $row["8"];
-            $_SESSION['name']= $row["3"];
-            $_SESSION['no']= $row["9"];
+            $a=$row["1"];
+            echo "<script> {window.alert('您的帳號為:$a');location.href='login.php'} </script>";
         }
         $num = mysqli_num_rows($result); //查詢結果筆數
         mysqli_free_result($result); // 釋放佔用的記憶體
+        if(isset($_POST["act"])) {
+            if($num==0)
+            {
+                echo "<script> {window.alert('輸入的帳號或電子信箱有錯');} </script>";
+            }
+        }
     }
 
     mysqli_close($link); // 關閉資料庫連結
@@ -34,10 +31,7 @@ if ($name != "" && $password != "") {
         <meta http-equiv="refresh" content="0;url=index.php"></meta>
     <?php
     }
-    if($_SESSION['level']=='0')
-        echo "<script>alert('帳號或密碼錯誤')</script>";
 
-}
 if($_SESSION['level']!='0')
 {
     ?>
@@ -88,11 +82,11 @@ if($_SESSION['level']!='0')
     <div class="basic-contact-form ptb-90">
         <div class="container ">
             <div class="area-title text-center" style="margin-bottom: 1%;">
-                <h2>會員登入</h2>
+                <h2>找回密碼</h2>
             </div>
             <div class="row">
                 <div class="text-center">
-                    <form id="contact-form" action="login.php" method="post">
+                    <form id="contact-form" action="getpwd.php" method="post">
                         <div class="row center-block" style="width:35%;  ">
                             <div class="form-group ">
                                 <label class="sr-only">First Name</label>
@@ -101,18 +95,16 @@ if($_SESSION['level']!='0')
                             </div>                           
                             <div class="form-group ">
                                 <label class="sr-only">First Name</label>
-                                <input type="password" class="form-control input-lg" name="pwd" placeholder="密碼"
-                                    required>
+                                <input type="email" class="form-control input-lg" name="e-mail" placeholder="電子信箱" required>                               
                                 <p class="help-block text-danger"></p>
-                            </div>
+                            </div>   
 
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-lg btn-round btn-dark">登入</button>                                
-                                <a href="register.php" class="btn btn-lg btn-round btn-dark">註冊</a>         
+                                <button type="submit" class="btn btn-lg btn-round btn-dark">確認</button>      
                                                       
                             </div>
                             <div class="col-md-12 text-center">
-                                <br><a href="getpwd.php">忘記密碼</a></br>
+                                <br><a href="login.php">返回登入頁面</a></br>
                             </div>
 
                         </div><!-- .row -->
