@@ -5,7 +5,7 @@ if ($_SESSION['level'] != '2') {
 ?>
   <meta http-equiv="refresh" content="0;url=login.php">
   </meta>
-<?php
+  <?php
 }
 $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
   or die("無法開啟MySQL資料庫連結!<br>");
@@ -14,64 +14,91 @@ $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立M
 mysqli_query($link, 'SET CHARACTER SET utf8');
 mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
 
+// order_form
+$sql="SELECT * FROM order_form where state_code = 1 order by order_No";
+$times=0;
 // // 資料庫查詢(送出查詢的SQL指令)
-if(isset($_GET["who"]))
-{
-    if ($result = mysqli_query($link, "SELECT * FROM product_list where goods_name like '%".$_GET["who"]."%' ")) {
-        while ($row = mysqli_fetch_row($result)) {
-          $rows .= "<dl class='sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12'>
-          <dd class='sell1'>
-              <a href='product_intro.php?product_no=".$row["0"]."'><img src='". $row["6"]."' title='". $row["1"]."'></a>
-          </dd>
-          <dd class='sell2'>
-              <h5 class='sell-title'>
-                  <a href='product_intro.php?product_no=".$row["0"]."'>". $row["1"]."</a>
-              </h5>
-              <div class='pro_text'>
-                  $". $row["5"]."NT
-              </div>
-          </dd>
-          <dd class='sell3'>
-              <a href='changesell.php?product_no=".$row["0"]."'>編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-              <a href='deleteproduct.php?product_no=".$row["0"]."'>下架商品</a>
-          </dd>
-          </dl>";
+if ($result = mysqli_query($link, $sql)) {
+    $num = mysqli_num_rows($result); 
+    $title .="<h3 class='panel-title clearfix'>                                
+    <span><b>"."共".$num."筆訂單"."</b></span>
+    </h3> ";
+    while ($row = mysqli_fetch_row($result)) {
+        //order_detail
+        $sql_d="SELECT * FROM order_detail d  WHERE d.o_NO = '".$row["1"]."' and d.m_No = '".$row["0"]."'  ";
+   
+    $i=0;
+    if ($result_d = mysqli_query($link, $sql_d)){
+        while ($row_d = mysqli_fetch_row($result_d)){
+           
+           /* $rows_d .="
+            <td class='left'><a href=''>".$row_d["2"]."</a></td>
+            <td>".$row_d["3"]."</td>";*/
+            $product[$i] ="".$row_d["2"]."";
+            $amount[$i] ="".$row_d["3"]."";
+            $p_No[$i] ="".$row_d["4"]."";           
+            $i=$i+1;
         }
-        $num = mysqli_num_rows($result); //查詢結果筆數
-        mysqli_free_result($result); // 釋放佔用的記憶體
-        if($num==0){
-            $rows="<div class='area-title text-center' ><h2 >查無結果</h2></div>";	
-        }
-      }
-}
-else
-{
-    if ($result = mysqli_query($link, "SELECT * FROM product_list ")) {
-        while ($row = mysqli_fetch_row($result)) {
-          $rows .= "<dl class='sell13 col-xs-12 col-sm-12 col-md-12 col-lg-12'>
-          <dd class='sell1'>
-              <a href='product_intro.php?product_no=".$row["0"]."'><img src='". $row["6"]."' title='". $row["1"]."'></a>
-          </dd>
-          <dd class='sell2'>
-              <h5 class='sell-title'>
-                  <a href='product_intro.php?product_no=".$row["0"]."'>". $row["1"]."</a>
-              </h5>
-              <div class='pro_text'>
-                  $". $row["5"]."NT
-              </div>
-          </dd>
-          <dd class='sell3'>
-              <a href='changesell.php?product_no=".$row["0"]."'>編輯商品&nbsp;&nbsp;&nbsp;&nbsp;</a>
-              <a href='deleteproduct.php?product_no=".$row["0"]."'>下架商品</a>
-          </dd>
-          </dl>";
-        }
-        $num = mysqli_num_rows($result); //查詢結果筆數
-        mysqli_free_result($result); // 釋放佔用的記憶體
-        if($num==0){
-            $rows="<div class='area-title text-center' ><h2 >查無結果</h2></div>";	
-        }
-      }
+    }
+    //echo $product[1];
+    $rows_d="";
+    for($j=1;$j<$i;$j++)
+    {
+        $rows_d .="
+        <tr>           
+            <td class='left'><a href='Product-detail.php?product_no=".$p_No[$j] . "'>".$product[$j]."</a></td>
+            <td>".$amount[$j]."</td>            
+        </tr>";
+    }   
+    $times=$times+1;
+    $rows .= "
+    <div class='mod clearfix'>
+        <table border='1' class='table-01'>
+            <colgroup>
+                <col width='4%'>
+                <col width='8%'>     
+                <col width='13%'>           
+                <col width='12%'>
+                <col width='8%'>
+                <col width='31%'>
+                <col width='5%'>
+                <col width='18%'>
+                <col width='10%'>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>訂單編號</th>
+                    <th>取貨時間</th>                   
+                    <th>付款方式</th>
+                    <th>訂單金額</th>
+                    <th>商品名稱</th>
+                    <th>數量</th>
+                    <th>處理狀態</th>
+                    <th>退貨申請</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan=$i>$times</td>
+                    <td rowspan=$i>".$row["1"]."</td>                    
+                    <td rowspan=$i>".$row["2"]."</td>
+                    <td rowspan=$i>".$row["3"]."</td>
+                    <td rowspan=$i>".$row["4"]."</td>
+                    <td class='left'><a href='Product-detail.php?product_no=".$p_No[0] . "'>".$product[0]."</a></td>
+                    <td>".$amount[0]."</td>
+                    <td rowspan=$i>".$row["5"]."</td>
+                    <td rowspan=$i><button type='input' name='".$row["goods_No"] ."' class='btn' onclick='location.href=\"adminreturn.php?order_no=" .$row["1"] . "\"'>接受</button></td>
+                </tr>                
+                ".$rows_d."
+            </tbody>
+            <br></br>
+        </table>
+    </div> 
+    ";
+  }
+  $num = mysqli_num_rows($result); //查詢結果筆數
+  mysqli_free_result($result); // 釋放佔用的記憶體
 }
 
 mysqli_close($link); // 關閉資料庫連結
@@ -121,8 +148,8 @@ mysqli_close($link); // 關閉資料庫連結
                 <div id="member_center" class="clearfix">
                 <form name="form1" action="selllist.php" method="GET">
                     <button class="member_btn">管理中心</button>
-                    <input type="text" placeholder="輸入商品名稱" name="who">
-                    <button type="submit"><i class="fa fa-search"></i></button>
+                    <!-- <input type="text" placeholder="輸入商品名稱" name="who">
+                    <button type="submit"><i class="fa fa-search"></i></button> -->
                 </form>
                 </div>
             </div>
@@ -144,7 +171,7 @@ mysqli_close($link); // 關閉資料庫連結
                     <li id="li_buy" class="menu-nav">
                         <strong id="strong_buy">商品</strong>
                         <ul id="buy">
-                            <li class="navS">
+                            <li >
                                 <a href="selllist.php">商品列表</a>
                             </li>
                             <li>
@@ -159,7 +186,7 @@ mysqli_close($link); // 關閉資料庫連結
                     <li id="li_Order" class="menu-nav">
                         <strong id="strong_Order">訂單</strong>
                         <ul id="Order">
-                            <li>
+                            <li class="navS">
                                 <a href="adminorder.php">退貨處理</a>
                             </li>
 
@@ -184,12 +211,16 @@ mysqli_close($link); // 關閉資料庫連結
                         <li class="blank">&nbsp;</li>
                         <li class="">
                             <a href="">
-                                <span>商品</span>
+                                <span>訂單
+                                </span>
                             </a>
                         </li>
                     </ul>
+                    <?php echo $title; ?>
                     <?php echo $rows; ?>
                 </div>
+                
+            
             </div>
         </div>
     </div>
