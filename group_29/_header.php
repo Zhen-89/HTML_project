@@ -48,7 +48,7 @@ session_start();
 											<!-- <li><a href="personal information.php">個人資料</a></li> -->
 											<!-- $rows .= "<h5 class='anno-title'><a href='adminmem.php?who=".$_SESSION["no"]."' >會員帳號ID:" . $row["0"] . "&emsp;姓名:" . $row["3"] . "</a></h5>"; -->
 											<li><a href='personal information.php?who=<?php echo $_SESSION["no"]?>' >個人資料</a></li>
-											<li><a href="Order_summary.php">訂單查詢</a></li>
+											<li><a href='Order_summary.php?who=<?php echo $_SESSION["no"]?>'>訂單查詢</a></li>
 
 										</ul>
 									</li>

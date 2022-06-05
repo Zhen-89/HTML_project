@@ -1,12 +1,107 @@
 <?php
 session_start();
-
+// echo $_GET["who"];
 if ($_SESSION['level'] != '1') {
 ?>
-  <meta http-equiv="refresh" content="0;url=login.php">
-  </meta>
+<meta http-equiv="refresh" content="0;url=login.php">
+</meta>
 <?php
 }
+$link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
+  or die("無法開啟MySQL資料庫連結!<br>");
+
+// 送出編碼的MySQL指令
+mysqli_query($link, 'SET CHARACTER SET utf8');
+mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+
+// order_form
+$sql="SELECT * FROM order_form f WHERE f.mem_No = '".$_GET["who"]."' ";
+$times=0;
+// // 資料庫查詢(送出查詢的SQL指令)
+if ($result = mysqli_query($link, $sql)) {
+    $num = mysqli_num_rows($result); 
+    $title .="<h3 class='panel-title clearfix'>                                
+    <span><b>"."共".$num."筆訂單"."</b></span>
+    </h3> ";
+  while ($row = mysqli_fetch_row($result)) {
+    //order_detail
+    $sql_d="SELECT * FROM order_detail d WHERE d.o_NO = '".$row["1"]."' and d.m_No = '".$_GET["who"]."' ";
+   
+    $i=0;
+    if ($result_d = mysqli_query($link, $sql_d)){
+        while ($row_d = mysqli_fetch_row($result_d)){
+           
+           /* $rows_d .="
+            <td class='left'><a href=''>".$row_d["2"]."</a></td>
+            <td>".$row_d["3"]."</td>";*/
+            $product[$i] ="".$row_d["2"]."";
+            $amount[$i] ="".$row_d["3"]."";
+            $p_No[$i] ="".$row_d["4"]."";           
+            $i=$i+1;
+        }
+    }
+    //echo $product[1];
+    $rows_d="";
+    for($j=1;$j<$i;$j++)
+    {
+        $rows_d .="
+        <tr>           
+            <td class='left'><a href='Product-detail.php?product_no=".$p_No[$j] . "'>".$product[$j]."</a></td>
+            <td>".$amount[$j]."</td>            
+        </tr>";
+    }   
+    $times=$times+1;
+    $rows .= "
+    <div class='mod clearfix'>
+        <table border='1' class='table-01'>
+            <colgroup>
+                <col width='4%'>
+                <col width='8%'>     
+                <col width='13%'>           
+                <col width='12%'>
+                <col width='8%'>
+                <col width='31%'>
+                <col width='5%'>
+                <col width='18%'>
+                <col width='10%'>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>訂單編號</th>
+                    <th>取貨時間</th>                   
+                    <th>付款方式</th>
+                    <th>訂單金額</th>
+                    <th>商品名稱</th>
+                    <th>數量</th>
+                    <th>處理狀態</th>
+                    <th>退貨申請</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan=$i>$times</td>
+                    <td rowspan=$i>".$row["1"]."</td>                    
+                    <td rowspan=$i>".$row["2"]."</td>
+                    <td rowspan=$i>".$row["3"]."</td>
+                    <td rowspan=$i>".$row["4"]."</td>
+                    <td class='left'><a href='Product-detail.php?product_no=".$p_No[0] . "'>".$product[0]."</a></td>
+                    <td>".$amount[0]."</td>
+                    <td rowspan=$i>".$row["5"]."</td>
+                    <td rowspan=$i><button type='input' name='".$row["goods_No"] ."' class='btn' onclick='location.href=\"return.php?order_no=" .$row["1"] . "\"'>退貨</button></td>
+                </tr>                
+                ".$rows_d."
+            </tbody>
+            <br></br>
+        </table>
+    </div> 
+    ";
+  }
+  $num = mysqli_num_rows($result); //查詢結果筆數
+  mysqli_free_result($result); // 釋放佔用的記憶體
+}
+
+mysqli_close($link); // 關閉資料庫連結
 ?>
 <!doctype html>
 <html class="no-js" lang="">
@@ -35,10 +130,10 @@ if ($_SESSION['level'] != '1') {
         <div class="loader">Loading...</div>
     </div>
     <!-- /PRELOADER -->
-    
+
     <!-- header start -->
-		<?php include("_header.php") ;?>
-	<!-- header end -->
+    <?php include("_header.php") ;?>
+    <!-- header end -->
 
     <!-- basic-breadcrumb start -->
     <div class="basic-breadcrumb-area gray-bg ptb-70">
@@ -54,11 +149,7 @@ if ($_SESSION['level'] != '1') {
     </div>
 
     <div class="basic-contact-form ptb-50">
-        <div class="container ">
-            <!-- <div class="area-title text-center" style="margin-bottom: 1%;">
-					<h2>會員登入</h2>					
-				</div>                   -->
-
+        <div class="container ">  
             <div class="container_12 clearfix">
                 <div class="grid_12">
                     <!-- breadcrumb  -->
@@ -66,145 +157,13 @@ if ($_SESSION['level'] != '1') {
                     <!-- breadcrumb end -->
                 </div>
                 <div class="clearfix">
-                    <div class="grid_2">
-                        <!--mod-006-->
-                        <ul class="mb-3 mod-006 icon clearfix">
-                            <li>
-                                <h4><i class="icon-paste-solid"></i>讓我看看你有什麼本事</h4>
-                                <ul>
-                                    <li>
-                                        <a href="personal information.php">個人資料</a>
-                                    </li>
-                                    <li>
-                                        <a href="Order_summary.php">訂單查詢</a>
-                                    </li>
-                                </ul>
-                            </li>                           
-                           
-                        </ul>
-                        <!--mod-006 end-->
-                    </div>
-                    <div class="grid_10">
-                        <!-- content start -->
-
-                        <!--page-title-->
-                        <h2 class="page-title clearfix">
-                            <span>訂單查詢</span>
-                        </h2>
-                        <!--panel-title end-->
-
-                        <!--list-group-04-->
-                        <ul class="mod list-group-04 right clearfix">                                                     
-                            <li>退貨處理數量：0件</li>
+                    
+                    <div class="grid_12">
+                        
+                        <div class="mb-2 clearfix">                            
+                            <?php echo $title; ?> 
+                            <?php echo $rows; ?>                          
                             
-                        </ul>
-                        <!--list-group-04 end-->
-
-                        <!--list-group-03-->
-                        <!-- <ul class="mb-2 list-group-03 clearfix">                            
-                            <li><span>尚有<b><a
-                                            href=""><strong>未出貨</strong></a></b>的品項，將儘速為您處理</span>
-                            </li>
-                        </ul> -->
-                        <!--list-group-03 end-->                      
-
-                        <!--mod-->
-                        <div class="mb-2 clearfix">
-
-                            <!-- table-04 -->
-                            <div class="mod clearfix">
-                                <table border="1" class="table-04">
-                                    <colgroup>
-                                        <col width="15%">
-                                        <col width="85%">
-                                    </colgroup>
-                                </table>
-                            </div><!-- table-04 end -->
-                            <!-- <div class="mt-2 mb-2 btn-wrap center">
-                    <button type="button" class="btn btn-03 color" style="min-width:80px;"
-                        id="butsearchcomplex">查詢</button>                       
-                </div> -->
-                        </div>
-                        <!--mod end-->
-
-
-                        <!--mod-->
-                        <div class="mb-2 clearfix">
-                            <h3 class="panel-title clearfix">
-                                <!--<span><b>一個月內訂單</b><em>共<cite>4</cite>筆訂單</em></span>-->
-                                <span><b>一個月內訂單</b><em>共<cite>1</cite>筆訂單</em></span>
-                            </h3>
-
-                            <!--list-->
-                            <ul class="mod list-group-icon clearfix">
-                                <!--<li>訂單會依庫存狀況分批出貨，您可點選訂單編號下的『看完整內容』查看完整的訂單資料</li>-->
-                            </ul>
-                            <!--list end-->                         
-
-                            <!--scroll-->
-                            <!--<div class="scroll-wrap">-->
-                            <!-- table-01 -->
-                            <div class="mod clearfix">
-                                <table border="1" class="table-01">
-                                    <colgroup>
-                                        <col width="4%">
-                                        <col width="13%">
-                                        <col width="9%">
-                                        <col width="12%">
-                                        <col width="8%">
-                                        <col width="31%">
-                                        <col width="5%">
-                                        <col width="18%">
-                                    </colgroup>
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>訂單編號</th>
-                                            <th>訂購時間</th>
-                                            <th>付款方式</th>
-                                            <th>訂單金額</th>
-                                            <th>商品名稱</th>
-                                            <th>數量</th>
-                                            <th>處理狀態</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td rowspan="2">1</td>
-                                            <td rowspan="2">123<cite><a
-                                                        href="訂單內容">看完整內容</a></cite>
-                                            </td>
-                                            <td rowspan="2">2022/04/05<br>21:48:13</td>
-                                            <td rowspan="2">7-11取貨付款</td>
-                                            <td rowspan="2"><em>495</em></td>
-                                            <td class="left"><a href="">產品一</a>
-                                            </td>
-                                            <td>1</td>
-                                            <td>出貨處理中<br><span class="tip"><a class="popDetail"
-                                                        href="#">詳細進度查詢</a></span></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="left"><a href="">產品二</a>
-                                            </td>
-                                            <td>1</td>
-                                            <td>出貨處理中<br><span class="tip"><a class="popDetail"
-                                                        href="#">詳細進度查詢</a></span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div><!-- table-01 end -->
-                            <!--</div>-->
-                            <!--scroll end-->
-                            <!-- table-01 end -->
-
-                            <!-- mod-pagination -->
-                            <div class="mod mod-pagination clearfix">
-                                <ul class="page">
-                                    <li><a href="javascript:;" class="active">1</a></li>
-
-                                </ul>
-                            </div>
-                            <!--mod-pagination end -->                          
                         </div>
                         <!--mod end-->
                     </div><!-- content end -->

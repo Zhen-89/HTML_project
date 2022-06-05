@@ -140,10 +140,10 @@ mysqli_close($link); // 關閉資料庫連結
                         <strong id="strong_userInfo">功能</strong>
                         <ul id="userInfo">
                             <li class="navS">                                
-                                <!-- <a href="personal information.php?who=<?php echo $_SESSION["no"]?>' ">個人資料</a>                                 -->
+                                <a href='personal information.php?who=<?php echo $_SESSION["no"]?>'>個人資料</a>                                
                             </li>
                             <li class="navS">                                
-                                <!-- <a href="personal information.php?who=<?php echo $_SESSION["no"]?>' ">訂單查詢</a> -->
+                                <a href='Order_summary.php?who=<?php echo $_SESSION["no"]?>'>訂單查詢</a>
                             </li>
 
 

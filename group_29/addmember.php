@@ -17,7 +17,7 @@
     $temp=$row[9];//紀錄mem_no現在有多少個
 
 	$sql = "insert into member (`mem_account`, `mem_code`, `mem_name`, `mem_email`,`mem_level`, `mem_no`) 
-                        values ('" . $account . "','" . $pwd . "','" . $account . "','" .$email. "','" . 1 . "','" . $temp+1 . "')";
+                        values ('" . $account . "','" . $pwd . "','" . $account . "','" .$email. "','" . 1 . "','" . ($temp+1) . "')";
     
     echo "<script> {window.alert('註冊成功');location.href='login.php'} </script>";//返回上頁
 	$result = mysqli_query($link, $sql)	;
