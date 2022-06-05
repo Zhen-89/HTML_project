@@ -7,6 +7,7 @@ mysqli_query($link, 'SET CHARACTER SET utf8');
 mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
 
 // // 資料庫查詢(送出查詢的SQL指令)
+//	商品資料查詢
 if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE goods_No = '" . $_GET['product_no'] . "' ")) {
   while ($row = mysqli_fetch_row($result)) {
     $rows .= 	"<div class='area-title text-center'>
@@ -61,6 +62,29 @@ if ($result = mysqli_query($link, "SELECT * FROM product_list WHERE goods_No = '
   $num = mysqli_num_rows($result); //查詢結果筆數
   mysqli_free_result($result); // 釋放佔用的記憶體
 }
+//	留言資料查詢
+if ($result = mysqli_query($link, "SELECT * FROM comment inner join member on member.mem_account=comment.user_acc and comment.goods_No = '" . $_GET['product_no'] . "' ")) {
+	while ($row = mysqli_fetch_assoc($result)) {
+		$msg .= "<hr><div class='container basic-blo-area  big-board'>
+				<img  class='board-head' src='image/icon/icon1.svg'>
+				<div class='lit-board'>
+				<div class='shopee-product-rating__author-name'>".$row['mem_name']."</div>
+				<div class='board_star'>" ;
+		for($i=0 ;$i<$row['rating'] ;$i++){
+			$msg .= "<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
+					<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
+					</svg>" ;
+		}
+		$msg .="</div>
+				<div class='board-time'>". $row['creat_at'] ."</div>
+				<div class='pro_text board-text'>".nl2br($row['content'])."</div>
+				</div>
+				</div>";
+	}
+	$num = mysqli_num_rows($result); //查詢結果筆數
+	mysqli_free_result($result); // 釋放佔用的記憶體
+}
+//	推薦商品查詢
 if ($result = mysqli_query($link, "SELECT * FROM product_list where product_list.type='".$pro_type."'")) {
 	while ($row = mysqli_fetch_assoc($result)) {
 		$recom .= "<div class='portfolio-item branding " . $row["type"] . "'>
@@ -77,6 +101,7 @@ if ($result = mysqli_query($link, "SELECT * FROM product_list where product_list
 	mysqli_free_result($result); // 釋放佔用的記憶體
 }
 mysqli_close($link); // 關閉資料庫連結
+$text_size = 2;
 ?>
 <!doctype html>
 <html class="no-js" lang="">
@@ -135,59 +160,17 @@ mysqli_close($link); // 關閉資料庫連結
 				</div>
 				<div class="row">
 					<div id="post-comment-wrapper" class="comment-component">
-						<form>
-							<textarea rows="1" name="content" placeholder="Write something..." required="required" class="form-control"></textarea> <br> 
+						<form name="msg_form" action="addmsg.php?product_no=<?=$_GET["product_no"] ?>" method="POST">
+							<?php if($_SESSION['level'] == 0){echo "<textarea readonly rows='".$text_size."' name='content' placeholder='Please login...' required='required' class='form-control'></textarea> <br>" ;}
+									else {echo "<textarea rows='".$text_size."' name='content' placeholder='Write something...' required='required' class='form-control'></textarea> <br>" ;} ?>
 							<div style="" class="container com_css">
 								<button type="submit" style="margin-right: 10px;" class="btn btn-outline-primary com_box">Submit</button>
-								<button type="" class="btn com_box">Cancel</button>
+								<button type="reset" class="btn com_box">Cancel</button>
 							</div>
 						</form> 
 					</div>
 				</div>
-				<hr><div class="container basic-blo-area  big-board">
-					<img  class="board-head" src="image/icon/icon1.svg">
-					<div class="lit-board">
-						<div class="shopee-product-rating__author-name">w*****1</div>
-						<div class="board_star">
-								<svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
-									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
-								</svg>
-								<svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
-									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
-								</svg><svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
-									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
-								</svg><svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
-									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
-								</svg><svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
-									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
-								</svg>
-						</div>
-						<div class="board-time">2022-06-05 </div>
-						<div class="pro_text board-text">鞋子很漂亮 也很便宜 謝謝<br>想讓人一買再買，超讚!!!!</div>
-					</div>
-				</div>
-				<hr><div class="container basic-blo-area  big-board">
-					<img  class="board-head" src="image/icon/icon1.svg">
-					<div class="lit-board">
-						<div class="shopee-product-rating__author-name">w*****1</div>
-						<div class="board_star">
-								<svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
-									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
-								</svg>
-								<svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
-									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
-								</svg><svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
-									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
-								</svg><svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
-									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
-								</svg><svg enable-background="new 0 0 15 15" viewBox="0 0 15 15" x="0" y="0" class="star-icon icon-rating-solid--active icon-rating-solid">
-									<polygon points="7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"></polygon>
-								</svg>
-						</div>
-						<div class="board-time">2022-06-05 </div>
-						<div class="pro_text board-text">鞋子很漂亮 也很便宜 謝謝<br>想讓人一買再買，超讚!!!!</div>
-					</div>
-				</div>
+				<?php echo $msg ; ?>
 			</div>
 		</div>
         <!-- similar product recommand end -->
