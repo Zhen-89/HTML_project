@@ -4326,3 +4326,65 @@ input.pro_btn{
   flex-direction: column;
   align-items: stretch;
 }
+.rating-star-1{
+    stroke: #979797;
+    fill: rgb(253, 253, 253);
+    background-color:transparent ;
+    border:none ;
+}
+.rating-star-1:hover{
+  stroke: rgb(230, 29, 29);
+}
+.rating-star-1:focus{
+  stroke: rgb(230, 29, 29);
+}
+.rating-star-2{
+  stroke: #979797;
+  fill: rgb(253, 253, 253);
+  background-color:transparent ;
+  border:none ;
+}
+.rating-star-2:hover{
+stroke: rgb(250, 149, 7);
+}
+.rating-star-2:focus{
+  stroke: rgb(250, 149, 7);
+  }
+.rating-star-3{
+  stroke: #979797;
+  fill: rgb(253, 253, 253);
+  background-color:transparent ;
+  border:none ;
+}
+.rating-star-3:hover{
+stroke: rgb(255, 234, 0);
+}
+.rating-star-3:focus{
+  stroke: rgb(255, 234, 0);
+  }
+.rating-star-4{
+  stroke: #979797;
+  fill: rgb(253, 253, 253);
+  background-color:transparent ;
+  border:none ;
+}
+.rating-star-4:hover{
+stroke: rgb(29, 240, 29);
+}
+.rating-star-4:focus{
+  stroke: rgb(29, 240, 29);
+  }
+.rating-heart{
+  background-color:transparent ;
+  border:none ;
+  fill: #979797;
+}
+.rating-heart:hover{
+  fill: rgb(29, 240, 29);
+}
+.rating-heart:focus{
+  fill: rgb(29, 240, 29);
+}
+.rating-heart:active{
+  fill: rgb(29, 240, 29);
+}

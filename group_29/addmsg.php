@@ -24,8 +24,9 @@
     $result1 = mysqli_query($link, "SELECT * FROM comment ");
     while ($row = mysqli_fetch_assoc($result1)) {$num =  $row["com_No"];}
 
-	$sql = "insert into comment values ('" . ($num+1) . "','" . $_GET["product_no"] . "','" . $acc . "','" ."5" . "','".$content."','".$time."')";
+	$sql = "insert into comment values ('" . ($num+1) . "','" . $_GET["product_no"] . "','" . $acc . "','" .$_POST["rating"] . "','".$content."','".$time."')";
     $result2 = mysqli_query($link, $sql)	;
+	//echo  ;
     echo "<script> {history.go(-1)} </script>";					
 	mysqli_close($link); // 關閉資料庫連結
 ?>
