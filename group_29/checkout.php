@@ -7,7 +7,42 @@ if ($_SESSION['level'] != '1' && $_SESSION['level'] != '2') {
 </meta>
 <?php
 }
+
+$link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
+or die("無法開啟MySQL資料庫連結!<br>");
+
+// 送出編碼的MySQL指令
+mysqli_query($link, 'SET CHARACTER SET utf8');
+mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+
+// // 資料庫查詢(送出查詢的SQL指令)
+$no=$_SESSION['no'];
+$url="removecar.php";
+
+$sum=60;
+
+if ($result = mysqli_query($link, "SELECT * FROM shoppingcar s, product_list p, member m WHERE s.goods_No = p.goods_No and s.member_No = $no and s.member_No = m.mem_no")) {
+    while ($row = mysqli_fetch_assoc($result)) {  
+        $sum = $sum+$total;        
+    }
+    $num = mysqli_num_rows($result); //查詢結果筆數
+    mysqli_free_result($result); // 釋放佔用的記憶體
+}
+
+mysqli_close($link); // 關閉資料庫連結
+
+if($num == 0)
+{
+    ?>
+  <script> 
+alert('目前購物車沒東西~');
+window.location.href = "index.php";
+</script>
+<?php
+}
 ?>
+
+
 <!doctype html>
 <html class="no-js" lang="">
 

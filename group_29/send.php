@@ -1,4 +1,5 @@
 <?php
+
     session_start();
     if(isset($_SESSION["no"]))
     {
@@ -13,7 +14,7 @@
     {
         $takemode="宅配";        
     } 
-    if( $_POST['takemode']=="0")
+    if( $_POST['paymode']=="0")
     {
         $paymode="信用卡";
     }

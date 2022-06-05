@@ -83,6 +83,10 @@ if ($result = mysqli_query($link, "SELECT * FROM comment inner join member on me
 	}
 	$num = mysqli_num_rows($result); //查詢結果筆數
 	mysqli_free_result($result); // 釋放佔用的記憶體
+	if($num==0)
+			{
+				$msg="<div class='area-title text-center' ><h2 >尚無留言</h2></div>";				
+			}
 }
 //	推薦商品查詢
 if ($result = mysqli_query($link, "SELECT * FROM product_list where product_list.type='".$pro_type."'")) {
