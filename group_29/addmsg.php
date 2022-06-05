@@ -21,7 +21,10 @@
     while ($row = mysqli_fetch_assoc($result1)) {$acc .=  $row["mem_account"];}
     mysqli_free_result($result1); // 釋放佔用的記憶體 
     // INSERT INTO `comment`(`com_No`, `goods_No`, `user_acc`, `rating`, `content`, `creat_at`) VALUES ('3','014','member','5','好可愛的時鐘!!超愛的，拿來當禮物也不錯!!','2022-5-20')
-    $sql = "insert into comment values ('" . ($num+1) . "','" . $_GET["product_no"] . "','" . $acc . "','" ."5" . "','".$content."','".$time."')";
+    $result1 = mysqli_query($link, "SELECT * FROM comment ");
+    while ($row = mysqli_fetch_assoc($result1)) {$num =  $row["com_No"];}
+
+	$sql = "insert into comment values ('" . ($num+1) . "','" . $_GET["product_no"] . "','" . $acc . "','" ."5" . "','".$content."','".$time."')";
     $result2 = mysqli_query($link, $sql)	;
     echo "<script> {history.go(-1)} </script>";					
 	mysqli_close($link); // 關閉資料庫連結
