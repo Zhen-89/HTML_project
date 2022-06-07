@@ -168,31 +168,57 @@ $text_size = 2;
 							<?php if($_SESSION['level'] == 0){echo "<textarea readonly rows='".$text_size."' name='content' placeholder='Please login...' required='required' class='form-control'></textarea> <br>" ;}
 									else {echo "<textarea rows='".$text_size."' name='content' placeholder='Write something...' required='required' class='form-control'></textarea> <br>" ;} ?>
 							
-							<button type="" name="rating" value="1" class="rating-star-1 hover ">
+							<?php if($_SESSION['level'] == 0){echo "<button disabled='disabled' type='' name='rating' value='1' class='rating-star-1 hover ''>
 								<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
 								<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
 								</svg>
-							</button>
-							<button type="" name="rating" value="2" class="rating-star-2 hover ">
+								</button>";}
+								else {echo "<button type='' name='rating' value='1' class='rating-star-1 hover ''>
+									<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
+									<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
+									</svg>
+								</button>";} ?>
+							
+							<?php if($_SESSION['level'] == 0){echo "<button disabled='disabled' type='' name='rating' value='2' class='rating-star-2 hover ''>
 								<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
 								<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
 								</svg>
-							</button>
-							<button type="" name="rating" value="3" class="rating-star-3 hover ">
+								</button>";}
+								else {echo "<button type='' name='rating' value='1' class='rating-star-1 hover ''>
+									<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
+									<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
+									</svg>
+								</button>";} ?>
+								<?php if($_SESSION['level'] == 0){echo "<button disabled='disabled' type='' name='rating' value='3' class='rating-star-3 hover ''>
 								<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
 								<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
 								</svg>
-							</button>
-							<button type="" name="rating" value="4" class="rating-star-4 hover ">
+								</button>";}
+								else {echo "<button type='' name='rating' value='1' class='rating-star-1 hover ''>
+									<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
+									<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
+									</svg>
+								</button>";} ?>
+								<?php if($_SESSION['level'] == 0){echo "<button disabled='disabled' type='' name='rating' value='4' class='rating-star-4 hover ''>
 								<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
 								<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
 								</svg>
-							</button>
-							<button type="" name="rating" value="5" class="rating-heart">
-								<!--stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"-->
-								<!--class="heart" transform="translate(0.000000, -2.000000)" fill-rule="nonzero"-->
-								<svg  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32px" height="20px" viewBox="0 0 32 28" version="1.1"><defs/><g id="Page-2-Copy" ><g id="56"  ><path d="M16.0012649,27 L28.2682796,13.9256514 C30.5797458,11.6597482 30.5765008,7.97319845 28.262969,5.70527046 C25.9453869,3.4333719 22.1914533,3.43151923 19.8772917,5.70006463 L16.0012647,9.49968832 L12.1252376,5.70006463 C9.81377143,3.43416149 6.05309203,3.43734247 3.73956025,5.70527046 C1.42197807,7.97716902 1.42008814,11.657106 3.73424975,13.9256514 L16.0012649,27 Z M2.31674467,15.5103653 C-0.774555085,12.4213349 -0.771711302,7.41186051 2.32206257,4.32035787 C5.40954123,1.23514582 10.429454,1.22647608 13.5202909,4.31504388 L16.0012662,6.79419777 L18.4822414,4.31504388 C21.5735412,1.22601354 26.5866959,1.22885523 29.6804698,4.32035787 C32.7679484,7.40556993 32.7766245,12.4217975 29.6857876,15.5103653 L16.0012664,30 L2.31674467,15.5103653 Z" id="Rectangle-467" stroke="none"/></g></g></svg>
-							</button>
+								</button>";}
+								else {echo "<button type='' name='rating' value='1' class='rating-star-1 hover ''>
+									<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
+									<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
+									</svg>
+								</button>";} ?>
+
+
+
+								<?php if($_SESSION['level'] == 0){echo "<button  disabled='disabled' type='' name='rating' value='5' class='rating-heart'>
+								<svg  xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='32px' height='20px' viewBox='0 0 32 28' version='1.1'><defs/><g id='Page-2-Copy' ><g id='56'  ><path d='M16.0012649,27 L28.2682796,13.9256514 C30.5797458,11.6597482 30.5765008,7.97319845 28.262969,5.70527046 C25.9453869,3.4333719 22.1914533,3.43151923 19.8772917,5.70006463 L16.0012647,9.49968832 L12.1252376,5.70006463 C9.81377143,3.43416149 6.05309203,3.43734247 3.73956025,5.70527046 C1.42197807,7.97716902 1.42008814,11.657106 3.73424975,13.9256514 L16.0012649,27 Z M2.31674467,15.5103653 C-0.774555085,12.4213349 -0.771711302,7.41186051 2.32206257,4.32035787 C5.40954123,1.23514582 10.429454,1.22647608 13.5202909,4.31504388 L16.0012662,6.79419777 L18.4822414,4.31504388 C21.5735412,1.22601354 26.5866959,1.22885523 29.6804698,4.32035787 C32.7679484,7.40556993 32.7766245,12.4217975 29.6857876,15.5103653 L16.0012664,30 L2.31674467,15.5103653 Z' id='Rectangle-467' stroke='none'/></g></g></svg>
+								</button>";}
+								else {echo "<button type='' name='rating' value='5' class='rating-heart'>
+									<svg  xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='32px' height='20px' viewBox='0 0 32 28' version='1.1'><defs/><g id='Page-2-Copy' ><g id='56'  ><path d='M16.0012649,27 L28.2682796,13.9256514 C30.5797458,11.6597482 30.5765008,7.97319845 28.262969,5.70527046 C25.9453869,3.4333719 22.1914533,3.43151923 19.8772917,5.70006463 L16.0012647,9.49968832 L12.1252376,5.70006463 C9.81377143,3.43416149 6.05309203,3.43734247 3.73956025,5.70527046 C1.42197807,7.97716902 1.42008814,11.657106 3.73424975,13.9256514 L16.0012649,27 Z M2.31674467,15.5103653 C-0.774555085,12.4213349 -0.771711302,7.41186051 2.32206257,4.32035787 C5.40954123,1.23514582 10.429454,1.22647608 13.5202909,4.31504388 L16.0012662,6.79419777 L18.4822414,4.31504388 C21.5735412,1.22601354 26.5866959,1.22885523 29.6804698,4.32035787 C32.7679484,7.40556993 32.7766245,12.4217975 29.6857876,15.5103653 L16.0012664,30 L2.31674467,15.5103653 Z' id='Rectangle-467' stroke='none'/></g></g></svg>
+									</button>";} ?>
+							
 							<div style="" class="container com_css">
 								<!--<button type="submit" style="margin-right: 10px;" class="btn btn-outline-primary com_box">Submit</button>-->
 								<button type="reset" class="btn com_box">Cancel</button>

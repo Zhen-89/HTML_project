@@ -1,6 +1,13 @@
 <?php 	
 	session_start();
-	$level   =$_SESSION['level'];
+	if ($_SESSION['level'] == '0') {
+		echo "<script> {window.alert('請先登入');} </script>";
+	?>
+		<meta http-equiv="refresh" content="0;url=login.php">
+		</meta>
+	<?php
+	}
+	$level=$_SESSION['level'];
 	$member_no=$_SESSION['no'];
 	$goods_No=$_GET["product_no"];
     $content =$_POST['content'] ;
