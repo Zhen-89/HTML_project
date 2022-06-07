@@ -18,7 +18,7 @@ mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
 if ($result = mysqli_query($link, "SELECT * FROM member WHERE mem_no = '" . $_GET["who"] . "'")) {
   while ($row = mysqli_fetch_row($result)) {
   $rows .= "
-<form name='form' action='modify_information.php?no=". $row["9"]."' method='POST' id='form'>
+<form name='form' action='person_information.php?no=". $row["9"]."' method='POST' id='form'>
 <div class='mb-2 clearfix'>
 <h3 class='panel-title clearfix'>
 <!-- <span><b>會員資料</b></span> -->
