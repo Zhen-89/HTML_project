@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-05-15 13:05:10
+-- 產生時間： 2022-06-07 14:05:38
 -- 伺服器版本： 10.4.22-MariaDB
 -- PHP 版本： 8.1.2
 
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- 資料庫: `group_29`
 --
-CREATE DATABASE IF NOT EXISTS `group_29` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE IF NOT EXISTS `group_29` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `group_29`;
 
 -- --------------------------------------------------------
@@ -53,6 +53,31 @@ INSERT INTO `bulletin` (`bul_No`, `intro_title`, `intro_content`, `intro_picture
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `comment`
+--
+
+CREATE TABLE `comment` (
+  `com_No` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `goods_No` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `user_acc` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `rating` int(10) NOT NULL,
+  `content` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `creat_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 傾印資料表的資料 `comment`
+--
+
+INSERT INTO `comment` (`com_No`, `goods_No`, `user_acc`, `rating`, `content`, `creat_at`) VALUES
+('1', '006', 'member', 5, '這衣服簡直太贊了，想要多買幾件', '2022-05-31'),
+('2', '005', 'member', 5, '鞋子很漂亮 也很便宜 謝謝<br>\r\n想讓人一買再買，超讚!!!!', '2022-06-05'),
+('3', '001', 'admin', 5, '1234', '2022-06-05'),
+('4', '001', 'admin', 1, '', '2022-06-07');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `member`
 --
 
@@ -74,8 +99,66 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`mem_account`, `mem_code`, `mem_birth`, `mem_name`, `mem_email`, `mem_mobile`, `mem_phone`, `mem_location`, `mem_level`, `mem_no`) VALUES
-('member', 'member123456', '2002/03/21', '王小明', 'allen@gmail.com', '041234567', '0987654321', '彰化市行天宮125號', '1', '1'),
-('admin', 'admin123456', '1989/05/06', '王大明', 'kspksp@gmail.com', '061234567', '0912345678', '南投市阿里山22號', '2', '2');
+('member', 'member123456', '1989/05/06', '王小明', 'allen@gmail.com', '041234567', '0987654321  ', '彰化市行天宮125號', '1', '1'),
+('admin', 'admin123456', '1989/05/06', '王大明', 'kspksp@gmail.com', '061234567', '0912345678', '南投市阿里山22號', '2', '2'),
+('member1', '123456', '6/21', 'member1', 'zzxx55888@gmail.com', '', '', '', '1', '3'),
+('123', '123456', '', '123321', '1234@gmail.com', '', ' ', '', '1', '5');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `order_detail`
+--
+
+CREATE TABLE `order_detail` (
+  `m_No` varchar(10) NOT NULL,
+  `o_No` varchar(10) NOT NULL,
+  `p_name` varchar(20) NOT NULL,
+  `p_amount` varchar(10) NOT NULL,
+  `p_No` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `order_detail`
+--
+
+INSERT INTO `order_detail` (`m_No`, `o_No`, `p_name`, `p_amount`, `p_No`) VALUES
+('1', '2', '有機棉舒適休閒鞋柔白', '1', '005'),
+('1', '3', '無印良品 小杯杯', '1', '002'),
+('1', '3', '【男女適用】休閒衫', '1', '004'),
+('1', '3', '有機棉舒適休閒鞋柔白', '1', '005'),
+('1', '4', '無印良品 小杯杯', '5', '002'),
+('3', '7', '日本原裝進口 不鏽鋼鑰匙圈', '1', '001'),
+('3', '8', '無印良品 小杯杯', '1', '002'),
+('5', '6', '日本原裝進口 不鏽鋼鑰匙圈', '1', '001');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `order_form`
+--
+
+CREATE TABLE `order_form` (
+  `mem_No` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `order_No` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `paytype` varchar(10) NOT NULL,
+  `sum` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `state` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `state_code` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 傾印資料表的資料 `order_form`
+--
+
+INSERT INTO `order_form` (`mem_No`, `order_No`, `type`, `paytype`, `sum`, `state`, `state_code`) VALUES
+('1', '2', '超商取貨(7-11)', '信用卡', '759', '退貨申請中', '1'),
+('1', '3', '超商取貨(7-11)', '信用卡', '2509', '退貨申請中', '1'),
+('1', '4', '超商取貨(7-11)', '信用卡', '810', '出貨處理中', '0'),
+('3', '7', '超商取貨(7-11)', '貨到付款', '10060', '退貨申請中', '1'),
+('3', '8', '宅配', '信用卡', '210', '退貨申請中', '1'),
+('5', '6', '超商取貨(7-11)', '信用卡', '10060', '出貨處理中', '0');
 
 -- --------------------------------------------------------
 
@@ -127,23 +210,32 @@ CREATE TABLE `shoppingcar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 傾印資料表的資料 `shoppingcar`
---
-
-INSERT INTO `shoppingcar` (`member_No`, `goods_No`, `amount`, `complete`) VALUES
-('1', '002', '1', 0),
-('1', '010', '1', 0),
-('1', '013', '1', 0);
-
---
 -- 已傾印資料表的索引
 --
+
+--
+-- 資料表索引 `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`com_No`);
 
 --
 -- 資料表索引 `member`
 --
 ALTER TABLE `member`
   ADD PRIMARY KEY (`mem_no`);
+
+--
+-- 資料表索引 `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD PRIMARY KEY (`m_No`,`o_No`,`p_No`);
+
+--
+-- 資料表索引 `order_form`
+--
+ALTER TABLE `order_form`
+  ADD PRIMARY KEY (`mem_No`,`order_No`);
 
 --
 -- 資料表索引 `product_list`

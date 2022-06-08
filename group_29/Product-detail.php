@@ -184,7 +184,7 @@ $text_size = 2;
 								<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
 								</svg>
 								</button>";}
-								else {echo "<button type='' name='rating' value='1' class='rating-star-1 hover ''>
+								else {echo "<button type='' name='rating' value='2' class='rating-star-2 hover ''>
 									<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
 									<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
 									</svg>
@@ -194,7 +194,7 @@ $text_size = 2;
 								<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
 								</svg>
 								</button>";}
-								else {echo "<button type='' name='rating' value='1' class='rating-star-1 hover ''>
+								else {echo "<button type='' name='rating' value='3' class='rating-star-3 hover ''>
 									<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
 									<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
 									</svg>
@@ -204,7 +204,7 @@ $text_size = 2;
 								<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
 								</svg>
 								</button>";}
-								else {echo "<button type='' name='rating' value='1' class='rating-star-1 hover ''>
+								else {echo "<button type='' name='rating' value='4' class='rating-star-4 hover ''>
 									<svg enable-background='new 0 0 15 15' viewBox='0 0 15 15' x='0' y='0' class='star-icon icon-rating-solid--active icon-rating-solid'>
 									<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
 									</svg>

@@ -113,6 +113,7 @@ if($_SESSION['level']!='0')
                             </div>
                             <div class="col-md-12 text-center">
                                 <br><a href="getpwd.php">忘記密碼</a></br>
+                                <br><a href="change_code.php">修改密碼</a></br>
                             </div>
 
                         </div><!-- .row -->

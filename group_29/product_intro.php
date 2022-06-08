@@ -26,7 +26,6 @@ $b="";
 					<polygon points='7.5 .8 9.7 5.4 14.5 5.9 10.7 9.1 11.8 14.2 7.5 11.6 3.2 14.2 4.3 9.1 .5 5.9 5.3 5.4' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'></polygon>
 					</svg>";
 				}
-
 				$tmp .="<hr><div class='container basic-blo-area  '>
 				<img  class='board-head' src='image/icon/icon1.svg'>
 				<div class='lit-board'>
@@ -39,7 +38,7 @@ $b="";
 							<div class='form-group'>
 								<textarea class='form-control' id='sell-introduction' name='sell-introduction'
 									rows='5' style='height: 200px;' maxlength='4000'
-									placeholder='請提供詳情以利人員快速為您服務' required>".$row["4"]."</textarea>
+									placeholder='請提供詳情以利人員快速為您服務' required>".$row['4']."</textarea>
 								<label for='sell-introduction' class='error'></label>
 							</div>
 							<div class='col-3 col-lg-3'><button class='btn form__btn--submit' type='submit'
@@ -75,7 +74,7 @@ $b="";
 						".$b."
 					</div>
 					<div class='board-time'>".$row["5"]."  </div>
-					<div class='pro_text board-text'>".$row["4"]."</div>
+					<div class='pro_text board-text'>".nl2br($row['4'])."</div>
 					<dd class='sell3'>
 						<a href='product_intro.php?product_no=".$_GET["product_no"]."&change_comment=".$row["0"]."'>編輯留言&nbsp;&nbsp;&nbsp;&nbsp;</a>
 						<a href='deletecomment.php?product_no=".$_GET["product_no"]."&change_comment=".$row["0"]."'>刪除留言</a>

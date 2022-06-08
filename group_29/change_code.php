@@ -1,43 +1,76 @@
 <?php
-session_start();
-    $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
-        or die("無法開啟MySQL資料庫連結!<br>");
+    session_start();
+    
 
     // 送出編碼的MySQL指令
-    mysqli_query($link, 'SET CHARACTER SET utf8');
-    mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
+
     $a="";
+    $b="";
+    $c="";
+    $d="";
+    if(isset($_POST["old_code"]))
+    {   echo $_POST["old_code"];
+        $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
+        or die("無法開啟MySQL資料庫連結!<br>");
+    // 送出編碼的MySQL指令
+        mysqli_query($link, 'SET CHARACTER SET utf8');
+        mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
     // // 資料庫查詢(送出查詢的SQL指令)
-    if ($result = mysqli_query($link, "SELECT * FROM member WHERE mem_account='".$_POST["act"]."' AND mem_email='".$_POST["e-mail"]."'")) {
-        while ($row = mysqli_fetch_row($result)) {
-            $a=$row["1"];
-            echo "<script> {window.alert('您的密碼為:$a');location.href='login.php'} </script>";
-        }
-        $num = mysqli_num_rows($result); //查詢結果筆數
-        mysqli_free_result($result); // 釋放佔用的記憶體
-        if(isset($_POST["act"])) {
-            if($num==0)
+        if ($result = mysqli_query($link, "SELECT * FROM member WHERE mem_account='".$_POST["act"]."' ")) {
+            while ($row = mysqli_fetch_row($result)) {
+            if($_POST["old_code"]==$row["1"])
             {
-                echo "<script> {window.alert('輸入的帳號或電子信箱有錯');} </script>";
+                $a=$_POST["act"];
+                $b=$_POST["old_code"];
+            }
+            
+            }
+            $num = mysqli_num_rows($result); //查詢結果筆數
+            mysqli_free_result($result); // 釋放佔用的記憶體
+        }
+
+        mysqli_close($link); // 關閉資料庫連結
+
+        if($_POST["new_code"]==$_POST["re_code"])
+        {
+            $c=$_POST["new_code"];
+            $d=$_POST["re_code"];
+        }
+
+        if(isset($_POST["re_code"]))
+        {
+            if($a!=" "&&$b!=" "&&$c!=" "&&$d!=" ")
+            {
+                $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
+                    or die("無法開啟MySQL資料庫連結!<br>");
+                $sql = "update member set mem_code ='".$_POST["new_code"]."' where mem_account ='".$_POST["act"]."' ";
+                mysqli_query($link, 'SET CHARACTER SET utf8');
+                mysqli_query($link,"SET collation_connection = 'utf8_unicode_ci'");
+                mysqli_query($link, $sql);
+            
+                mysqli_close($link); // 關閉資料庫連結
+                ?>
+                    <script> 
+                    alert('修改成功');
+                    window.location.href = "login.php";
+                    </script>
+                <?php
+            }
+            else
+            {
+                echo $a,$b,$c,$d;
+                echo "<script>alert('資料錯誤')</script>";
             }
         }
-    }
 
-    mysqli_close($link); // 關閉資料庫連結
-    
-    if($_SESSION['level']=='1'||$_SESSION['level']=='2')
-    {
-    ?>
-        <meta http-equiv="refresh" content="0;url=index.php"></meta>
-    <?php
     }
-
-if($_SESSION['level']!='0')
-{
-    ?>
-    <meta http-equiv="refresh" content="0;url=index.php"></meta>
-    <?php
-}
+        
+        if($_SESSION['level']=='1'||$_SESSION['level']=='2')
+        {
+        ?>
+            <meta http-equiv="refresh" content="0;url=index.php"></meta>
+        <?php
+        }
 ?>
 
 
@@ -86,7 +119,7 @@ if($_SESSION['level']!='0')
             </div>
             <div class="row">
                 <div class="text-center">
-                    <form id="contact-form" action="getpwd.php" method="post">
+                    <form id="contact-form" action="change_code.php" method="post">
                         <div class="row center-block" style="width:35%;  ">
                             <div class="form-group ">
                                 <label class="sr-only">First Name</label>
@@ -95,7 +128,17 @@ if($_SESSION['level']!='0')
                             </div>                           
                             <div class="form-group ">
                                 <label class="sr-only">First Name</label>
-                                <input type="email" class="form-control input-lg" name="e-mail" placeholder="電子信箱" required>                               
+                                <input type="text" class="form-control input-lg" name="old_code" placeholder="密碼" required>                               
+                                <p class="help-block text-danger"></p>
+                            </div>   
+                            <div class="form-group ">
+                                <label class="sr-only">First Name</label>
+                                <input type="text" class="form-control input-lg" name="new_code" placeholder="新密碼" required>                               
+                                <p class="help-block text-danger"></p>
+                            </div>                           
+                            <div class="form-group ">
+                                <label class="sr-only">First Name</label>
+                                <input type="text" class="form-control input-lg" name="re_code" placeholder="再次確認" required>                               
                                 <p class="help-block text-danger"></p>
                             </div>   
 
