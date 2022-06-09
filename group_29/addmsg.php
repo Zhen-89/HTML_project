@@ -1,10 +1,17 @@
 <?php 	
 	session_start();
-	$level   =$_SESSION['level'];
+	if ($_SESSION['level'] == '0') {
+		echo "<script> {window.alert('請先登入');} </script>";
+	?>
+		<meta http-equiv="refresh" content="0;url=login.php">
+		</meta>
+	<?php
+	}
+	$level=$_SESSION['level'];
 	$member_no=$_SESSION['no'];
 	$goods_No=$_GET["product_no"];
     $content =$_POST['content'] ;
-    $time    =date('Y-m-d') ;
+    $time=date('Y-m-d') ;
 	
 	
 	$link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
@@ -24,7 +31,7 @@
     $result1 = mysqli_query($link, "SELECT * FROM comment ");
     while ($row = mysqli_fetch_assoc($result1)) {$num =  $row["com_No"];}
 
-	$sql = "insert into comment values ('" . ($num+1) . "','" . $_GET["product_no"] . "','" . $acc . "','" .$_POST["rating"] . "','".$content."','".$time."')";
+	$sql = "insert into comment values ('0" . ($num+1) . "','" . $_GET["product_no"] . "','" . $acc . "','" .$_POST["rating"] . "','".$content."','".$time."')";
     $result2 = mysqli_query($link, $sql)	;
 	//echo  ;
     echo "<script> {history.go(-1)} </script>";					

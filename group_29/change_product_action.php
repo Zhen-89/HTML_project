@@ -10,6 +10,7 @@ if ($_SESSION['level'] != '2') {
 }
 ?>
 <?php
+
     if(isset($_POST['div_upload']))
     {
         $imgname = $_FILES['div_upload']['name'];
@@ -23,10 +24,10 @@ if ($_SESSION['level'] != '2') {
         }
     }
     $goods_Noo=$_GET["product_no"];
-
     $link = mysqli_connect("localhost", "root", "root123456", "group_29") // 建立MySQL的資料庫連結
 	or die("無法開啟MySQL資料庫連結!<br>");
 						
+    
 	// 送出編碼的MySQL指令
 	mysqli_query($link, 'SET CHARACTER SET utf8');
 	mysqli_query($link, "SET collation_connection = 'utf8_unicode_ci'");
@@ -38,8 +39,8 @@ if ($_SESSION['level'] != '2') {
     // echo $amount ;
     $result = mysqli_query($link, $sql)	;
 
-    
+    header('Location: selllist.php');
     mysqli_close($link); // 關閉資料庫連結
-     header('Location: selllist.php');
+     
 	
 ?>
